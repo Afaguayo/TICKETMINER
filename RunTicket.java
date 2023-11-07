@@ -22,10 +22,10 @@ public class RunTicket {
 
         // Load events and customers from CSV files
         eventDataReader eventDataReader = new eventDataReader();
-        List<Event> events = eventDataReader.eventDataStoring("EventListPA4.csv");
+        List<Event> events = eventDataReader.eventDataStoring("EventListPA5.csv");
 
         customerDataReader customerDataReader = new customerDataReader();
-        List<Customer> customers = customerDataReader.customerDataStoring("CustomerListPA4.csv");
+        List<Customer> customers = customerDataReader.customerDataStoring("CustomerListPA5.csv");
 
         AutoPurchase autoPurchase = new AutoPurchase(events, customers);
         

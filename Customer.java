@@ -250,23 +250,23 @@ class Customer {
             String inputLastname;
             boolean nameValidated = false;
             
-            while (!nameValidated) {
-                System.out.println("Please enter your first name: ");
-                inputFirstname = scanner.nextLine();
-                System.out.println("Please enter your last name: ");
-                inputLastname = scanner.nextLine();
+            // while (!nameValidated) {
+            //     System.out.println("Please enter your first name: ");
+            //     inputFirstname = scanner.nextLine();
+            //     System.out.println("Please enter your last name: ");
+            //     inputLastname = scanner.nextLine();
                 
-                for (Customer activeCustomer : customerInfo) {
-                    if (activeCustomer.getFirstName().equalsIgnoreCase(inputFirstname) && activeCustomer.getLastName().equalsIgnoreCase(inputLastname)) {
-                        nameValidated = true;
-                        break;
-                    }
-                }
+            //     for (Customer activeCustomer : customerInfo) {
+            //         if (activeCustomer.getFirstName().equalsIgnoreCase(inputFirstname) && activeCustomer.getLastName().equalsIgnoreCase(inputLastname)) {
+            //             nameValidated = true;
+            //             break;
+            //         }
+            //     }
                 
-                if (!nameValidated) {
-                    System.out.println("Name not found in the database. Please try again.");
-                }
-            }
+            //     if (!nameValidated) {
+            //         System.out.println("Name not found in the database. Please try again.");
+            //     }
+            // }
             
             // Validate username and password
             System.out.println("Enter username: ");
