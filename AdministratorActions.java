@@ -383,6 +383,9 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
         System.out.println("[3] Inquire all events");
         System.out.println("[4] To exit admin menu");
         System.out.println("[5] Create a new event"); // New option to create an event
+        System.out.println("[6] Compute/print the amount of money gained by The TicketMiner Company for an event");
+        System.out.println("[7] Compute/print the amount of money gained by The TicketMiner Company for all events");
+        System.out.println("[8] Cancel event");
         System.out.println("\nPlease enter an option: ");
 
         adminChoice = keyboard.next();
@@ -423,8 +426,21 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 ActionLogger.logInfo("Admin created a new event"); // Log into text file
                 break;
 
+            case "6":
+                ActionLogger.logInfo( "Compute/print the amount of money gained by The TicketMiner Company for an event"); // Log into text file
+                adminLogged = true;
+                break;
+                
+            case "7": 
+                ActionLogger.logInfo("Compute/print the amount of money gained by The TicketMiner Company for all events"); // Log into text file
+                break;
+
+            case "8": 
+                ActionLogger.logInfo("Admin canceled an event"); // Log into text file
+                break;
+
             default:
-                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, or 5).");
+                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, or 8).");
         }
     }
 }

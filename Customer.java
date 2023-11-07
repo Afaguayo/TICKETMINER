@@ -246,9 +246,9 @@ class Customer {
             System.out.println("=================================");
             
             // Validate first and last name
-            String inputFirstname;
-            String inputLastname;
-            boolean nameValidated = false;
+            // String inputFirstname;
+            // String inputLastname;
+            // boolean nameValidated = false;
             
             // while (!nameValidated) {
             //     System.out.println("Please enter your first name: ");
