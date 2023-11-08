@@ -126,167 +126,144 @@ public class customerActions {
      */
     public static void buyTickets(Scanner scanner, List<Event> events, Customer customer) {
         boolean wantToPurchase = true;
-        List<Map<String, Object>> allPurchases = new ArrayList<>(); // Initialize the list to store all purchases
-    
+        List<Map<String, Object>> allPurchases = new ArrayList<>();
+        
         while (wantToPurchase) {
             boolean isValidEvent = false;
-    
+        
             while (!isValidEvent) {
                 try {
                     System.out.print("\nSelect an Event ID to choose the event: ");
                     int eventID = scanner.nextInt();
                     scanner.nextLine();
-
+        
                     Event event = null;
-
+        
                     for (Event e : events) {
                         if (e.getEventID() == eventID) {
                             event = e;
                             break;
                         }
                     }
-
+        
                     if (event == null) {
                         System.out.println("Event not found.");
                         continue;
                     }
-
+        
                     int seatsUnavailable = (int) (((double) event.getVenue().getPctSeatsUnavailable() / 100.0) * event.getVenue().getCapacity());
                     int venueCapacity = event.getVenue().getCapacity();
                     int seatsAvailable = venueCapacity - seatsUnavailable;
-
+        
                     if (seatsAvailable <= 0) {
                         System.out.println("Sorry, no tickets available for this event.");
                         continue;
                     }
-
+        
                     event.eventPrices(customer);
-
+        
                     System.out.print("\nSelect a Ticket Type you would like to buy: ");
                     int ticketType = scanner.nextInt();
                     scanner.nextLine();
-
+        
                     System.out.print("\nEnter the quantity of tickets (up to 6 tickets): ");
                     int ticketQuantity = scanner.nextInt();
                     scanner.nextLine();
-
+        
                     if (ticketQuantity <= 0 || ticketQuantity > 6) {
                         System.out.println("Invalid number of tickets. Please select between 1 and 6 tickets.");
                         return;
                     }
-
+        
                     if (customer.getIsMember()) {
                         customer.setPricingStrategy(new MemberPricingStrategy(customer));
                     } else {
                         customer.setPricingStrategy(new RegularPricingStrategy());
                     }
-
-                    double totalPrice = customer.pricingStrategy.calculateTicketPrice(event, ticketType, ticketQuantity);
-                    double taxes = (totalPrice * 0.0825);
-
-                    if (customer.getIsMember()) {
-                        System.out.println("------------------------------------------------------------------");
-                        System.out.println("You are a TicketMiner Member, you will get 10% off.");
-                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(totalPrice) + " [Tax not included]");
-                        System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(totalPrice + taxes) + " [Tax included]");
-                        System.out.println();
-                    } else {
-                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(totalPrice) + " [Tax not included]");
-                        System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(totalPrice + taxes) + " [Tax included]");
-                        System.out.println();
-                    }
-
-                    if ((totalPrice + taxes) > customer.getMoneyAvailable()) {
+        
+                    double ticketPrice = customer.pricingStrategy.calculateTicketPrice(event, ticketType, ticketQuantity);
+        
+                    // Calculate fees
+                    double convenienceFee = 2.50;
+                    double serviceFee = 0.005 * ticketQuantity * ticketPrice;
+                    double charityFee = 0.0075 * ticketQuantity * ticketPrice;
+        
+                    // Format the fees as currency strings
+                    String formattedConvenienceFee = String.format("$%.2f", convenienceFee);
+                    String formattedServiceFee = String.format("$%.2f", serviceFee);
+                    String formattedCharityFee = String.format("$%.2f", charityFee);
+        
+                    double subtotal = ticketPrice + convenienceFee + serviceFee + charityFee;
+                    double taxes = subtotal * 0.0825;
+                    double total = subtotal + taxes;
+        
+                    if (total > customer.getMoneyAvailable()) {
                         System.out.println("\n*************************************");
                         System.out.println("\n*** Insufficient Funds, try again ***");
                         System.out.println("\n*************************************");
                         continue;
                     }
-
+        
                     System.out.print("Would you like to proceed with this purchase? (Yes/No): ");
                     String proceed = scanner.nextLine();
-
+        
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, totalPrice, confirmationNumber, customer, taxes);
-
-                        switch (ticketType) {
-                            case 1:
-                                events.get(eventID - 1).getVenue().incrementGeneralAdmSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                                break;
-
-                            case 2:
-                                events.get(eventID - 1).getVenue().incrementBronzeSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                                break;
-                            case 3:
-                                events.get(eventID - 1).getVenue().incrementSilverSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                                break;
-
-                            case 4:
-                                events.get(eventID - 1).getVenue().incrementGoldSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                                break;
-
-                            case 5:
-                                events.get(eventID - 1).getVenue().incrementVIPSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                        invoice.displayInvoice();
-
+                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, ticketPrice, confirmationNumber, customer, taxes);
+        
+                        // Deduct the total amount (including fees) from the customer's balance
+                        customer.setMoneyAvailable(customer.getMoneyAvailable() - total);
+        
+                        // Track the fees collected for this event
+                        event.getVenue().incrementConvenienceFeesCollected(convenienceFee);
+                        event.getVenue().incrementServiceFeesCollected(serviceFee);
+                        event.getVenue().incrementCharityFeesCollected(charityFee);
+        
+                        isValidEvent = true;
+        
+                        // Create a map to store purchase details
                         Map<String, Object> purchase = new HashMap<>();
+                        purchase.put("purchase status", "PURCHASE SUCCESSFUL");
                         purchase.put("eventType", event.getEventType());
                         purchase.put("eventName", event.getName());
                         purchase.put("eventDate", event.getDate());
                         purchase.put("ticketType", ticketType);
                         purchase.put("numberOfTickets", ticketQuantity);
-                        purchase.put("totalPrice", Invoice.roundToTwoDecimals(totalPrice + taxes));
+                        purchase.put("ticketPrice", String.format("$%.2f", ticketPrice));
+                        purchase.put("convenienceFee", formattedConvenienceFee);
+                        purchase.put("serviceFee", formattedServiceFee);
+                        purchase.put("charityFee", formattedCharityFee);
+                        purchase.put("totalServiceFees", String.format("$%.2f", convenienceFee + serviceFee + charityFee));
+                        purchase.put("subtotal", String.format("$%.2f", subtotal));
+                        purchase.put("taxes", String.format("$%.2f", taxes));
+                        purchase.put("totalPrice", String.format("$%.2f", total));
                         purchase.put("confirmationNumber", confirmationNumber);
-                        allPurchases.add(purchase); // Add the purchase to the list
-
-                        isValidEvent = true;
+        
+                        // Add the purchase details to the list of all purchases
+                        allPurchases.add(purchase);
                     } else {
                         System.out.println("Purchase cancelled. Returning to the event selection.");
                         isValidEvent = true;
                     }
-
-                    System.out.print("Would you like to make another purchase? (Yes/No): ");
-                    String response = scanner.nextLine();
-                    if (response.equalsIgnoreCase("no")) {
-                        wantToPurchase = false;
-                        System.out.println("\nExiting. Thank you!\n");
-                        break;
-                    }
-
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a valid number.");
                     scanner.nextLine();
                 }
             }
-        }//Updated by Javier to allow multiple ticket purchases
-        // in the same invoice.
+        
+            System.out.print("Would you like to make another purchase? (Yes/No): ");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("no")) {
+                wantToPurchase = false;
+                System.out.println("\nExiting. Thank you!\n");
+                break;
+            }
+        }
+        
+        // Generate an invoice summary that includes fee details and all purchase details
         InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
-
     }
-
-
+    
     /**
      * Automates the ticket purchase process for a specific customer.
      *

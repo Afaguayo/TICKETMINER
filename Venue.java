@@ -749,4 +749,35 @@ public abstract class Venue {
 
         return generalAdmissionSeatsAvailable;
     }
+    private double convenienceFeesCollected = 0.0;
+    private double serviceFeesCollected = 0.0;
+    private double charityFeesCollected = 0.0;
+
+    // Add a method to increment convenience fees collected
+    public void incrementConvenienceFeesCollected(double amount) {
+        convenienceFeesCollected += amount;
+    }
+
+    // Add methods to increment service fees and charity fees collected
+    public void incrementServiceFeesCollected(double amount) {
+        serviceFeesCollected += amount;
+    }
+
+    public void incrementCharityFeesCollected(double amount) {
+        charityFeesCollected += amount;
+    }
+
+    // Add a method to get the total convenience fees collected
+    public double getConvenienceFeesCollected() {
+        return convenienceFeesCollected;
+    }
+    // Add methods to get the total service fees and charity fees collected
+    public double getServiceFeesCollected() {
+        return serviceFeesCollected;
+    }
+
+    public double getCharityFeesCollected() {
+        return charityFeesCollected;
+    }
+
 } // end of file

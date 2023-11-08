@@ -52,11 +52,14 @@ public class InvoiceGenerator {
 
             // Close the file
             writer.close();
+
+            // Print service fees for each ticket purchase
+            printServiceFees(ticketPurchases);
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
             e.printStackTrace();
         }
-    }// method end 
+    }
 
     /**
      * Generates an automatic invoice summary for a customer and appends it to a file in the "AutoInvoices" folder.
@@ -100,13 +103,52 @@ public class InvoiceGenerator {
             }
 
             // Do not close the file to keep it open for appending
-
-            // Test Print a message indicating the invoice has been updated
-            // System.out.println("Invoice summary for " + customer.getFirstName() + " " + customer.getLastName()
-            //       + " has been updated: " + fileName);
         } catch (IOException e) {
             System.out.println("An error occurred while generating/updating the invoice summary.");
             e.printStackTrace();
+        }
+
+        // Calculate and print service fees
+        calculateServiceFees(ticketPurchases);
+        printServiceFees(ticketPurchases);
+    }
+
+    /**
+     * Calculates service fees for each ticket purchase.
+     *
+     * @param ticketPurchases A list of maps representing ticket purchases.
+     */
+    public static void calculateServiceFees(List<Map<String, Object>> ticketPurchases) {
+        for (Map<String, Object> purchase : ticketPurchases) {
+            int numberOfTickets = (int) purchase.get("numberOfTickets");
+            double ticketPrice = (double) purchase.get("ticketPrice");
+
+            // Calculate service fees
+            double convenienceFee = 2.50;
+            double serviceFee = 0.005 * numberOfTickets * ticketPrice;
+            double charityFee = 0.0075 * numberOfTickets * ticketPrice;
+            double totalServiceFees = convenienceFee + serviceFee + charityFee;
+
+            purchase.put("convenienceFee", convenienceFee);
+            purchase.put("serviceFee", serviceFee);
+            purchase.put("charityFee", charityFee);
+            purchase.put("totalServiceFees", totalServiceFees);
+        }
+    }
+
+    /**
+     * Prints service fees for each ticket purchase.
+     *
+     * @param ticketPurchases A list of maps representing ticket purchases.
+     */
+    public static void printServiceFees(List<Map<String, Object>> ticketPurchases) {
+        for (Map<String, Object> purchase : ticketPurchases) {
+            System.out.println("Service Fees for Purchase:");
+            System.out.println("Convenience Fee: $" + purchase.get("convenienceFee"));
+            System.out.println("Service Fee: $" + purchase.get("serviceFee"));
+            System.out.println("Charity Fee: $" + purchase.get("charityFee"));
+            System.out.println("Total Service Fees: $" + purchase.get("totalServiceFees"));
+            System.out.println();
         }
     }
 }
