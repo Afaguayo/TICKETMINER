@@ -96,7 +96,7 @@ public class RunTicket {
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100.csv");
                                 break;
                             case 2:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1000.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1K.csv");
                                 break;
                             case 3:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase500K.csv");

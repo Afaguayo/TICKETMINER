@@ -70,16 +70,16 @@ public class InvoiceGenerator {
     public static void generateInvoiceSummaryAuto(Customer customer, List<Map<String, Object>> ticketPurchases) {
         // Define the folder where you want to store the automatic invoices
         String folderPath = "AutoInvoices/";
-
+    
         // Check if the folder exists; if not, create it
         File folder = new File(folderPath);
         if (!folder.exists()) {
             folder.mkdirs(); // Create the necessary directories.
         }
-
+    
         // Create a file name for the invoice summary
         String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
-
+    
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             // Write the details of each purchase
             for (Map<String, Object> purchase : ticketPurchases) {
@@ -95,47 +95,64 @@ public class InvoiceGenerator {
                 writer.newLine();
                 writer.write("Number of Tickets: " + purchase.get("numberOfTickets"));
                 writer.newLine();
-                writer.write("Total Price: $" + purchase.get("totalPrice"));
+                writer.write("Total Price: " + purchase.get("totalPrice")); // Update to include fees
                 writer.newLine();
                 writer.write("Confirmation Number: " + purchase.get("confirmationNumber"));
                 writer.newLine();
                 writer.newLine();
             }
-
+    
+            // Calculate and print service fees
+            calculateServiceFees(ticketPurchases);
+            printServiceFees(writer, ticketPurchases);
+    
             // Do not close the file to keep it open for appending
         } catch (IOException e) {
             System.out.println("An error occurred while generating/updating the invoice summary.");
             e.printStackTrace();
         }
-
-        // Calculate and print service fees
-        calculateServiceFees(ticketPurchases);
-        printServiceFees(ticketPurchases);
     }
-
-    /**
-     * Calculates service fees for each ticket purchase.
-     *
-     * @param ticketPurchases A list of maps representing ticket purchases.
-     */
+    
     public static void calculateServiceFees(List<Map<String, Object>> ticketPurchases) {
+        // Loop through the ticket purchases and calculate service fees for each purchase
         for (Map<String, Object> purchase : ticketPurchases) {
+            String totalPriceStr = (String) purchase.get("totalPrice");
+            // Remove the dollar sign from the totalPrice string
+            totalPriceStr = totalPriceStr.replace("$", "");
+            double totalPrice = Double.parseDouble(totalPriceStr);
             int numberOfTickets = (int) purchase.get("numberOfTickets");
-            double ticketPrice = (double) purchase.get("ticketPrice");
-
-            // Calculate service fees
+    
             double convenienceFee = 2.50;
-            double serviceFee = 0.005 * numberOfTickets * ticketPrice;
-            double charityFee = 0.0075 * numberOfTickets * ticketPrice;
+            double serviceFee = 0.005 * totalPrice;
+            double charityFee = 0.0075 * totalPrice;
+    
             double totalServiceFees = convenienceFee + serviceFee + charityFee;
-
-            purchase.put("convenienceFee", convenienceFee);
-            purchase.put("serviceFee", serviceFee);
-            purchase.put("charityFee", charityFee);
-            purchase.put("totalServiceFees", totalServiceFees);
+            double totalPriceWithFees = totalPrice + totalServiceFees;
+    
+            purchase.put("convenienceFee", String.format("$%.2f", convenienceFee));
+            purchase.put("serviceFee", String.format("$%.2f", serviceFee));
+            purchase.put("charityFee", String.format("$%.2f", charityFee));
+            purchase.put("totalServiceFees", String.format("$%.2f", totalServiceFees));
+            purchase.put("totalPrice", String.format("$%.2f", totalPriceWithFees));
+        }
+    
+    }
+    
+    public static void printServiceFees(BufferedWriter writer, List<Map<String, Object>> ticketPurchases) throws IOException {
+        writer.write("Service Fees:");
+        writer.newLine();
+        for (Map<String, Object> purchase : ticketPurchases) {
+            writer.write("Convenience Fee: " + purchase.get("convenienceFee"));
+            writer.newLine();
+            writer.write("Service Fee: " + purchase.get("serviceFee"));
+            writer.newLine();
+            writer.write("Charity Fee: " + purchase.get("charityFee"));
+            writer.newLine();
+            writer.write("Total Service Fees: " + purchase.get("totalServiceFees"));
+            writer.newLine();
+            writer.newLine();
         }
     }
-
     /**
      * Prints service fees for each ticket purchase.
      *

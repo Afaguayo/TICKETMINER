@@ -276,14 +276,14 @@ public class customerActions {
      * @param ticketQuantity The number of tickets to purchase.
      * @param ticketType The type of ticket to purchase (e.g., "General Admission").
      */
-    public static void autoBuyTickets(List<Event> events, List<Customer> customers, String firstName, String lastName, int eventID, String EventName, int ticketQuantity, String ticketType) {
+    public static void autoBuyTickets(List<Event> events, List<Customer> customers, String firstName, String lastName, int eventID, String eventName, int ticketQuantity, String ticketType) {
         Event event = null;
         Customer customer = null;
         int intTicketType = 0;
     
         // Find the event
         for (Event e : events) {
-            if (e.getEventID() == eventID && e.getName().equals(EventName)) {
+            if (e.getEventID() == eventID && e.getName().equals(eventName)) {
                 event = e;
                 break;
             }
@@ -298,143 +298,154 @@ public class customerActions {
         }
     
         switch (ticketType) {
-
             case "General Admission":
-            intTicketType = 1;
-            break;
-
+                intTicketType = 1;
+                break;
             case "Bronze":
-            intTicketType = 2;
-            break;
-
+                intTicketType = 2;
+                break;
             case "Silver":
-            intTicketType = 3;
-            break;
-
+                intTicketType = 3;
+                break;
             case "Gold":
-            intTicketType = 4;
-            break;
-
+                intTicketType = 4;
+                break;
             case "VIP":
-            intTicketType = 5;
-            break;
-
-        }// end of switch
-
-
+                intTicketType = 5;
+                break;
+        }
+    
         // If all details are correct, proceed with the purchase
-    if (event != null && customer != null) {
-        int seatsUnavailable = (int) (((double) event.getVenue().getPctSeatsUnavailable() / 100.0) * event.getVenue().getCapacity());
-        int venueCapacity = event.getVenue().getCapacity();
-        int seatsAvailable = venueCapacity - seatsUnavailable;
-
-        if (seatsAvailable <= 0 || ticketQuantity <= 0 || ticketQuantity > 6) {
-            // Handle the case when seats are unavailable or ticket quantity is invalid
-            List<Map<String, Object>> ticketPurchases = new ArrayList<>();
-            Map<String, Object> purchase = new HashMap<>();
-            purchase.put("purchase status", "PURCHASE FAILED (Invalid ticket amount)");
-            purchase.put("eventType", event.getEventType());
-            purchase.put("eventName", event.getName());
-            purchase.put("eventDate", event.getDate());
-            purchase.put("ticketType", ticketType);
-            purchase.put("numberOfTickets", ticketQuantity);
-            purchase.put("totalPrice", 0.0); // Adjust this accordingly
-            purchase.put("confirmationNumber", "N/A");
-            ticketPurchases.add(purchase);
-
-            // Generate the invoice summary
-            InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
-            return;
-        }
-
-        if (customer.getIsMember()) {
-            customer.setPricingStrategy(new MemberPricingStrategy(customer));
-        } else {
-            customer.setPricingStrategy(new RegularPricingStrategy());
-        }
-
-        double totalPrice = customer.pricingStrategy.calculateTicketPrice(event, intTicketType, ticketQuantity);
-        double taxes = (totalPrice * 0.0825);
-
-        if ((totalPrice + taxes) > customer.getMoneyAvailable()) {
-            // Handle the case when the customer doesn't have enough funds
-            List<Map<String, Object>> ticketPurchases = new ArrayList<>();
-            Map<String, Object> purchase = new HashMap<>();
-            purchase.put("purchase status", "PURCHASE FAILED (Not enough funds available)");
-            purchase.put("eventType", event.getEventType());
-            purchase.put("eventName", event.getName());
-            purchase.put("eventDate", event.getDate());
-            purchase.put("ticketType", ticketType);
-            purchase.put("numberOfTickets", ticketQuantity);
-            purchase.put("totalPrice", totalPrice);
-            purchase.put("confirmationNumber", "N/A");
-            ticketPurchases.add(purchase);
-
-            // Generate the invoice summary
-            InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
-            return;
-        }
-
-        String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-        Invoice invoice = new Invoice(event, intTicketType, ticketQuantity, totalPrice, confirmationNumber, customer, taxes);
-
+        if (event != null && customer != null) {
+            int seatsUnavailable = (int) (((double) event.getVenue().getPctSeatsUnavailable() / 100.0) * event.getVenue().getCapacity());
+            int venueCapacity = event.getVenue().getCapacity();
+            int seatsAvailable = venueCapacity - seatsUnavailable;
+    
+            if (seatsAvailable <= 0 || ticketQuantity <= 0 || ticketQuantity > 6) {
+                // Handle the case when seats are unavailable or ticket quantity is invalid
+                List<Map<String, Object>> ticketPurchases = new ArrayList<>();
+                Map<String, Object> purchase = new HashMap<>();
+                purchase.put("purchase status", "PURCHASE FAILED (Invalid ticket amount)");
+                purchase.put("eventType", event.getEventType());
+                purchase.put("eventName", event.getName());
+                purchase.put("eventDate", event.getDate());
+                purchase.put("ticketType", ticketType);
+                purchase.put("numberOfTickets", ticketQuantity);
+                purchase.put("totalPrice", 0.0); // Adjust this accordingly
+                purchase.put("confirmationNumber", "N/A");
+                purchase.put("convenienceFee", "$0.00");
+                purchase.put("serviceFee", "$0.00");
+                purchase.put("charityFee", "$0.00");
+                purchase.put("totalServiceFees", "$0.00");
+                purchase.put("subtotal", "$0.00");
+                purchase.put("taxes", "$0.00");
+    
+                ticketPurchases.add(purchase);
+    
+                // Generate the invoice summary
+                InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
+                return;
+            }
+    
+            if (customer.getIsMember()) {
+                customer.setPricingStrategy(new MemberPricingStrategy(customer));
+            } else {
+                customer.setPricingStrategy(new RegularPricingStrategy());
+            }
+    
+            double totalPrice = customer.pricingStrategy.calculateTicketPrice(event, intTicketType, ticketQuantity);
+            double convenienceFee = 2.50;
+            double serviceFee = 0.005 * ticketQuantity * totalPrice;
+            double charityFee = 0.0075 * ticketQuantity * totalPrice;
+            double taxes = (totalPrice * 0.0825);
+            double totalFees = convenienceFee + serviceFee + charityFee;
+    
+            if ((totalPrice + totalFees + taxes) > customer.getMoneyAvailable()) {
+                // Handle the case when the customer doesn't have enough funds
+                List<Map<String, Object>> ticketPurchases = new ArrayList<>();
+                Map<String, Object> purchase = new HashMap<>();
+                purchase.put("purchase status", "PURCHASE FAILED (Not enough funds available)");
+                purchase.put("eventType", event.getEventType());
+                purchase.put("eventName", event.getName());
+                purchase.put("eventDate", event.getDate());
+                purchase.put("ticketType", ticketType);
+                purchase.put("numberOfTickets", ticketQuantity);
+                purchase.put("ticketPrice", String.format("$%.2f", totalPrice));
+                purchase.put("convenienceFee", String.format("$%.2f", convenienceFee));
+                purchase.put("serviceFee", String.format("$%.2f", serviceFee));
+                purchase.put("charityFee", String.format("$%.2f", charityFee));
+                purchase.put("totalServiceFees", String.format("$%.2f", totalFees));
+                purchase.put("subtotal", String.format("$%.2f", totalPrice + totalFees));
+                purchase.put("taxes", String.format("$%.2f", taxes));
+                purchase.put("totalPrice", String.format("$%.2f", totalPrice + totalFees + taxes));
+                purchase.put("confirmationNumber", "N/A");
+                ticketPurchases.add(purchase);
+    
+                // Generate the invoice summary
+                InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
+                return;
+            }
+    
+            String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
+            Invoice invoice = new Invoice(event, intTicketType, ticketQuantity, totalPrice, confirmationNumber, customer, taxes);
+    
             switch (intTicketType) {
                 case 1:
                     events.get(eventID - 1).getVenue().incrementGeneralAdmSeatsSold(ticketQuantity);
                     events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                break;
-
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + totalFees + taxes));
+                    break;
                 case 2:
                     events.get(eventID - 1).getVenue().incrementBronzeSeatsSold(ticketQuantity);
                     events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                break;
-
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + totalFees + taxes));
+                    break;
                 case 3:
                     events.get(eventID - 1).getVenue().incrementSilverSeatsSold(ticketQuantity);
                     events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + totalFees + taxes));
                     break;
-
                 case 4:
                     events.get(eventID - 1).getVenue().incrementGoldSeatsSold(ticketQuantity);
                     events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                break;
-
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + totalFees + taxes));
+                    break;
                 case 5:
                     events.get(eventID - 1).getVenue().incrementVIPSeatsSold(ticketQuantity);
                     events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + taxes));
-                break;
-
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (totalPrice + totalFees + taxes));
+                    break;
                 default:
-                break;
-                    
-            }// end of switch
-
-
-        List<Map<String, Object>> ticketPurchases = new ArrayList<>();
-        Map<String, Object> purchase = new HashMap<>();
-        purchase.put("purchase status", "PURCHASE SUCCESSFUL");
-        purchase.put("eventType", event.getEventType());
-        purchase.put("eventName", event.getName());
-        purchase.put("eventDate", event.getDate());
-        purchase.put("ticketType", ticketType);
-        purchase.put("numberOfTickets", ticketQuantity);
-        purchase.put("totalPrice", Invoice.roundToTwoDecimals(totalPrice + taxes));
-        purchase.put("confirmationNumber", confirmationNumber);
-        ticketPurchases.add(purchase);
-
-        // Generate the invoice summary with the accumulated purchase details
-        InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
-
-        }// end of if statement
+                    break;
+            }
+    
+            List<Map<String, Object>> ticketPurchases = new ArrayList<>();
+            Map<String, Object> purchase = new HashMap<>();
+            purchase.put("purchase status", "PURCHASE SUCCESSFUL");
+            purchase.put("eventType", event.getEventType());
+            purchase.put("eventName", event.getName());
+            purchase.put("eventDate", event.getDate());
+            purchase.put("ticketType", ticketType);
+            purchase.put("numberOfTickets", ticketQuantity);
+            purchase.put("ticketPrice", String.format("$%.2f", totalPrice));
+            purchase.put("convenienceFee", String.format("$%.2f", convenienceFee));
+            purchase.put("serviceFee", String.format("$%.2f", serviceFee));
+            purchase.put("charityFee", String.format("$%.2f", charityFee));
+            purchase.put("totalServiceFees", String.format("$%.2f", totalFees));
+            purchase.put("subtotal", String.format("$%.2f", totalPrice + totalFees));
+            purchase.put("taxes", String.format("$%.2f", taxes));
+            purchase.put("totalPrice", String.format("$%.2f", totalPrice + totalFees + taxes));
+            purchase.put("confirmationNumber", confirmationNumber);
+    
+            ticketPurchases.add(purchase);
+    
+            // Generate the invoice summary with the accumulated purchase details
+            InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
+        }
     }// end of method
 }
