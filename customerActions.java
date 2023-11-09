@@ -210,7 +210,7 @@ public class customerActions {
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
                         Invoice invoice = new Invoice(event, ticketType, ticketQuantity, ticketPrice, confirmationNumber, customer, taxes);
-        
+                        invoice.displayInvoice();
                         // Deduct the total amount (including fees) from the customer's balance
                         customer.setMoneyAvailable(customer.getMoneyAvailable() - total);
         

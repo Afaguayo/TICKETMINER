@@ -780,4 +780,14 @@ public abstract class Venue {
         return charityFeesCollected;
     }
 
+    public void printMoneyRaised(Event event){
+        System.out.println("______________________________________________________");
+        System.out.println("The amount of money gained by TICKETMINER on event : " + event.getName() + " ID: " + event.getEventID());
+        System.out.println("Service fees collected: " + getServiceFeesCollected());
+        System.out.println("Conviniece fees collected: " + getConvenienceFeesCollected());
+        System.out.println("Charity fees collected: " + getCharityFeesCollected());
+        System.out.println("Total fees collected: " + (getServiceFeesCollected() + getConvenienceFeesCollected() + getCharityFeesCollected()));
+       
+    }
+
 } // end of file

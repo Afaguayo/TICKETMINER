@@ -427,11 +427,24 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 break;
 
             case "6":
+
+                System.out.println("Please enter the ID of the event you'd like to select.");
+                try {
+                    adminIdChoice = keyboard.nextInt(); // User input
+                } 
+                catch (java.util.InputMismatchException e) {
+                    System.out.println("Please enter a valid option.");
+                    keyboard.next(); // Consume the invalid input
+                }
+                profitIdEvent(events,adminIdChoice);
                 ActionLogger.logInfo( "Compute/print the amount of money gained by The TicketMiner Company for an event"); // Log into text file
+
                 adminLogged = true;
                 break;
                 
             case "7": 
+                profitAllEvents(events);
+
                 ActionLogger.logInfo("Compute/print the amount of money gained by The TicketMiner Company for all events"); // Log into text file
                 break;
 
@@ -504,5 +517,30 @@ public static void printAllEvents(List<Event> data) {
         event.printEventData();
     }
 }
+
+public static void profitAllEvents(List<Event> data){
+    for (Event event : data) {
+        event.getVenue().printMoneyRaised(event);
+    }
+
+}
+
+public static void profitIdEvent(List<Event> data,int eventId){
+    boolean found = false;
+
+    for (Event event : data) {
+        if (eventId == event.getEventID()) {
+            event.getVenue().printMoneyRaised(event);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        System.out.println("Invalid ID in the database");
+    }
+}
+
+
+
 
 }

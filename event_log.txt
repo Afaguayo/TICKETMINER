@@ -1,4 +1,0 @@
-Nov 07, 2023 3:25:57 PM ActionLogger logInfo
-INFO: Admin logged in
-Nov 07, 2023 3:26:11 PM ActionLogger logInfo
-INFO: Admin canceled an event
