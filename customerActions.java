@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * 
@@ -83,11 +84,14 @@ public class customerActions {
                             buyTickets(scanner, events, selectedCustomer);
                             break;
                         case 4:
+                            events.sort(Comparator.comparingInt(Event::getEventID));
+
                             for (Event event : events) {
                                 event.printInfo();
                             }
                             buyTickets(scanner, events, selectedCustomer);
                             break;
+
                         default:
                             System.out.println("Invalid option. Please try again.");
                             System.out.println("\n---------------------------------");

@@ -2,8 +2,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 /**
@@ -513,32 +515,41 @@ public static void inquireByname(List<Event> data, String eventName) {
  * @param data A list of events to be printed.
  */
 public static void printAllEvents(List<Event> data) {
-    for (Event event : data) {
-        event.printEventData();
-    }
-}
+        // Sort the events based on their IDs before printing
+        data.sort(Comparator.comparingInt(Event::getEventID));
 
-public static void profitAllEvents(List<Event> data){
-    for (Event event : data) {
-        event.getVenue().printMoneyRaised(event);
-    }
-
-}
-
-public static void profitIdEvent(List<Event> data,int eventId){
-    boolean found = false;
-
-    for (Event event : data) {
-        if (eventId == event.getEventID()) {
-            event.getVenue().printMoneyRaised(event);
-            found = true;
+        for (Event event : data) {
+            event.printEventData();
         }
     }
 
-    if (!found) {
-        System.out.println("Invalid ID in the database");
+    public static void profitAllEvents(List<Event> data) {
+        // Sort the events based on their IDs before calculating profit
+        data.sort(Comparator.comparingInt(Event::getEventID));
+
+        for (Event event : data) {
+            event.getVenue().printMoneyRaised(event);
+        }
     }
-}
+
+    public static void profitIdEvent(List<Event> data, int eventId) {
+        // Filter events based on the given eventId
+        List<Event> filteredEvents = data.stream()
+                .filter(event -> eventId == event.getEventID())
+                .collect(Collectors.toList());
+
+        // Sort the filtered events by their IDs before calculating profit
+        filteredEvents.sort(Comparator.comparingInt(Event::getEventID));
+
+        // Display the profit for the sorted events
+        if (!filteredEvents.isEmpty()) {
+            for (Event event : filteredEvents) {
+                event.getVenue().printMoneyRaised(event);
+            }
+        } else {
+            System.out.println("Invalid ID in the database");
+        }
+    }
 
 
 
