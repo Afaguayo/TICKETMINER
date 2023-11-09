@@ -391,7 +391,6 @@ public class customerActions {
             }
     
             String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-            Invoice invoice = new Invoice(event, intTicketType, ticketQuantity, totalPrice, confirmationNumber, customer, taxes);
     
             switch (intTicketType) {
                 case 1:

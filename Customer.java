@@ -271,7 +271,7 @@ class Customer {
             // Validate username and password
             System.out.println("Enter username: ");
             String inputUsername = scanner.nextLine();
-            System.out.println("Enter password: ");
+            System.out.println("\nEnter password: ");
             String inputPassword = scanner.nextLine();
     
             for (Customer activeCustomer : customerInfo) {
