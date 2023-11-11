@@ -2,10 +2,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 
 /**
@@ -429,24 +427,11 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 break;
 
             case "6":
-
-                System.out.println("Please enter the ID of the event you'd like to select.");
-                try {
-                    adminIdChoice = keyboard.nextInt(); // User input
-                } 
-                catch (java.util.InputMismatchException e) {
-                    System.out.println("Please enter a valid option.");
-                    keyboard.next(); // Consume the invalid input
-                }
-                profitIdEvent(events,adminIdChoice);
                 ActionLogger.logInfo( "Compute/print the amount of money gained by The TicketMiner Company for an event"); // Log into text file
-
                 adminLogged = true;
                 break;
                 
             case "7": 
-                profitAllEvents(events);
-
                 ActionLogger.logInfo("Compute/print the amount of money gained by The TicketMiner Company for all events"); // Log into text file
                 break;
 
@@ -515,43 +500,9 @@ public static void inquireByname(List<Event> data, String eventName) {
  * @param data A list of events to be printed.
  */
 public static void printAllEvents(List<Event> data) {
-        // Sort the events based on their IDs before printing
-        data.sort(Comparator.comparingInt(Event::getEventID));
-
-        for (Event event : data) {
-            event.printEventData();
-        }
+    for (Event event : data) {
+        event.printEventData();
     }
-
-    public static void profitAllEvents(List<Event> data) {
-        // Sort the events based on their IDs before calculating profit
-        data.sort(Comparator.comparingInt(Event::getEventID));
-
-        for (Event event : data) {
-            event.getVenue().printMoneyRaised(event);
-        }
-    }
-
-    public static void profitIdEvent(List<Event> data, int eventId) {
-        // Filter events based on the given eventId
-        List<Event> filteredEvents = data.stream()
-                .filter(event -> eventId == event.getEventID())
-                .collect(Collectors.toList());
-
-        // Sort the filtered events by their IDs before calculating profit
-        filteredEvents.sort(Comparator.comparingInt(Event::getEventID));
-
-        // Display the profit for the sorted events
-        if (!filteredEvents.isEmpty()) {
-            for (Event event : filteredEvents) {
-                event.getVenue().printMoneyRaised(event);
-            }
-        } else {
-            System.out.println("Invalid ID in the database");
-        }
-    }
-
-
-
+}
 
 }

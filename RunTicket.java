@@ -39,7 +39,15 @@ public class RunTicket {
         boolean terminateAutoBuy = false;
 
         while (!terminateProgram) {
-            System.out.println("\nAre you an admin or Customer? (Select a choice): ");
+            System.out.println("-----------------------------------------------------------------");
+            System.out.println(
+            "**   *   **" + "  *****" +  "  **" +   "       ***** "+     "   *****   "+   " **       **  "+"*****\n"+
+            "**  ***  **" + "  **    " +  " **" +   "     **     "+     "  **     **  "+   "** *   * **  "+"**\n"+
+            "** ** ** **" + "  *****" +  "  **" +   "     **     "+     "  **     **  "+   "** ** ** **  "+"*****\n"+
+            "** *   * **" + "  **    " +  " **" +   "     **     "+     "  **     **  "+   "**  ***  **  "+"**\n"+
+            "**       **" + "  *****" +  "  ******"+    "   ***** "+     "   *****   "+   " **   *   **  "+"*****");
+            System.out.println("-----------------------------------------------------------------");
+            System.out.println("Are you an admin or Customer? (Select a choice): ");
             System.out.println("---------------------------------");
             System.out.println("[1] Customer");
             System.out.println("[2] Administrator");
@@ -73,10 +81,10 @@ public class RunTicket {
                 case 3:
                     while (!terminateAutoBuy) {
                         System.out.println("Please select one of the following choices");
-                        System.out.println("[1] Auto purchase with 100 customers.");
-                        System.out.println("[2] Auto purchase with 1000 customers.");
-                        System.out.println("[3] Auto purchase with 500,000 customers.");
-                        System.out.println("[4] Auto purchase with 1,000,000 customers");
+                        System.out.println("[1] Auto purchase with 1K customers.");
+                        System.out.println("[2] Auto purchase with 100K customers.");
+                        System.out.println("[3] Auto purchase with 1,000,000 customers.");
+                        System.out.println("[4] Auto purchase with 5,000,000 customers");
                         System.out.println("[5] Exit Autopurchase test menu");
 
                         try {
@@ -93,16 +101,24 @@ public class RunTicket {
 
                         switch (userChoice) {
                             case 1:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1K.csv");
+                                terminateAutoBuy = true;
+                                System.out.println("Exiting menu.....");
                                 break;
                             case 2:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1K.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100K.csv");
+                                terminateAutoBuy = true;
+                                System.out.println("Exiting menu.....");
                                 break;
                             case 3:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase500K.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1M.csv");
+                                terminateAutoBuy = true;
+                                System.out.println("Exiting menu.....");
                                 break;
                             case 4:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1M.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase5M.csv");
+                                terminateAutoBuy = true;
+                                System.out.println("Exiting menu.....");
                                 break;
                             case 5:
                                 terminateAutoBuy = true;

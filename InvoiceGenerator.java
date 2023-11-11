@@ -5,10 +5,14 @@
  * @author Angel, Caleb, Chris & Javier
  * @since November 5, 2023
  */
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +24,7 @@ public class InvoiceGenerator {
      * @param customer        The customer for whom the invoice is generated.
      * @param ticketPurchases A list of maps representing ticket purchases.
      */
+    private static Map<String, List<Map<String, Object>>> purchaseHistory = new HashMap<>();
     public static void generateInvoiceSummary(Customer customer, List<Map<String, Object>> ticketPurchases) {
         // Define the folder where you want to store the invoices
         String folderPath = "Invoices/";
@@ -55,12 +60,101 @@ public class InvoiceGenerator {
 
             // Print service fees for each ticket purchase
             printServiceFees(ticketPurchases);
+            purchaseHistory.put(customer.getUserName(), ticketPurchases);
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
             e.printStackTrace();
         }
     }
+public static List<Map<String, Object>> getCustomerPurchaseHistory(Customer customer) {
+    return purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
+}
+public static void removePurchaseFromHistory(Customer customer, String confirmationNumber) {
+    List<Map<String, Object>> purchaseHistoryList = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
 
+    // Remove the purchase with the specified confirmation number
+    purchaseHistoryList.removeIf(purchase -> confirmationNumber.equals(purchase.get("confirmationNumber")));
+
+    // Update the purchase history
+    purchaseHistory.put(customer.getUserName(), purchaseHistoryList);
+}
+public static void cancelOrderAndUpdateInvoice(Customer customer, String confirmationNumber) {
+    // Step 1: Update in-memory purchase history
+    removePurchaseFromHistory(customer, confirmationNumber);
+
+    // Step 2: Update physical invoice file
+    cancelInvoiceFile(customer, confirmationNumber);
+}
+
+private static void cancelInvoiceFile(Customer customer, String confirmationNumber) {
+    String folderPath = "Invoices/";
+    String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
+
+    try {
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        StringBuilder content = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            content.append(line).append(System.lineSeparator());
+        }
+
+        // Identify the part of the content that corresponds to the canceled order
+        String purchaseIdentifier = "Confirmation Number: " + confirmationNumber;
+        int startIndex = content.indexOf(purchaseIdentifier);
+
+        if (startIndex != -1) {
+            // Modify the details in the content to indicate cancellation
+            content.insert(startIndex, "Order Canceled" + System.lineSeparator());
+        }
+
+        // Write the updated content back to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(content.toString());
+        writer.close();
+
+        System.out.println("Invoice canceled after order cancellation.");
+
+    } catch (IOException e) {
+        System.out.println("An error occurred while canceling the invoice.");
+        e.printStackTrace();
+    }
+}
+
+    private static void updateInvoiceFile(Customer customer, String confirmationNumber) {
+        String folderPath = "Invoices/";
+        String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            StringBuilder content = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append(System.lineSeparator());
+            }
+
+            // Identify the part of the content that corresponds to the canceled order
+            String purchaseIdentifier = "Confirmation Number: " + confirmationNumber;
+            int startIndex = content.indexOf(purchaseIdentifier);
+
+            if (startIndex != -1) {
+                // Modify the details in the content to indicate cancellation
+                content.replace(startIndex, startIndex + purchaseIdentifier.length(), "Order Canceled");
+            }
+
+            // Write the updated content back to the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(content.toString());
+            writer.close();
+
+            System.out.println("Invoice updated after order cancellation.");
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating the invoice.");
+            e.printStackTrace();
+        }
+    }
     /**
      * Generates an automatic invoice summary for a customer and appends it to a file in the "AutoInvoices" folder.
      *

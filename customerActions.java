@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * 
@@ -43,6 +42,7 @@ public class customerActions {
             System.out.println("[1] Look events by type");
             System.out.println("[2] Search with Event ID");
             System.out.println("[3] Exit");
+            System.out.println("[4] Cancel Order");
             System.out.print("\nPlease enter an option: ");
 
             try {
@@ -84,14 +84,11 @@ public class customerActions {
                             buyTickets(scanner, events, selectedCustomer);
                             break;
                         case 4:
-                            events.sort(Comparator.comparingInt(Event::getEventID));
-
                             for (Event event : events) {
                                 event.printInfo();
                             }
                             buyTickets(scanner, events, selectedCustomer);
                             break;
-
                         default:
                             System.out.println("Invalid option. Please try again.");
                             System.out.println("\n---------------------------------");
@@ -112,12 +109,72 @@ public class customerActions {
                 case 3:
                     System.out.println("\nExiting. Thank you!\n");
                     break;
+                case 4:  // Add a new case for canceling a ticket purchase
+                            cancelTicketPurchase(scanner, selectedCustomer);
+                            break;
 
                 default:
                     System.out.println("Invalid option. Please try again.");
                     break;
             }
         }
+    }
+    private static void cancelTicketPurchase(Scanner scanner, Customer customer) {
+        System.out.println("\n----- CANCEL TICKET PURCHASE -----");
+        
+        // Display the list of the customer's purchases
+        List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
+        if (customerPurchases.isEmpty()) {
+            System.out.println("You have no ticket purchases to cancel.");
+            return;
+        }
+    
+        System.out.println("Select a ticket purchase to cancel:");
+    
+        int purchaseIndex = 1;
+        for (Map<String, Object> purchase : customerPurchases) {
+            System.out.println("[" + purchaseIndex + "]");
+            System.out.println("Event: " + purchase.get("eventName"));
+            System.out.println("Date: " + purchase.get("eventDate"));
+            System.out.println("Ticket Type: " + purchase.get("ticketType"));
+            System.out.println("Number of Tickets: " + purchase.get("numberOfTickets"));
+            System.out.println("Total Price: " + purchase.get("totalPrice"));
+            System.out.println("Confirmation Number: " + purchase.get("confirmationNumber"));
+            System.out.println();
+            purchaseIndex++;
+        }
+    
+        System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
+        int cancelChoice = scanner.nextInt();
+        scanner.nextLine();  // Consume the newline character
+    
+        if (cancelChoice < 0 || cancelChoice > customerPurchases.size()) {
+            System.out.println("Invalid selection. Please try again.");
+            return;
+        }
+    
+        if (cancelChoice == 0) {
+            System.out.println("Cancelling operation. Returning to the main menu.");
+            return;
+        }
+    
+        // Retrieve the selected purchase details
+        Map<String, Object> selectedPurchase = customerPurchases.get(cancelChoice - 1);
+        String confirmationNumber = (String) selectedPurchase.get("confirmationNumber");
+    
+        // Calculate the refund amount (excluding fees)
+        String totalPriceStr = ((String) selectedPurchase.get("totalPrice")).replace("$", "");
+        double refundAmount = Double.parseDouble(totalPriceStr);        
+        // Update the customer's balance
+        customer.setMoneyAvailable(customer.getMoneyAvailable() + refundAmount);
+    
+        // Remove the canceled purchase from the customer's purchase history
+        InvoiceGenerator.removePurchaseFromHistory(customer, confirmationNumber);
+        // Additional line to cancel the order and update the invoice
+        InvoiceGenerator.cancelOrderAndUpdateInvoice(customer, confirmationNumber);
+
+    
+        System.out.println("Ticket purchase cancelled successfully.");
     }
 
 
@@ -214,7 +271,7 @@ public class customerActions {
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
                         Invoice invoice = new Invoice(event, ticketType, ticketQuantity, ticketPrice, confirmationNumber, customer, taxes);
-                        invoice.displayInvoice();
+        
                         // Deduct the total amount (including fees) from the customer's balance
                         customer.setMoneyAvailable(customer.getMoneyAvailable() - total);
         
@@ -391,6 +448,7 @@ public class customerActions {
             }
     
             String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
+            Invoice invoice = new Invoice(event, intTicketType, ticketQuantity, totalPrice, confirmationNumber, customer, taxes);
     
             switch (intTicketType) {
                 case 1:
