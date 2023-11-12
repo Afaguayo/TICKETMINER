@@ -243,4 +243,9 @@ public class Invoice {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(value));
     }
+
+
+
+
+    
 }

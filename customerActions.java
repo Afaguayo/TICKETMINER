@@ -36,13 +36,20 @@ public class customerActions {
     public static void userCustomer(Scanner scanner, List<Event> events, Customer selectedCustomer) {
         int eventTypeChoice = -99;
         int choice = 0;
+        boolean terminateMenu = false;
 
-        while (choice <= 0 || choice > 3) {
+        while (!terminateMenu) {
+
+            if (choice <= 0 || choice > 4){
+                System.out.println("Please enter a valid number choice");
+                System.out.println();
+            }
+
             System.out.println("\n_____M_A_I_N___M_E_N_U_____");
             System.out.println("[1] Look events by type");
             System.out.println("[2] Search with Event ID");
-            System.out.println("[3] Exit");
-            System.out.println("[4] Cancel Order");
+            System.out.println("[3] Cancel Order");
+            System.out.println("[4] Exit");
             System.out.print("\nPlease enter an option: ");
 
             try {
@@ -51,6 +58,7 @@ public class customerActions {
                 System.out.println("Please enter a valid option.");
                 scanner.nextLine(); // Clears bad input
             }
+            
 
             switch (choice) {
                 case 1:
@@ -107,11 +115,14 @@ public class customerActions {
                     break;
 
                 case 3:
+                    // Add a new case for canceling a ticket purchase
+                    cancelTicketPurchase(scanner, selectedCustomer);
+                    break;
+
+                case 4:
+                    terminateMenu = true;
                     System.out.println("\nExiting. Thank you!\n");
                     break;
-                case 4:  // Add a new case for canceling a ticket purchase
-                            cancelTicketPurchase(scanner, selectedCustomer);
-                            break;
 
                 default:
                     System.out.println("Invalid option. Please try again.");

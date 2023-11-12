@@ -91,21 +91,20 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
     String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
 
     try {
+        // Read the existing content of the file
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         StringBuilder content = new StringBuilder();
         String line;
 
         while ((line = reader.readLine()) != null) {
-            content.append(line).append(System.lineSeparator());
-        }
-
-        // Identify the part of the content that corresponds to the canceled order
-        String purchaseIdentifier = "Confirmation Number: " + confirmationNumber;
-        int startIndex = content.indexOf(purchaseIdentifier);
-
-        if (startIndex != -1) {
-            // Modify the details in the content to indicate cancellation
-            content.insert(startIndex, "Order Canceled" + System.lineSeparator());
+            // Check if the line starts with "Confirmation Number" followed by the confirmation number
+            if (line.startsWith("Confirmation Number: " + confirmationNumber)) {
+                // If yes, replace the line with "Order Canceled"
+                content.append("Order Canceled").append(System.lineSeparator());
+            } else {
+                // Otherwise, keep the original line
+                content.append(line).append(System.lineSeparator());
+            }
         }
 
         // Write the updated content back to the file
@@ -120,6 +119,9 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
         e.printStackTrace();
     }
 }
+
+
+
 
     private static void updateInvoiceFile(Customer customer, String confirmationNumber) {
         String folderPath = "Invoices/";
