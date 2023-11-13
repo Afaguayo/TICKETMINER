@@ -1,4 +1,6 @@
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The `Event` class represents an abstract event with various properties and methods.
@@ -339,12 +341,20 @@ public abstract class Event {
      * @param eventType The type of event to filter.
      */
     public static void showEventsByType(List<Event> events, String eventType) {
-        for (Event event : events) {
-            if (event.getEventType().equalsIgnoreCase(eventType)) {
-                event.displayEventDetails();
-            }
+        // Filter events based on the given eventType
+        List<Event> filteredEvents = events.stream()
+                .filter(event -> event.getEventType().equalsIgnoreCase(eventType))
+                .collect(Collectors.toList());
+
+        // Sort the filtered events based on their IDs before displaying
+        filteredEvents.sort(Comparator.comparingInt(Event::getEventID));
+
+        // Display the sorted events
+        for (Event event : filteredEvents) {
+            event.displayEventDetails();
         }
     }
+
 
     /**
      * Retrieve a list of purchased tickets for this event and print their information.
