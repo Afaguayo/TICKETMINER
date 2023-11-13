@@ -119,7 +119,6 @@ public class customerActions {
                     break;
 
                 case 3:
-                    // Add a new case for canceling a ticket purchase
                     cancelTicketPurchase(scanner, selectedCustomer);
                     break;
 
@@ -272,6 +271,19 @@ public class customerActions {
                     double subtotal = ticketPrice + convenienceFee + serviceFee + charityFee;
                     double taxes = subtotal * 0.0825;
                     double total = subtotal + taxes;
+
+                    if (customer.getIsMember()) {
+                        System.out.println("------------------------------------------------------------------");
+                        System.out.println("You are a TicketMiner Member, you will get 10% off.");
+                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Tax not included]");
+                        System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total + taxes) + " [Tax included]");
+                        System.out.println();
+                    } else {
+                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Tax not included]");
+                        System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(total + taxes) + " [Tax included]");
+                        System.out.println();
+                    }
+
         
                     if (total > customer.getMoneyAvailable()) {
                         System.out.println("\n*************************************");
@@ -285,7 +297,48 @@ public class customerActions {
         
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, ticketPrice, confirmationNumber, customer, taxes);
+                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, total, confirmationNumber, customer, taxes);
+
+                        switch (ticketType) {
+                            case 1:
+                                events.get(eventID - 1).getVenue().incrementGeneralAdmSeatsSold(ticketQuantity);
+                                events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
+                                customer.setTransactionCount(ticketQuantity);
+                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total + taxes));
+                                break;
+
+                            case 2:
+                                events.get(eventID - 1).getVenue().incrementBronzeSeatsSold(ticketQuantity);
+                                events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
+                                customer.setTransactionCount(ticketQuantity);
+                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total + taxes));
+                                break;
+                            case 3:
+                                events.get(eventID - 1).getVenue().incrementSilverSeatsSold(ticketQuantity);
+                                events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
+                                customer.setTransactionCount(ticketQuantity);
+                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total + taxes));
+                                break;
+
+                            case 4:
+                                events.get(eventID - 1).getVenue().incrementGoldSeatsSold(ticketQuantity);
+                                events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
+                                customer.setTransactionCount(ticketQuantity);
+                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total + taxes));
+                                break;
+
+                            case 5:
+                                events.get(eventID - 1).getVenue().incrementVIPSeatsSold(ticketQuantity);
+                                events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
+                                customer.setTransactionCount(ticketQuantity);
+                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total + taxes));
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        invoice.displayInvoice();
         
                         // Deduct the total amount (including fees) from the customer's balance
                         customer.setMoneyAvailable(customer.getMoneyAvailable() - total);

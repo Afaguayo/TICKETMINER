@@ -20,6 +20,7 @@ class RegularPricingStrategy implements TicketPricingStrategy {
         // Calculate the base ticket price
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
 
+        
         // Calculate the total price without any discounts
         double totalPrice = ticketPrice * ticketQuantity;
 
