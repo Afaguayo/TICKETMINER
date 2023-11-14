@@ -19,9 +19,12 @@ class RegularPricingStrategy implements TicketPricingStrategy {
     public double calculateTicketPrice(Event event, int ticketType, int ticketQuantity) {
         // Calculate the base ticket price
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
-
         
         // Calculate the total price without any discounts
+        // double convenienceFee = 2.50;
+        // double serviceFee = 0.005 * ticketQuantity * ticketPrice;
+        // double charityFee = 0.0075 * ticketQuantity * ticketPrice;
+        // ticketPrice = ticketPrice + convenienceFee + serviceFee + charityFee;
         double totalPrice = ticketPrice * ticketQuantity;
 
         return totalPrice;

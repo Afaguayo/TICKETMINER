@@ -30,6 +30,10 @@ public class MemberPricingStrategy implements TicketPricingStrategy {
         // Calculate the base ticket price
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
 
+        // double convenienceFee = 2.50;
+        // double serviceFee = 0.005 * ticketQuantity * ticketPrice;
+        // double charityFee = 0.0075 * ticketQuantity * ticketPrice;
+
         // Calculate the total price before applying the discount
         double totalPrice = ticketPrice * ticketQuantity;
 
