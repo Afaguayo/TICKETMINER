@@ -381,11 +381,11 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
         System.out.println("[1] Inquire event by ID");
         System.out.println("[2] Inquire event by name");
         System.out.println("[3] Inquire all events");
-        System.out.println("[4] To exit admin menu");
+        System.out.println("[4] Cancel event");
         System.out.println("[5] Create a new event"); // New option to create an event
         System.out.println("[6] Compute/print the amount of money gained by The TicketMiner Company for an event");
         System.out.println("[7] Compute/print the amount of money gained by The TicketMiner Company for all events");
-        System.out.println("[8] Cancel event");
+        System.out.println("[8] Exit admin menu");
         System.out.println("\nPlease enter an option: ");
 
         adminChoice = keyboard.next();
@@ -417,8 +417,7 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 break;
 
             case "4":
-                ActionLogger.logInfo( "Admin logged out"); // Log into text file
-                adminLogged = true;
+                ActionLogger.logInfo("Admin canceled an event"); // Log into text file
                 break;
                 
             case "5": // Option to create a new event
@@ -448,6 +447,8 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
 
             case "8": 
                 ActionLogger.logInfo("Admin canceled an event"); // Log into text file
+                ActionLogger.logInfo( "Admin logged out"); // Log into text file
+                adminLogged = true;
                 break;
 
             default:

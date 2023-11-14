@@ -48,7 +48,7 @@ public class RunTicket {
             "**       **" + "  *****" +  "  ******"+    "   ***** "+     "   *****   "+   " **   *   **  "+"*****");
             System.out.println("-----------------------------------------------------------------");
             System.out.println("Are you an admin or Customer? (Select a choice): ");
-            System.out.println("---------------------------------");
+            System.out.println("-----------------------------------------------------------------");
             System.out.println("[1] Customer");
             System.out.println("[2] Administrator");
             System.out.println("[3] Autopurchase test");
@@ -85,7 +85,7 @@ public class RunTicket {
                         System.out.println("[2] Auto purchase with 1000 customers.");
                         System.out.println("[3] Auto purchase with 100,000 customers.");
                         System.out.println("[4] Auto purchase with 1,000,000 customers");
-                        System.out.println("[5] Exit Autopurchase test menu");
+                        System.out.println("[5] Exit menu");
 
                         try {
                             userChoice = scanner.nextInt(); // User input
