@@ -275,8 +275,8 @@ public class customerActions {
                     if (customer.getIsMember()) {
                         System.out.println("------------------------------------------------------------------");
                         System.out.println("You are a TicketMiner Member, you will get 10% off.");
-                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Tax not included]");
-                        System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total + taxes) + " [Tax included]");
+                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
+                        System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total + taxes) + " [Tax & Fees included]");
                         System.out.println();
                     } else {
                         System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Tax not included]");
