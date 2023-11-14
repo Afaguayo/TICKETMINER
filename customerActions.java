@@ -257,8 +257,6 @@ public class customerActions {
                     }
         
                     double ticketPrice = customer.pricingStrategy.calculateTicketPrice(event, ticketType, ticketQuantity);
-
-                    System.out.println(ticketPrice);
         
                     // Calculate fees
                     double convenienceFee = 2.50;
