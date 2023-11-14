@@ -365,7 +365,7 @@ private static Venue createVenue(String venueName, String venueType, int venueCa
  * @param events   A list of events to be queried.
  * @param keyboard A `Scanner` object for reading user input.
  */
-public static void userAdmin(List<Event> events, Scanner keyboard) {
+public static void userAdmin(List<Event> events,List<Customer> customers, Scanner keyboard) {
     // Log the administrator's login
     ActionLogger.logInfo( "Admin logged in"); 
 
@@ -385,7 +385,8 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
         System.out.println("[5] Create a new event"); // New option to create an event
         System.out.println("[6] Compute/print the amount of money gained by The TicketMiner Company for an event");
         System.out.println("[7] Compute/print the amount of money gained by The TicketMiner Company for all events");
-        System.out.println("[8] Exit admin menu");
+        System.out.println("[8] Create invoice for customer");
+        System.out.println("[9] Exit admin menu");
         System.out.println("\nPlease enter an option: ");
 
         adminChoice = keyboard.next();
@@ -437,7 +438,6 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 profitIdEvent(events,adminIdChoice);
 
                 ActionLogger.logInfo( "Compute/print the amount of money gained by The TicketMiner Company for an event"); // Log into text file
-                adminLogged = true;
                 break;
                 
             case "7": 
@@ -446,13 +446,19 @@ public static void userAdmin(List<Event> events, Scanner keyboard) {
                 break;
 
             case "8": 
-                ActionLogger.logInfo("Admin canceled an event"); // Log into text file
+                
+                createInvoice(customers);
+                ActionLogger.logInfo("Admin created an invoice"); // Log into text file
+
+                break;
+
+            case "9":
                 ActionLogger.logInfo( "Admin logged out"); // Log into text file
                 adminLogged = true;
                 break;
 
             default:
-                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, or 8).");
+                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, 8, or 9).");
         }
     }
 }
@@ -543,8 +549,46 @@ public static void profitIdEvent(List<Event> data,int eventId){
 
 
 
+public static void createInvoice(List<Customer> customers){
+    Scanner scanner = new Scanner(System.in);
 
+    boolean generateAnother = true;
 
+    while (generateAnother) {
+        System.out.println("\nPlease enter the username of the user you want to generate an invoice for:");
+
+        Boolean found = false;
+        String username = "";
+
+        try {
+            username = scanner.next(); // User input
+        } catch (java.util.InputMismatchException e) {
+            scanner.nextLine(); // Clears bad input
+        }
+
+        for (Customer user : customers) {
+            if (username.equalsIgnoreCase(user.getUserName())) {
+                found = true;
+                InvoiceGenerator.generateInvoiceSummary(user, user.getTicketPurchases());
+                break; // Exit the loop once a match is found
+            }
+        }
+
+        if (!found) {
+            System.out.println("Username not found...");
+        } else {
+            System.out.println("\nInvoice successfully generated!");
+        }
+
+        // Ask if the user wants to generate another invoice summary
+        System.out.println("Do you want to generate another invoice summary? (yes/no)");
+        String anotherSummary = scanner.next();
+
+        if (!anotherSummary.equalsIgnoreCase("yes")) {
+            generateAnother = false;
+        }
+    }
+}
 
 
 

@@ -75,7 +75,7 @@ public class RunTicket {
                     break;
 
                 case 2: // Admin
-                    AdministratorActions.userAdmin(events, scanner);
+                    AdministratorActions.userAdmin(events, customers, scanner);
                     break;
 
                 case 3:

@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -20,6 +22,7 @@ class Customer {
     private boolean isMember;
     private double moneySaved = 0.0;
     TicketPricingStrategy pricingStrategy;
+    private List<Map<String, Object>> ticketPurchases = new ArrayList<>();
 
     /**
      * Constructs a default Customer object.
@@ -231,6 +234,17 @@ class Customer {
     public void setMoneySaved(double moneySaved) {
         this.moneySaved = moneySaved;
     }
+
+    public void addTicketPurchase(Map<String, Object> purchase){
+        this.ticketPurchases.add(purchase);
+    }
+    
+
+    public List<Map<String, Object>> getTicketPurchases(){
+        return this.ticketPurchases;
+    }
+
+
 
     /**
      * Validates customer credentials based on a list of customers and user input.

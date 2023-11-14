@@ -25,6 +25,7 @@ public class InvoiceGenerator {
      * @param ticketPurchases A list of maps representing ticket purchases.
      */
     private static Map<String, List<Map<String, Object>>> purchaseHistory = new HashMap<>();
+
     public static void generateInvoiceSummary(Customer customer, List<Map<String, Object>> ticketPurchases) {
         // Define the folder where you want to store the invoices
         String folderPath = "Invoices/";
@@ -59,7 +60,7 @@ public class InvoiceGenerator {
             writer.close();
 
             // Print service fees for each ticket purchase
-            printServiceFees(ticketPurchases);
+            //printServiceFees(ticketPurchases);
             purchaseHistory.put(customer.getUserName(), ticketPurchases);
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
@@ -157,6 +158,9 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
             e.printStackTrace();
         }
     }
+
+
+
     /**
      * Generates an automatic invoice summary for a customer and appends it to a file in the "AutoInvoices" folder.
      *
@@ -200,7 +204,7 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
     
             // Calculate and print service fees
             calculateServiceFees(ticketPurchases);
-            printServiceFees(writer, ticketPurchases);
+            //printServiceFees(writer, ticketPurchases);
     
             // Do not close the file to keep it open for appending
         } catch (IOException e) {

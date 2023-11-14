@@ -470,6 +470,7 @@ public class customerActions {
                 purchase.put("taxes", "$0.00");
     
                 ticketPurchases.add(purchase);
+                customer.addTicketPurchase(purchase);
     
                 // Generate the invoice summary
                 InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
@@ -509,6 +510,7 @@ public class customerActions {
                 purchase.put("totalPrice", String.format("$%.2f", totalPrice + totalFees + taxes));
                 purchase.put("confirmationNumber", "N/A");
                 ticketPurchases.add(purchase);
+                customer.addTicketPurchase(purchase);
     
                 // Generate the invoice summary
                 InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
@@ -572,9 +574,23 @@ public class customerActions {
             purchase.put("confirmationNumber", confirmationNumber);
     
             ticketPurchases.add(purchase);
+            customer.addTicketPurchase(purchase);
     
             // Generate the invoice summary with the accumulated purchase details
             InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
         }
     }// end of method
+
+
+
+
+
+    
+
+
+
+
+
+
+
 }
