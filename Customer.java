@@ -299,5 +299,24 @@ class Customer {
             System.out.println("Incorrect username or password. Please try again.");
         }
     }
+
+        /**
+     * Helper method to get ticket purchases for a specific event.
+     *
+     * @param event The event for which to retrieve ticket purchases.
+     * @return A list of ticket purchases for the specified event.
+     */
+    public List<Map<String, Object>> getTicketPurchasesForEvent(Event event) {
+        List<Map<String, Object>> eventPurchases = new ArrayList<>();
+
+        for (Map<String, Object> purchase : ticketPurchases) {
+            // Check if the purchase is for the specified event
+            if (purchase.containsKey("event") && purchase.get("event").equals(event)) {
+                eventPurchases.add(purchase);
+            }
+        }
+
+        return eventPurchases;
+    }
     
 }

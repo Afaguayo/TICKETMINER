@@ -402,11 +402,11 @@ public class customerActions {
                 purchase.put("eventName", event.getName());
                 purchase.put("eventDate", event.getDate());
                 purchase.put("ticketType", ticketType);
-                purchase.put("convenienceFee", convenienceFee);
-                purchase.put("serviceFee", serviceFee);
-                purchase.put("charityFee", charityFee);
+                purchase.put("convenienceFee", Invoice.roundToTwoDecimals(convenienceFee));
+                purchase.put("serviceFee", Invoice.roundToTwoDecimals(serviceFee));
+                purchase.put("charityFee", Invoice.roundToTwoDecimals(charityFee));
                 purchase.put("numberOfTickets", ticketQuantity);
-                purchase.put("totalPrice", total);
+                purchase.put("totalPrice", Invoice.roundToTwoDecimals(total));
                 purchase.put("confirmationNumber", "N/A");
                 ticketPurchases.add(purchase);
     
@@ -423,7 +423,7 @@ public class customerActions {
                     events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
                     customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
+                    event.getVenue().setConvenienceFee(convenienceFee);
                     event.getVenue().setCharityFee(charityFee);
                     event.getVenue().setServiceFee(serviceFee);
                     break;
@@ -432,7 +432,7 @@ public class customerActions {
                     events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
                     customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
+                    event.getVenue().setConvenienceFee(convenienceFee);
                     event.getVenue().setCharityFee(charityFee);
                     event.getVenue().setServiceFee(serviceFee);
                     break;
@@ -441,7 +441,7 @@ public class customerActions {
                     events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
                     customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
+                    event.getVenue().setConvenienceFee(convenienceFee);
                     event.getVenue().setCharityFee(charityFee);
                     event.getVenue().setServiceFee(serviceFee);
                     break;
@@ -450,7 +450,7 @@ public class customerActions {
                     events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
                     customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
+                    event.getVenue().setConvenienceFee(convenienceFee);
                     event.getVenue().setCharityFee(charityFee);
                     event.getVenue().setServiceFee(serviceFee);
                     break;
@@ -459,7 +459,7 @@ public class customerActions {
                     events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
                     customer.setTransactionCount(ticketQuantity);
                     customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
+                    event.getVenue().setConvenienceFee(convenienceFee);
                     event.getVenue().setCharityFee(charityFee);
                     event.getVenue().setServiceFee(serviceFee);
                     break;
@@ -474,9 +474,9 @@ public class customerActions {
             purchase.put("eventName", event.getName());
             purchase.put("eventDate", event.getDate());
             purchase.put("ticketType", ticketType);
-            purchase.put("convenienceFee", convenienceFee);
-            purchase.put("serviceFee", serviceFee);
-            purchase.put("charityFee", charityFee);
+            purchase.put("convenienceFee", Invoice.roundToTwoDecimals(convenienceFee));
+            purchase.put("serviceFee", Invoice.roundToTwoDecimals(serviceFee));
+            purchase.put("charityFee", Invoice.roundToTwoDecimals(charityFee));
             purchase.put("numberOfTickets", ticketQuantity);
             purchase.put("totalPrice", Invoice.roundToTwoDecimals(total));
             purchase.put("confirmationNumber", confirmationNumber);
