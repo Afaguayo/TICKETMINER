@@ -17,6 +17,10 @@ public class Invoice {
     private String confirmationNumber;
     private Customer customer;
     private double taxes;
+    private double subtotal;
+    private double charityFee;
+    private double serviceFee;
+    private double convenienceFee;
 
     /**
      * Constructs an `Invoice` object with the specified details.
@@ -30,14 +34,19 @@ public class Invoice {
      * @param taxes               The amount of taxes associated with this invoice.
      */
     public Invoice(Event event, int ticketType, int ticketQuantity, double totalPrice, String confirmationNumber,
-                   Customer customer, double taxes) {
+                   Customer customer, double subtotal, double taxes, double charityFee, double serviceFee, double convenienceFee) {
         this.event = event;
         this.ticketType = ticketType;
         this.ticketQuantity = ticketQuantity;
         this.totalPrice = totalPrice;
         this.confirmationNumber = confirmationNumber;
         this.customer = customer;
+        this.subtotal = subtotal;
         this.taxes = taxes;
+        this.charityFee = charityFee;
+        this.serviceFee = serviceFee;
+        this.convenienceFee = convenienceFee;
+
     }
 
     /**
@@ -148,25 +157,6 @@ public class Invoice {
         this.customer = customer;
     }
 
-    /**
-     * Retrieves the amount of taxes associated with this object.
-     *
-     * @return The amount of taxes for this object.
-     */
-    public double getTaxes() {
-        return this.taxes;
-    }
-
-
-    /**
-     * Sets the amount of taxes for this object.
-     *
-     * @param taxes The new amount of taxes to be set.
-     */
-    public void setTaxes(double taxes) {
-        this.taxes = taxes;
-    }
-
 
 
     /**
@@ -182,9 +172,12 @@ public class Invoice {
         System.out.println("Ticket Type: " + getTicketTypeName(ticketType));
         System.out.println("Cost for each ticket" + ": $" + roundToTwoDecimals((totalPrice)/ticketQuantity));
         System.out.println("Ticket Quantity: " + ticketQuantity);
-        System.out.println("Subtotal: $" + roundToTwoDecimals(totalPrice));
+        System.out.println("Subtotal: $" + roundToTwoDecimals(subtotal));
         System.out.println("Tax 8.25%: $" + roundToTwoDecimals(taxes));
-        System.out.println("---> Total Price: $" + roundToTwoDecimals(totalPrice+taxes) + " <---");
+        System.out.println("Convenience Fees: S" + convenienceFee);
+        System.out.println("Service Fees: $" + serviceFee);
+        System.out.println("Charity Fees: $" + charityFee);
+        System.out.println("---> Total Price: $" + roundToTwoDecimals(totalPrice) + " <---");
         System.out.println("Confirmation Number: " + confirmationNumber);
         double actualMoney = customer.getMoneyAvailable();
         System.out.println("Member ID: " + customer.getCustomerID());
@@ -243,9 +236,4 @@ public class Invoice {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(value));
     }
-
-
-
-
-    
 }

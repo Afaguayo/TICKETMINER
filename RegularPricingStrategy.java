@@ -7,6 +7,10 @@
  */
 class RegularPricingStrategy implements TicketPricingStrategy {
 
+    private static final double CONVENIENCE_FEE = 2.50;
+    private static final double SERVICE_FEE_RATE = 0.005;
+    private static final double CHARITY_FEE_RATE = 0.0075;
+
     /**
      * Calculates the ticket price for a non-member without applying any discount.
      *
@@ -19,14 +23,45 @@ class RegularPricingStrategy implements TicketPricingStrategy {
     public double calculateTicketPrice(Event event, int ticketType, int ticketQuantity) {
         // Calculate the base ticket price
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
-        
+
         // Calculate the total price without any discounts
-        // double convenienceFee = 2.50;
-        // double serviceFee = 0.005 * ticketQuantity * ticketPrice;
-        // double charityFee = 0.0075 * ticketQuantity * ticketPrice;
-        // ticketPrice = ticketPrice + convenienceFee + serviceFee + charityFee;
         double totalPrice = ticketPrice * ticketQuantity;
 
-        return totalPrice;
+        double convenienceFee = getConvenienceFee();
+        double serviceFee = getServiceFee(totalPrice);
+        double charityFee = getCharityFee(totalPrice);
+
+        double total = totalPrice + convenienceFee + serviceFee + charityFee;
+
+        return total;
+    }
+
+    /**
+     * Gets the convenience fee.
+     *
+     * @return The convenience fee.
+     */
+    public static double getConvenienceFee() {
+        return CONVENIENCE_FEE;
+    }
+
+    /**
+     * Gets the service fee based on the total price.
+     *
+     * @param totalPrice The total price of the tickets.
+     * @return The service fee.
+     */
+    public static double getServiceFee(double totalPrice) {
+        return SERVICE_FEE_RATE * totalPrice;
+    }
+
+    /**
+     * Gets the charity fee based on the total price.
+     *
+     * @param totalPrice The total price of the tickets.
+     * @return The charity fee.
+     */
+    public static double getCharityFee(double totalPrice) {
+        return CHARITY_FEE_RATE * totalPrice;
     }
 }

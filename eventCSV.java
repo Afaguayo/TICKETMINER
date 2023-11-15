@@ -45,7 +45,7 @@ public class eventCSV {
     public void writeData(List<Event> events) {
         try (FileWriter writer = new FileWriter(filename)) {
             // Write CSV header
-            writer.append("EventID,EventType,Name,Date,Time,VIPPrice,GoldPrice,SilverPrice,BronzePrice,GeneralAdmissionPrice,VenueName,PctSeatsUnavailable,VenueType,Capacity,Cost,VIPPct,GoldPct,SilverPct,BronzePct,GeneralAdmissionPct,ReservedExtraPct,FireworksPlanned,FireworksCost,TotalRevenue,VIPSeatsSold,GoldSeatsSold,SilverSeatsSold,BronzeSeatsSold,GeneralAdmissionSeatsSold,TotalVIPRevenue,TotalGoldRevenue,TotalSilverRevenue,TotalBronzeRevenue,TotalGeneralAdmissionRevenue,AmountDiscounted\n");
+            writer.append("EventID,EventType,Name,Date,Time,VIPPrice,GoldPrice,SilverPrice,BronzePrice,GeneralAdmissionPrice,VenueName,PctSeatsUnavailable,VenueType,Capacity,Cost,VIPPct,GoldPct,SilverPct,BronzePct,GeneralAdmissionPct,ReservedExtraPct,FireworksPlanned,FireworksCost,TotalRevenue,VIPSeatsSold,GoldSeatsSold,SilverSeatsSold,BronzeSeatsSold,GeneralAdmissionSeatsSold,TotalVIPRevenue,TotalGoldRevenue,TotalSilverRevenue,TotalBronzeRevenue,TotalGeneralAdmissionRevenue,AmountDiscounted,Charity Fees, Service Fees, Convenience Fees\n");
 
             // Write event data
             for (Event event : events) {
@@ -59,15 +59,15 @@ public class eventCSV {
                         .append(",")
                         .append(event.getTime())
                         .append(",")
-                        .append(String.valueOf(event.getVipPrice()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVipPrice())))
                         .append(",")
-                        .append(String.valueOf(event.getGoldPrice()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getGoldPrice())))
                         .append(",")
-                        .append(String.valueOf(event.getSilverPrice()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getSilverPrice())))
                         .append(",")
-                        .append(String.valueOf(event.getBronzePrice()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getBronzePrice())))
                         .append(",")
-                        .append(String.valueOf(event.getGeneralAdmissionPrice()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getGeneralAdmissionPrice())))
                         .append(",")
                         .append(event.getVenue().getVenueName())
                         .append(",")
@@ -93,9 +93,9 @@ public class eventCSV {
                         .append(",")
                         .append(String.valueOf(event.getVenue().isFireworksPlanned()))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getFireworksCost()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getFireworksCost())))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenue()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenue())))
                         .append(",")
                         .append(String.valueOf(event.getVenue().getTotalVIPSeatsSold()))
                         .append(",")
@@ -107,17 +107,23 @@ public class eventCSV {
                         .append(",")
                         .append(String.valueOf(event.getVenue().getTotalGeneralAdmSeatsSold()))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenueVIP()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenueVIP())))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenueGold()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenueGold())))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenueSilver()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenueSilver())))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenueBronze()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenueBronze())))
                         .append(",")
-                        .append(String.valueOf(event.getVenue().getTotalRevenueGeneralAdm()))
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getTotalRevenueGeneralAdm())))
                         .append(",")
                         .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getDiscounts())))
+                        .append(",")
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getCharityFee())))
+                        .append(",")
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getServiceFee())))
+                        .append(",")
+                        .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getConvenienceFee())))
                         .append("\n");
             }
         } catch (IOException e) {

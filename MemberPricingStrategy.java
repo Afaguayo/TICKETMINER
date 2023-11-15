@@ -30,15 +30,15 @@ public class MemberPricingStrategy implements TicketPricingStrategy {
         // Calculate the base ticket price
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
 
-        // double convenienceFee = 2.50;
-        // double serviceFee = 0.005 * ticketQuantity * ticketPrice;
-        // double charityFee = 0.0075 * ticketQuantity * ticketPrice;
-
         // Calculate the total price before applying the discount
         double totalPrice = ticketPrice * ticketQuantity;
+        double convenienceFee = 2.50;
+        double serviceFee = 0.005 * totalPrice;
+        double charityFee = 0.0075 * totalPrice;
 
+        double total = totalPrice + convenienceFee + serviceFee + charityFee;
         // Calculate the discount amount (10% of the total price)
-        double discount = (totalPrice * 0.1);
+        double discount = (total * 0.1);
 
         // Update the customer's money saved with the discount amount
         customer.setMoneySaved(customer.getMoneySaved() + discount);
@@ -47,6 +47,6 @@ public class MemberPricingStrategy implements TicketPricingStrategy {
         event.getVenue().setDiscounts(discount);
 
         // Calculate the final ticket price after applying the discount
-        return (totalPrice - discount);
+        return (total - discount);
     }
 }

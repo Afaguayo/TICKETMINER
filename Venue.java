@@ -36,6 +36,9 @@ public abstract class Venue {
     private double expectedProfit;
     private double actualProfit;
     private Double discounts = 0.0;
+    private Double charityFee = 0.0;
+    private Double serviceFee = 0.0;
+    private Double convenienceFee = 0.0;
 
     // Constructors
     /**
@@ -669,6 +672,32 @@ public abstract class Venue {
         this.discounts += discounts;
     }
 
+
+    public Double getCharityFee() {
+        return this.charityFee;
+    }
+
+    public void setCharityFee(Double charityFee) {
+        this.charityFee += charityFee;
+    }
+    
+    public Double getConvenienceFee() {
+        return this.convenienceFee;
+    }
+    
+    public void setConvenienceFee(Double convenienceFee) {
+        this.convenienceFee += convenienceFee;
+    }
+    
+    public Double getServiceFee() {
+        return this.serviceFee;
+    }
+    
+    public void setServiceFee(Double serviceFee) {
+        this.serviceFee += serviceFee;
+    }
+    
+
     /**
      * Calculates and returns the amount of VIP seats available based on capacity and availability.
      *
@@ -749,48 +778,4 @@ public abstract class Venue {
 
         return generalAdmissionSeatsAvailable;
     }
-    private double convenienceFeesCollected = 0.0;
-    private double serviceFeesCollected = 0.0;
-    private double charityFeesCollected = 0.0;
-
-    // Add a method to increment convenience fees collected
-    public void incrementConvenienceFeesCollected(double amount) {
-        convenienceFeesCollected += amount;
-    }
-
-    // Add methods to increment service fees and charity fees collected
-    public void incrementServiceFeesCollected(double amount) {
-        serviceFeesCollected += amount;
-    }
-
-    public void incrementCharityFeesCollected(double amount) {
-        charityFeesCollected += amount;
-    }
-
-    // Add a method to get the total convenience fees collected
-    public double getConvenienceFeesCollected() {
-        return convenienceFeesCollected;
-    }
-    // Add methods to get the total service fees and charity fees collected
-    public double getServiceFeesCollected() {
-        return serviceFeesCollected;
-    }
-
-    public double getCharityFeesCollected() {
-        return charityFeesCollected;
-    }
-
-
-
-    public void printMoneyRaised(Event event){
-        System.out.println("______________________________________________________");
-        System.out.println("The amount of money gained by TICKETMINER on event : " + event.getName() + " ID: " + event.getEventID());
-        System.out.println("Service fees collected: " + getServiceFeesCollected());
-        System.out.println("Conviniece fees collected: " + getConvenienceFeesCollected());
-        System.out.println("Charity fees collected: " + getCharityFeesCollected());
-        System.out.println("Total fees collected: " + (getServiceFeesCollected() + getConvenienceFeesCollected() + getCharityFeesCollected()));
-
-    }
-
-
 } // end of file
