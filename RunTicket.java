@@ -79,6 +79,9 @@ public class RunTicket {
                     break;
 
                 case 3:
+
+                    terminateAutoBuy = false;
+
                     while (!terminateAutoBuy) {
                         System.out.println("Please select one of the following choices");
                         System.out.println("[1] Auto purchase with 100 customers.");
