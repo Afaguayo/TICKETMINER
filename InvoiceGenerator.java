@@ -211,13 +211,6 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
         // Loop through the ticket purchases and calculate service fees for each purchase
         for (Map<String, Object> purchase : ticketPurchases) {
             String totalPriceStr = (String) purchase.get("totalPrice");
-            // Check for null and format the string as needed to extract the numeric value
-            if (totalPriceStr != null) {
-                totalPriceStr = totalPriceStr.replace("$", ""); // Remove dollar sign if present
-                // Proceed with parsing totalPriceStr to a numeric type (e.g., Double)
-            } else {
-                // Handle the case when totalPriceStr is null or not present
-            }
             // Remove the dollar sign from the totalPrice string
             totalPriceStr = totalPriceStr.replace("$", "");
             double totalPrice = Double.parseDouble(totalPriceStr);
@@ -234,7 +227,7 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
             purchase.put("serviceFee", String.format("$%.2f", serviceFee));
             purchase.put("charityFee", String.format("$%.2f", charityFee));
             purchase.put("totalServiceFees", String.format("$%.2f", totalServiceFees));
-            purchase.put("totalPriceWithFees", String.format("$%.2f", totalPriceWithFees));
+            purchase.put("totalPrice", String.format("$%.2f", totalPriceWithFees));
         }
     
     }
