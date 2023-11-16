@@ -527,7 +527,7 @@ public static void printAllEvents(List<Event> data) {
 
 public static void profitAllEvents(List<Event> data){
     for (Event event : data) {
-        event.getVenue().getTotalRevenueAllTickets(event);
+        event.getVenue().printMoneyRaised(event);
     }
 
 }

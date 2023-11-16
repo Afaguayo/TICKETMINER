@@ -778,4 +778,38 @@ public abstract class Venue {
 
         return generalAdmissionSeatsAvailable;
     }
+
+
+
+
+    public void printMoneyRaised(Event event){
+        System.out.println("______________________________________________________");
+        System.out.println("The amount of money gained by TICKETMINER on event : $" + event.getName() + " ID: " + event.getEventID());
+    
+        // Round each fee to two decimal places
+        double serviceFee = getServiceFee();
+        double convenienceFee = getConvenienceFee();
+        double charityFee = getCharityFee();
+    
+        System.out.println("Service fees collected: $" + String.format("%.2f", serviceFee));
+        System.out.println("Convenience fees collected: $" + String.format("%.2f", convenienceFee));
+        System.out.println("Charity fees collected: " $+ String.format("%.2f", charityFee));
+    
+        // Calculate and round the total fees collected
+        double totalFeesCollected = serviceFee + convenienceFee + charityFee;
+        System.out.println("Total fees collected: $" + String.format("%.2f", totalFeesCollected));
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
 } // end of file
