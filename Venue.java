@@ -800,16 +800,4 @@ public abstract class Venue {
         System.out.println("Total fees collected: $" + String.format("%.2f", totalFeesCollected));
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
 } // end of file
