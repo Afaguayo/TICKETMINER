@@ -276,9 +276,9 @@ public class customerActions {
                         customer.setMoneyAvailable(customer.getMoneyAvailable() - total);
         
                         // Track the fees collected for this event
-                        event.getVenue().incrementConvenienceFeesCollected(convenienceFee);
-                        event.getVenue().incrementServiceFeesCollected(serviceFee);
-                        event.getVenue().incrementCharityFeesCollected(charityFee);
+                        event.getVenue().setConvenienceFee(convenienceFee);
+                        event.getVenue().setServiceFee(serviceFee);
+                        event.getVenue().setCharityFee(charityFee);
         
                         isValidEvent = true;
         

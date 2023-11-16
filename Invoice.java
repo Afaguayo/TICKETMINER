@@ -49,6 +49,10 @@ public class Invoice {
 
     }
 
+    public Invoice(Event event2, int ticketType2, int ticketQuantity2, double ticketPrice, String confirmationNumber2,
+            Customer customer2, double taxes2) {
+    }
+
     /**
      * Gets the event associated with this invoice.
      *
