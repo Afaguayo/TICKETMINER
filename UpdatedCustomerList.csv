@@ -49,7 +49,11 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 356,Christina,Wheeler,4473.29,4,false,wheelerchristina,Fun!23,0.0
 378,Natasha,Wheeler,6252.71,0,false,wheelernatasha,Fun!23,0.0
 990,Sara,West,1468.5,0,true,westsara,Fun!23,0.0
+<<<<<<< HEAD
 570,Joel,Welch,1425.85,6,true,welchjoel,Fun!23,27.59
+=======
+570,Joel,Welch,1715.74,0,true,welchjoel,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 144,Jeffrey,Weiss,3666.32,0,true,weissjeffrey,Fun!23,0.0
 331,Lindsay,Webster,5313.04,0,true,websterlindsay,Fun!23,0.0
 517,Tami,Weaver,4480.88,3,false,weavertami,Fun!23,0.0
@@ -74,6 +78,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 968,Miranda,Walker,2926.16,4,false,walkermiranda,Fun!23,0.0
 161,Marissa,Wagner,2220.15,0,true,wagnermarissa,Fun!23,0.0
 223,Bridget,Wagner,3256.39,0,false,wagnerbridget,Fun!23,0.0
+<<<<<<< HEAD
 1034,Timothy,Wagner,2198.51,7,true,wagnertimothy,Fun!23,4571.73
 307,Stephen,Villegas,2755.65,10,true,villegasstephen,Fun!23,43.63
 891,Christina,Villanueva,2733.97,6,true,villanuevachristina,Fun!23,23.94
@@ -90,6 +95,24 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 743,Christopher,Underwood,2852.63,7,true,underwoodchristopher,Fun!23,36.24
 448,April,Turner,3344.96,0,true,turnerapril,Fun!23,1158.44
 831,Tanya,Turner,692.73,3,false,turnertanya,Fun!23,0.0
+=======
+1034,Timothy,Wagner,2532.12,0,true,wagnertimothy,Fun!23,0.0
+307,Stephen,Villegas,3211.58,0,true,villegasstephen,Fun!23,0.0
+891,Christina,Villanueva,2985.89,0,true,villanuevachristina,Fun!23,0.0
+928,Donald,Villanueva,2891.28,0,false,villanuevadonald,Fun!23,0.0
+544,Sherri,Velasquez,2256.88,0,false,velasquezsherri,Fun!23,0.0
+95,Javier,Vazquez,5588.11,0,true,vazquezjavier,Fun!23,0.0
+198,Eric,Vazquez,1004.51,0,false,vazquezeric,Fun!23,0.0
+155,Rachel,Vasquez,5287.02,0,true,vasquezrachel,Fun!23,0.0
+158,Richard,Vargas,4750.28,0,true,vargasrichard,Fun!23,0.0
+551,Amanda,Vang,1069.77,0,false,vangamanda,Fun!23,0.0
+94,Martin,Vallecillo,1869.13,0,true,vallecillomartin,Fun!23,0.0
+554,Brandy,Valenzuela,2875.3,0,true,valenzuelabrandy,Fun!23,0.0
+93,Angel,UrbinaAraiza,1315.67,0,false,urbinaaraizaangel,Fun!23,0.0
+743,Christopher,Underwood,3223.23,0,true,underwoodchristopher,Fun!23,0.0
+448,April,Turner,3344.96,0,true,turnerapril,Fun!23,0.0
+831,Tanya,Turner,4633.94,0,false,turnertanya,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 239,Joanna,Trevino,2633.93,0,false,trevinojoanna,Fun!23,0.0
 401,Donna,Travis,1684.11,2,true,travisdonna,Fun!23,4229.42
 421,Zachary,Tran,5202.58,0,true,tranzachary,Fun!23,0.0
@@ -103,17 +126,28 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 762,Elizabeth,Torres,5236.07,2,true,torreselizabeth,Fun!23,11.19
 349,Ricky,Thompson,3945.06,0,false,thompsonricky,Fun!23,0.0
 405,Krystal,Thompson,5995.36,0,false,thompsonkrystal,Fun!23,0.0
+<<<<<<< HEAD
 735,Nathan,Thompson,1362.38,5,false,thompsonnathan,Fun!23,0.0
+=======
+735,Nathan,Thompson,1367.74,0,false,thompsonnathan,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 817,Megan,Thompson,2852.16,0,false,thompsonmegan,Fun!23,0.0
 838,Mark,Thompson,1416.49,6,true,thompsonmark,Fun!23,27.59
 267,Karen,Thomas,3028.76,0,true,thomaskaren,Fun!23,0.0
 274,David,Thomas,2400.64,0,true,thomasdavid,Fun!23,551.18
 445,Samantha,Thomas,5543.07,5,false,thomassamantha,Fun!23,0.0
 785,Michael,Thomas,1046.92,0,false,thomasmichael,Fun!23,0.0
+<<<<<<< HEAD
 1013,Tammy,Thomas,3075.59,6,false,thomastammy,Fun!23,0.0
 343,Kyle,Taylor,1350.46,0,false,taylorkyle,Fun!23,0.0
 797,Teresa,Taylor,4750.4,5,true,taylorteresa,Fun!23,19.99
 937,Sarah,Taylor,457.9,12,false,taylorsarah,Fun!23,0.0
+=======
+1013,Tammy,Thomas,3460.7,0,false,thomastammy,Fun!23,0.0
+343,Kyle,Taylor,1350.46,0,false,taylorkyle,Fun!23,0.0
+797,Teresa,Taylor,4958.94,0,true,taylorteresa,Fun!23,0.0
+937,Sarah,Taylor,1164.84,0,false,taylorsarah,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 371,Kevin,Swanson,3910.54,0,false,swansonkevin,Fun!23,0.0
 663,Gina,Swanson,1405.02,5,true,swansongina,Fun!23,15.44
 876,Sandra,Sutton,5705.43,6,true,suttonsandra,Fun!23,28.45
@@ -181,10 +215,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 497,Amber,Sellers,1184.02,0,true,sellersamber,Fun!23,0.0
 194,Cody,Scott,2555.15,11,true,scottcody,Fun!23,194.04
 342,Kevin,Scott,2061.7,0,false,scottkevin,Fun!23,0.0
+<<<<<<< HEAD
 464,Deborah,Scott,3365.78,4,true,scottdeborah,Fun!23,16.04
 754,Jared,Scott,2783.56,6,true,scottjared,Fun!23,23.94
 680,Jennifer,Schultz,1203.51,5,true,schultzjennifer,Fun!23,32.14
 656,Holly,Schneider,766.93,5,false,schneiderholly,Fun!23,0.0
+=======
+464,Deborah,Scott,3531.82,0,true,scottdeborah,Fun!23,0.0
+754,Jared,Scott,3035.48,0,true,scottjared,Fun!23,0.0
+680,Jennifer,Schultz,1537.25,0,true,schultzjennifer,Fun!23,0.0
+656,Holly,Schneider,1033.14,0,false,schneiderholly,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 938,Jennifer,Schneider,3309.83,0,false,schneiderjennifer,Fun!23,0.0
 276,Craig,Schaefer,6211.16,5,false,schaefercraig,Fun!23,0.0
 1047,Kendra,Sawyer,5935.3,6,false,sawyerkendra,Fun!23,0.0
@@ -194,6 +235,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 674,Gabriel,Sanders,5231.12,0,true,sandersgabriel,Fun!23,0.0
 715,Thomas,Sanders,4867.15,9,true,sandersthomas,Fun!23,49.07
 806,Micheal,Sanders,3310.28,0,false,sandersmicheal,Fun!23,0.0
+<<<<<<< HEAD
 1024,John,Sanders,3562.74,14,false,sandersjohn,Fun!23,0.0
 115,Michael,Sanchez,1822.4,11,false,sanchezmichael,Fun!23,0.0
 176,Anthony,Sanchez,4577.3,7,false,sanchezanthony,Fun!23,0.0
@@ -210,16 +252,41 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 881,Mindy,Ross,3282.51,2,false,rossmindy,Fun!23,0.0
 407,Scott,Rose,5049.08,4,false,rosescott,Fun!23,0.0
 148,Ashley,Romero,2036.35,12,true,romeroashley,Fun!23,60.69
+=======
+1024,John,Sanders,4181.16,0,false,sandersjohn,Fun!23,0.0
+115,Michael,Sanchez,2479.56,0,false,sanchezmichael,Fun!23,0.0
+176,Anthony,Sanchez,4849.29,0,false,sanchezanthony,Fun!23,0.0
+638,Colleen,Sanchez,3335.56,0,true,sanchezcolleen,Fun!23,0.0
+874,Jody,Sanchez,4124.36,0,false,sanchezjody,Fun!23,0.0
+749,Henry,Salazar,3864.2,0,false,salazarhenry,Fun!23,0.0
+1000,Paul,Salas,3538.03,0,false,salaspaul,Fun!23,0.0
+545,Darlene,Russell,2099.92,0,true,russelldarlene,Fun!23,0.0
+88,Edgar,Ruiz,3684.0,0,false,ruizedgar,Fun!23,0.0
+89,Salvador,Ruiz,5408.09,0,true,ruizsalvador,Fun!23,0.0
+386,Travis,Ruiz,5653.49,0,true,ruiztravis,Fun!23,0.0
+205,Nicole,Rowland,6276.69,0,true,rowlandnicole,Fun!23,0.0
+612,Victor,Ross,3608.7,0,true,rossvictor,Fun!23,0.0
+881,Mindy,Ross,3408.88,0,false,rossmindy,Fun!23,0.0
+407,Scott,Rose,5260.81,0,false,rosescott,Fun!23,0.0
+148,Ashley,Romero,2659.58,0,true,romeroashley,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 202,Olivia,Romero,1322.38,0,true,romeroolivia,Fun!23,0.0
 226,Timothy,Romero,3944.86,3,true,romerotimothy,Fun!23,4.12
 272,James,Romero,3689.64,0,false,romerojames,Fun!23,0.0
 292,Daniel,Romero,4224.41,3,true,romerodaniel,Fun!23,0.25
 87,Sabas,Rojas,1562.16,2,false,rojassabas,Fun!23,0.0
 766,Brian,Rojas,5658.53,0,false,rojasbrian,Fun!23,0.0
+<<<<<<< HEAD
 182,Sandra,Rogers,4585.55,8,false,rogerssandra,Fun!23,0.0
 652,Mark,Rogers,2279.65,6,true,rogersmark,Fun!23,33.05
 828,Ann,Rogers,3417.28,0,true,rogersann,Fun!23,0.0
 86,Christian,Rodriguez,3833.32,2,true,rodriguezchristian,Fun!23,9.36
+=======
+182,Sandra,Rogers,4953.97,0,false,rogerssandra,Fun!23,0.0
+652,Mark,Rogers,2626.5,0,true,rogersmark,Fun!23,0.0
+828,Ann,Rogers,3417.28,0,true,rogersann,Fun!23,0.0
+86,Christian,Rodriguez,3929.14,0,true,rodriguezchristian,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 124,Douglas,Rodriguez,5000.55,0,false,rodriguezdouglas,Fun!23,0.0
 311,Bradley,Rodriguez,2598.87,10,false,rodriguezbradley,Fun!23,0.0
 415,Ricardo,Rodriguez,5646.54,0,false,rodriguezricardo,Fun!23,0.0
@@ -238,11 +305,19 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 301,Alexandra,Robinson,1728.99,2,false,robinsonalexandra,Fun!23,0.0
 501,Michael,Robinson,4445.63,6,false,robinsonmichael,Fun!23,0.0
 547,Lisa,Robinson,2655.71,0,true,robinsonlisa,Fun!23,0.0
+<<<<<<< HEAD
 671,Christopher,Robinson,5398.98,11,false,robinsonchristopher,Fun!23,0.0
 880,Joseph,Robinson,5046.91,0,true,robinsonjoseph,Fun!23,0.0
 261,Barbara,Robertson,3130.56,7,false,robertsonbarbara,Fun!23,0.0
 127,Sean,Roberts,4783.65,6,true,robertssean,Fun!23,1591.35
 744,Kimberly,Roberts,5195.9,6,true,robertskimberly,Fun!23,27.84
+=======
+671,Christopher,Robinson,5852.74,0,false,robinsonchristopher,Fun!23,0.0
+880,Joseph,Robinson,5046.91,0,true,robinsonjoseph,Fun!23,0.0
+261,Barbara,Robertson,3228.66,0,false,robertsonbarbara,Fun!23,0.0
+127,Sean,Roberts,4904.36,0,true,robertssean,Fun!23,0.0
+744,Kimberly,Roberts,5481.5,0,true,robertskimberly,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 420,Rachel,Roberson,1252.0,0,false,robersonrachel,Fun!23,0.0
 605,Heather,Robbins,3957.27,0,true,robbinsheather,Fun!23,1818.52
 334,Melissa,Rivera,2982.36,0,true,riveramelissa,Fun!23,0.0
@@ -264,11 +339,19 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 83,Fernando,Remes,3241.63,0,true,remesfernando,Fun!23,0.0
 479,Alyssa,Reese,3700.44,4,false,reesealyssa,Fun!23,0.0
 475,Christopher,Raymond,2819.77,0,true,raymondchristopher,Fun!23,0.0
+<<<<<<< HEAD
 804,Debra,Raymond,1897.57,6,false,raymonddebra,Fun!23,0.0
 237,Brittany,Ray,6416.85,0,true,raybrittany,Fun!23,0.0
 598,Jeff,Ray,3103.17,3,false,rayjeff,Fun!23,0.0
 779,Michelle,Ray,2288.28,8,true,raymichelle,Fun!23,36.95
 197,Mark,Ramos,4765.66,0,true,ramosmark,Fun!23,2943.86
+=======
+804,Debra,Raymond,2181.85,0,false,raymonddebra,Fun!23,0.0
+237,Brittany,Ray,6416.85,0,true,raybrittany,Fun!23,0.0
+598,Jeff,Ray,3210.53,0,false,rayjeff,Fun!23,0.0
+779,Michelle,Ray,2671.94,0,true,raymichelle,Fun!23,0.0
+197,Mark,Ramos,4765.66,0,true,ramosmark,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 480,Eric,Ramos,3385.72,0,true,ramoseric,Fun!23,0.0
 908,Andre,Ramos,1998.01,2,true,ramosandre,Fun!23,6.33
 313,Jasmine,Ramirez,1858.58,0,false,ramirezjasmine,Fun!23,0.0
@@ -298,21 +381,36 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 919,Brendan,Phillips,5651.21,9,false,phillipsbrendan,Fun!23,0.0
 1039,Wendy,Phillips,2769.86,14,false,phillipswendy,Fun!23,0.0
 224,Virginia,Phelps,5161.47,0,false,phelpsvirginia,Fun!23,0.0
+<<<<<<< HEAD
 1009,Ryan,Peterson,4979.03,4,false,petersonryan,Fun!23,0.0
+=======
+1009,Ryan,Peterson,5211.59,0,false,petersonryan,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 996,Carmen,Petersen,5384.73,0,true,petersencarmen,Fun!23,0.0
 868,Lisa,Peters,1226.17,2,false,peterslisa,Fun!23,0.0
 1036,Stephen,Peters,1319.71,6,true,petersstephen,Fun!23,27.59
 563,Martha,Perry,2398.01,0,true,perrymartha,Fun!23,1780.78
 629,Jared,Perry,2608.19,6,true,perryjared,Fun!23,23.94
 985,Stephanie,Perry,5629.71,0,false,perrystephanie,Fun!23,0.0
+<<<<<<< HEAD
 99,Tom,Perez,4481.61,4,true,pereztom,Fun!23,22.12
 228,Kathryn,Perez,3187.7,3,false,perezkathryn,Fun!23,0.0
+=======
+99,Tom,Perez,4709.57,0,true,pereztom,Fun!23,0.0
+228,Kathryn,Perez,3325.68,0,false,perezkathryn,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 298,Matthew,Perez,4557.79,0,true,perezmatthew,Fun!23,0.0
 80,Diego,Pedraza,1752.68,5,false,pedrazadiego,Fun!23,0.0
 337,Stacey,Paul,3306.42,0,true,paulstacey,Fun!23,0.0
+<<<<<<< HEAD
 791,Richard,Paul,5503.86,11,false,paulrichard,Fun!23,0.0
 249,Kaylee,Patterson,2162.78,6,true,pattersonkaylee,Fun!23,33.56
 442,Kristina,Patrick,3826.35,4,false,patrickkristina,Fun!23,0.0
+=======
+791,Richard,Paul,6218.47,0,false,paulrichard,Fun!23,0.0
+249,Kaylee,Patterson,2514.88,0,true,pattersonkaylee,Fun!23,0.0
+442,Kristina,Patrick,4120.64,0,false,patrickkristina,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 100,Brad,Patel,5009.49,0,false,patelbrad,Fun!23,0.0
 856,Amy,Parsons,1239.57,0,false,parsonsamy,Fun!23,0.0
 618,Rick,Parrish,5408.68,6,true,parrishrick,Fun!23,33.05
@@ -323,13 +421,18 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 233,Robert,Park,4647.6,14,false,parkrobert,Fun!23,0.0
 844,Gary,Park,4166.05,0,true,parkgary,Fun!23,0.0
 931,Dana,Park,5538.88,0,true,parkdana,Fun!23,0.0
-15,Peter,Pan,1498.76,0,true,peterpan,Fun!23,0.0
+15,Peter,Pan,1463.63,0,true,peterpan,Fun!23,8674.72
 120,Logan,Palmer,3856.57,0,false,palmerlogan,Fun!23,0.0
 79,Raul,Pallares,44.28,6,true,pallaresraul,Fun!23,345.63
 312,Gloria,Page,3894.69,0,false,pagegloria,Fun!23,0.0
 566,Heidi,Page,3850.15,0,true,pageheidi,Fun!23,0.0
+<<<<<<< HEAD
 78,Marko,Padilla,3070.46,8,false,padillamarko,Fun!23,0.0
 264,Brooke,Padilla,3411.96,4,true,padillabrooke,Fun!23,25.77
+=======
+78,Marko,Padilla,3735.42,0,false,padillamarko,Fun!23,0.0
+264,Brooke,Padilla,3677.07,0,true,padillabrooke,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 439,Emma,Padilla,6093.23,0,true,padillaemma,Fun!23,0.0
 441,Rita,Owens,4073.25,0,false,owensrita,Fun!23,0.0
 496,Steven,Owens,2888.14,2,false,owenssteven,Fun!23,0.0
@@ -351,6 +454,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 741,Michael,Nunez,5312.86,6,false,nunezmichael,Fun!23,0.0
 76,Saeefa,Nowmi,2133.11,2,true,nowmisaeefa,Fun!23,9.36
 38,Alireza,Nouri,5094.35,0,true,alirezanouri,Fun!23,0.0
+<<<<<<< HEAD
 853,Jacob,Norton,5060.56,8,true,nortonjacob,Fun!23,911.92
 125,Christopher,Norris,2472.69,3,true,norrischristopher,Fun!23,25.42
 826,Andrew,Norris,4950.67,3,false,norrisandrew,Fun!23,0.0
@@ -358,6 +462,15 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 134,Megan,Noble,4349.72,7,true,noblemegan,Fun!23,24.54
 506,Brittany,Nielsen,514.81,12,false,nielsenbrittany,Fun!23,0.0
 642,Mercedes,Nichols,2046.16,3,true,nicholsmercedes,Fun!23,16.9
+=======
+853,Jacob,Norton,5464.44,0,true,nortonjacob,Fun!23,0.0
+125,Christopher,Norris,2731.47,0,true,norrischristopher,Fun!23,0.0
+826,Andrew,Norris,5088.65,0,false,norrisandrew,Fun!23,0.0
+208,James,Nolan,2383.11,0,false,nolanjames,Fun!23,0.0
+134,Megan,Noble,4604.82,0,true,noblemegan,Fun!23,0.0
+506,Brittany,Nielsen,1049.08,0,false,nielsenbrittany,Fun!23,0.0
+642,Mercedes,Nichols,2219.06,0,true,nicholsmercedes,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 617,Amber,Nguyen,2856.61,0,true,nguyenamber,Fun!23,0.0
 692,Rebecca,Nguyen,3328.99,2,true,nguyenrebecca,Fun!23,6.33
 787,Sabrina,Nguyen,3905.13,0,false,nguyensabrina,Fun!23,0.0
@@ -374,8 +487,13 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 1018,Beth,Moss,2133.15,2,true,mossbeth,Fun!23,8.15
 359,Sarah,Mosley,4742.43,8,true,mosleysarah,Fun!23,30.4
 533,Victoria,Moses,5496.25,0,false,mosesvictoria,Fun!23,0.0
+<<<<<<< HEAD
 529,Michael,Morton,4324.39,7,false,mortonmichael,Fun!23,0.0
 904,Amy,Morse,1158.25,2,true,morseamy,Fun!23,9.36
+=======
+529,Michael,Morton,4769.14,0,false,mortonmichael,Fun!23,0.0
+904,Amy,Morse,1254.07,0,true,morseamy,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 201,Jeremy,Morris,4127.06,0,false,morrisjeremy,Fun!23,0.0
 258,Alejandra,Morris,3664.33,3,false,morrisalejandra,Fun!23,0.0
 437,John,Morris,5333.14,5,true,morrisjohn,Fun!23,27.59
@@ -387,8 +505,13 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 167,Michael,Moran,2574.75,0,false,moranmichael,Fun!23,0.0
 824,Alicia,Moran,6068.59,0,false,moranalicia,Fun!23,0.0
 318,Denise,Morales,4624.83,0,true,moralesdenise,Fun!23,0.0
+<<<<<<< HEAD
 969,Ashley,Morales,3044.44,8,false,moralesashley,Fun!23,0.0
 873,Sherry,Mora,5028.72,2,true,morasherry,Fun!23,9.36
+=======
+969,Ashley,Morales,3550.46,0,false,moralesashley,Fun!23,0.0
+873,Sherry,Mora,5124.54,0,true,morasherry,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 257,Jessica,Moore,5113.84,0,true,moorejessica,Fun!23,0.0
 329,Francisco,Moore,6155.44,0,false,moorefrancisco,Fun!23,0.0
 357,Valerie,Moore,2891.3,9,true,moorevalerie,Fun!23,48.19
@@ -404,12 +527,21 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 516,Michaela,Miranda,4469.14,0,false,mirandamichaela,Fun!23,0.0
 314,David,Mills,4508.52,8,true,millsdavid,Fun!23,1590.56
 522,Jennifer,Mills,5535.67,0,true,millsjennifer,Fun!23,0.0
+<<<<<<< HEAD
 139,Shane,Miller,1151.82,3,false,millershane,Fun!23,0.0
 209,Sharon,Miller,1306.78,0,false,millersharon,Fun!23,0.0
 216,Amanda,Miller,2143.82,5,true,milleramanda,Fun!23,20.55
 225,Chase,Miller,5922.47,4,true,millerchase,Fun!23,12.4
 472,Gary,Miller,6180.72,6,false,millergary,Fun!23,0.0
 687,Lisa,Miller,3029.66,5,false,millerlisa,Fun!23,0.0
+=======
+139,Shane,Miller,1310.21,0,false,millershane,Fun!23,0.0
+209,Sharon,Miller,1306.78,0,false,millersharon,Fun!23,0.0
+216,Amanda,Miller,2354.68,0,true,milleramanda,Fun!23,0.0
+225,Chase,Miller,6051.36,0,true,millerchase,Fun!23,0.0
+472,Gary,Miller,6397.07,0,false,millergary,Fun!23,0.0
+687,Lisa,Miller,3316.29,0,false,millerlisa,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 696,Ann,Miller,5837.59,0,true,millerann,Fun!23,0.0
 850,Dana,Miller,1254.13,9,false,millerdana,Fun!23,0.0
 852,Linda,Miller,1509.69,0,true,millerlinda,Fun!23,0.0
@@ -465,12 +597,21 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 956,Ronald,Martinez,4466.63,0,false,martinezronald,Fun!23,0.0
 1032,Kristen,Martinez,4730.25,0,false,martinezkristen,Fun!23,0.0
 160,Victoria,Martin,4686.88,0,true,martinvictoria,Fun!23,0.0
+<<<<<<< HEAD
 263,Jessica,Martin,4965.29,4,true,martinjessica,Fun!23,22.12
 625,Andrew,Marshall,4364.45,3,true,marshallandrew,Fun!23,12.1
 254,Jeffrey,Marquez,5191.92,5,true,marquezjeffrey,Fun!23,0.25
 769,Catherine,Mann,5398.64,6,false,manncatherine,Fun!23,0.0
 200,Michelle,Maldonado,4328.73,8,true,maldonadomichelle,Fun!23,41.43
 305,Adam,Maldonado,5273.85,5,true,maldonadoadam,Fun!23,23.28
+=======
+263,Jessica,Martin,5193.25,0,true,martinjessica,Fun!23,0.0
+625,Andrew,Marshall,4488.88,0,true,marshallandrew,Fun!23,0.0
+254,Jeffrey,Marquez,5197.0,0,true,marquezjeffrey,Fun!23,0.0
+769,Catherine,Mann,5930.67,0,false,manncatherine,Fun!23,0.0
+200,Michelle,Maldonado,4756.92,0,true,maldonadomichelle,Fun!23,0.0
+305,Adam,Maldonado,5512.27,0,true,maldonadoadam,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 515,Hannah,Maldonado,2657.89,0,false,maldonadohannah,Fun!23,0.0
 995,Stacy,Maldonado,5521.59,0,true,maldonadostacy,Fun!23,0.0
 417,Kayla,Mahoney,4392.84,0,true,mahoneykayla,Fun!23,1567.6
@@ -478,11 +619,19 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 670,Derek,Macias,4973.77,14,false,maciasderek,Fun!23,0.0
 72,Claire,Macdonald,3411.55,0,true,macdonaldclaire,Fun!23,0.0
 597,Joseph,Macdonald,4228.2,0,false,macdonaldjoseph,Fun!23,0.0
+<<<<<<< HEAD
 101,Robert,Lyons,921.31,4,true,lyonsrobert,Fun!23,18.48
 1021,Carlos,Lynch,4425.9,2,true,lynchcarlos,Fun!23,13.01
 304,Jeffrey,Luna,3679.77,0,true,lunajeffrey,Fun!23,0.0
 872,Christopher,Lucero,4884.89,5,true,lucerochristopher,Fun!23,15.44
 212,Mark,Lozano,6004.26,9,true,lozanomark,Fun!23,1471.44
+=======
+101,Robert,Lyons,1112.12,0,true,lyonsrobert,Fun!23,0.0
+1021,Carlos,Lynch,4558.05,0,true,lynchcarlos,Fun!23,0.0
+304,Jeffrey,Luna,3679.77,0,true,lunajeffrey,Fun!23,0.0
+872,Christopher,Lucero,5046.47,0,true,lucerochristopher,Fun!23,0.0
+212,Mark,Lozano,6413.09,0,true,lozanomark,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 905,Barbara,Love,1845.0,0,false,lovebarbara,Fun!23,0.0
 71,Caleb,Lopez,4014.99,0,false,lopezcaleb,Fun!23,0.0
 455,Jon,Lopez,2575.54,0,true,lopezjon,Fun!23,0.0
@@ -509,11 +658,19 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 580,Robert,Leblanc,2145.96,4,false,leblancrobert,Fun!23,0.0
 470,Kevin,Larson,4829.84,5,true,larsonkevin,Fun!23,8.4
 446,Patrick,Larsen,5551.39,0,true,larsenpatrick,Fun!23,0.0
+<<<<<<< HEAD
 70,Devin,Lara,2534.19,5,false,laradevin,Fun!23,0.0
 234,Ariana,Lara,1102.42,0,true,laraariana,Fun!23,1567.6
 513,Angela,Lang,6051.89,2,true,langangela,Fun!23,8.15
 69,Erik,Laneave,1802.66,0,false,laneaveerik,Fun!23,0.0
 575,Barbara,Lane,1334.28,6,true,lanebarbara,Fun!23,24.8
+=======
+70,Devin,Lara,2539.55,0,false,laradevin,Fun!23,0.0
+234,Ariana,Lara,1102.42,0,true,laraariana,Fun!23,0.0
+513,Angela,Lang,6135.6,0,true,langangela,Fun!23,0.0
+69,Erik,Laneave,1802.66,0,false,laneaveerik,Fun!23,0.0
+575,Barbara,Lane,1590.63,0,true,lanebarbara,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 487,Wesley,Lambert,5440.93,0,true,lambertwesley,Fun!23,0.0
 650,Krista,Lambert,2399.3,6,true,lambertkrista,Fun!23,31.82
 434,Mark,Lamb,3552.34,0,false,lambmark,Fun!23,0.0
@@ -529,10 +686,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 177,Thomas,King,3164.46,0,true,kingthomas,Fun!23,0.0
 291,Dawn,King,2866.57,0,true,kingdawn,Fun!23,0.0
 294,Chris,King,5881.73,0,true,kingchris,Fun!23,0.0
+<<<<<<< HEAD
 622,Michael,King,4167.37,6,true,kingmichael,Fun!23,30.27
 713,Leonard,King,4060.77,4,true,kingleonard,Fun!23,13.16
 946,Kylie,King,2887.47,18,true,kingkylie,Fun!23,88.09
 315,Elizabeth,Kim,928.15,4,false,kimelizabeth,Fun!23,0.0
+=======
+622,Michael,King,4479.04,0,true,kingmichael,Fun!23,0.0
+713,Leonard,King,4197.42,0,true,kingleonard,Fun!23,0.0
+946,Kylie,King,3799.05,0,true,kingkylie,Fun!23,0.0
+315,Elizabeth,Kim,1079.7,0,false,kimelizabeth,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 26,Shere,Khan,1453.35,0,true,sherekhan,Fun!23,0.0
 932,Matthew,Khan,1159.04,8,false,khanmatthew,Fun!23,0.0
 348,Ronald,Kent,2731.15,10,true,kentronald,Fun!23,39.99
@@ -546,7 +710,11 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 432,Randy,Keller,4049.83,0,true,kellerrandy,Fun!23,0.0
 381,Rhonda,Kane,2960.87,6,true,kanerhonda,Fun!23,33.56
 379,Angel,Joseph,1377.13,0,false,josephangel,Fun!23,0.0
+<<<<<<< HEAD
 732,Kelly,Jordan,4733.43,8,false,jordankelly,Fun!23,0.0
+=======
+732,Kelly,Jordan,5295.75,0,false,jordankelly,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 227,Cesar,Jones,3299.29,0,false,jonescesar,Fun!23,0.0
 251,Ashley,Jones,1926.0,5,false,jonesashley,Fun!23,0.0
 277,Michelle,Jones,5470.09,0,false,jonesmichelle,Fun!23,0.0
@@ -557,18 +725,28 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 600,Christina,Jones,3429.29,6,false,joneschristina,Fun!23,0.0
 677,Sarah,Jones,1111.27,6,false,jonessarah,Fun!23,0.0
 679,Julia,Jones,4445.14,0,true,jonesjulia,Fun!23,0.0
+<<<<<<< HEAD
 722,Timothy,Jones,3746.18,12,true,jonestimothy,Fun!23,55.98
 739,John,Jones,6414.74,0,true,jonesjohn,Fun!23,0.0
 768,Tiffany,Jones,1851.94,0,false,jonestiffany,Fun!23,0.0
 802,Erin,Jones,3323.19,0,true,joneserin,Fun!23,0.0
 825,Jennifer,Jones,3487.49,3,false,jonesjennifer,Fun!23,0.0
 961,Darrell,Jones,4098.51,6,false,jonesdarrell,Fun!23,0.0
+=======
+722,Timothy,Jones,4324.95,0,true,jonestimothy,Fun!23,0.0
+739,John,Jones,6414.74,0,true,jonesjohn,Fun!23,0.0
+768,Tiffany,Jones,1851.94,0,false,jonestiffany,Fun!23,0.0
+802,Erin,Jones,3323.19,0,true,joneserin,Fun!23,0.0
+825,Jennifer,Jones,3707.12,0,false,jonesjennifer,Fun!23,0.0
+961,Darrell,Jones,4483.62,0,false,jonesdarrell,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 1044,Shelly,Jones,5853.92,0,false,jonesshelly,Fun!23,0.0
 688,Tyrone,Johnston,3193.1,0,true,johnstontyrone,Fun!23,0.0
 67,Roberto,Johnson,5590.54,0,false,johnsonroberto,Fun!23,0.0
 129,Beverly,Johnson,2380.94,4,true,johnsonbeverly,Fun!23,22.12
 180,Karla,Johnson,2023.33,0,true,johnsonkarla,Fun!23,0.0
 338,Crystal,Johnson,2986.03,0,true,johnsoncrystal,Fun!23,0.0
+<<<<<<< HEAD
 347,Courtney,Johnson,2475.08,9,true,johnsoncourtney,Fun!23,46.97
 355,Benjamin,Johnson,1636.71,5,false,johnsonbenjamin,Fun!23,0.0
 374,Edward,Johnson,5624.42,5,false,johnsonedward,Fun!23,0.0
@@ -580,13 +758,30 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 799,Timothy,Johnson,6038.7,0,true,johnsontimothy,Fun!23,0.0
 816,Tanya,Johnson,4815.69,4,false,johnsontanya,Fun!23,0.0
 819,Melissa,Johnson,1912.58,2,true,johnsonmelissa,Fun!23,17.03
+=======
+347,Courtney,Johnson,2964.73,0,true,johnsoncourtney,Fun!23,0.0
+355,Benjamin,Johnson,1800.37,0,false,johnsonbenjamin,Fun!23,0.0
+374,Edward,Johnson,5909.18,0,false,johnsonedward,Fun!23,0.0
+425,Nicole,Johnson,4584.68,0,false,johnsonnicole,Fun!23,0.0
+559,Kimberly,Johnson,2260.21,0,false,johnsonkimberly,Fun!23,0.0
+572,Christopher,Johnson,2167.45,0,false,johnsonchristopher,Fun!23,0.0
+649,Luis,Johnson,6169.07,0,true,johnsonluis,Fun!23,0.0
+783,Lori,Johnson,2464.58,0,false,johnsonlori,Fun!23,0.0
+799,Timothy,Johnson,6038.7,0,true,johnsontimothy,Fun!23,0.0
+816,Tanya,Johnson,5068.7,0,false,johnsontanya,Fun!23,0.0
+819,Melissa,Johnson,2084.86,0,true,johnsonmelissa,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 863,Laurie,Johnson,3877.37,0,false,johnsonlaurie,Fun!23,0.0
 922,Amanda,Johnson,1176.7,0,true,johnsonamanda,Fun!23,0.0
 945,Denise,Johnson,4694.72,0,true,johnsondenise,Fun!23,822.81
 994,Michael,Johnson,3282.75,3,false,johnsonmichael,Fun!23,0.0
 1011,David,Johnson,4722.38,3,false,johnsondavid,Fun!23,0.0
 1042,Taylor,Johnson,4083.31,0,true,johnsontaylor,Fun!23,0.0
+<<<<<<< HEAD
 578,Misty,Jimenez,3006.07,2,true,jimenezmisty,Fun!23,2.83
+=======
+578,Misty,Jimenez,3036.8,0,true,jimenezmisty,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 219,Brian,Jensen,3490.08,0,true,jensenbrian,Fun!23,0.0
 393,Alicia,Jenkins,2557.03,0,false,jenkinsalicia,Fun!23,0.0
 66,Jorge,Jaquez,5537.4,2,false,jaquezjorge,Fun!23,0.0
@@ -595,6 +790,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 518,Edward,Jackson,4020.17,0,false,jacksonedward,Fun!23,0.0
 678,Nicholas,Jackson,4654.47,0,true,jacksonnicholas,Fun!23,0.0
 926,Lisa,Jackson,1181.83,0,false,jacksonlisa,Fun!23,0.0
+<<<<<<< HEAD
 999,Emily,Jackson,5005.99,2,false,jacksonemily,Fun!23,0.0
 1014,Elizabeth,Jackson,6494.54,0,true,jacksonelizabeth,Fun!23,0.0
 490,Derek,Irwin,3534.66,6,true,irwinderek,Fun!23,27.59
@@ -604,16 +800,34 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 275,William,Hunter,1076.2,0,true,hunterwilliam,Fun!23,0.0
 429,Anthony,Hunter,1883.06,9,false,hunteranthony,Fun!23,0.0
 358,Deborah,Hunt,838.47,9,false,huntdeborah,Fun!23,0.0
+=======
+999,Emily,Jackson,5112.18,0,false,jacksonemily,Fun!23,0.0
+1014,Elizabeth,Jackson,6494.54,0,true,jacksonelizabeth,Fun!23,0.0
+490,Derek,Irwin,3824.55,0,true,irwinderek,Fun!23,0.0
+916,Carlos,Irwin,1259.94,0,false,irwincarlos,Fun!23,0.0
+65,Michael,Ike,5785.1,0,false,ikemichael,Fun!23,0.0
+418,Ray,Huynh,6239.49,0,false,huynhray,Fun!23,0.0
+275,William,Hunter,1076.2,0,true,hunterwilliam,Fun!23,0.0
+429,Anthony,Hunter,2298.7,0,false,hunteranthony,Fun!23,0.0
+358,Deborah,Hunt,1240.36,0,false,huntdeborah,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 265,Susan,Humphrey,4469.93,0,false,humphreysusan,Fun!23,0.0
 414,Sean,Hull,5713.58,4,true,hullsean,Fun!23,16.04
 626,Janet,Hughes,2930.46,4,false,hughesjanet,Fun!23,0.0
 1023,Patricia,Hughes,6412.24,0,false,hughespatricia,Fun!23,0.0
 64,Jazmin,Huerta,3005.52,0,true,huertajazmin,Fun!23,0.0
 897,Jorge,Huerta,4566.24,0,false,huertajorge,Fun!23,0.0
+<<<<<<< HEAD
 118,Crystal,Hudson,4381.79,4,true,hudsoncrystal,Fun!23,25.77
 912,Jennifer,Huang,321.96,13,false,huangjennifer,Fun!23,0.0
 206,Samantha,Howell,1763.4,5,false,howellsamantha,Fun!23,0.0
 877,Kenneth,House,5650.84,10,false,housekenneth,Fun!23,0.0
+=======
+118,Crystal,Hudson,4646.9,0,true,hudsoncrystal,Fun!23,0.0
+912,Jennifer,Huang,1156.3,0,false,huangjennifer,Fun!23,0.0
+206,Samantha,Howell,1842.67,0,false,howellsamantha,Fun!23,0.0
+877,Kenneth,House,6073.4,0,false,housekenneth,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 883,John,House,4352.21,0,true,housejohn,Fun!23,0.0
 375,Misty,Horton,2980.02,0,true,hortonmisty,Fun!23,0.0
 530,Noah,Horne,6445.33,0,false,hornenoah,Fun!23,0.0
@@ -632,10 +846,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 169,Susan,Hill,1657.52,0,true,hillsusan,Fun!23,0.0
 706,Perry,Hill,5036.18,0,false,hillperry,Fun!23,0.0
 710,John,Hill,3586.01,0,false,hilljohn,Fun!23,0.0
+<<<<<<< HEAD
 888,Brett,Higgins,1449.16,8,false,higginsbrett,Fun!23,0.0
 858,Alison,Hicks,3679.85,7,true,hicksalison,Fun!23,15.69
 733,Joshua,Hickman,2815.02,0,false,hickmanjoshua,Fun!23,0.0
 894,Kelly,Herring,2298.65,3,false,herringkelly,Fun!23,0.0
+=======
+888,Brett,Higgins,1697.18,0,false,higginsbrett,Fun!23,0.0
+858,Alison,Hicks,3846.43,0,true,hicksalison,Fun!23,0.0
+733,Joshua,Hickman,2815.02,0,false,hickmanjoshua,Fun!23,0.0
+894,Kelly,Herring,2436.63,0,false,herringkelly,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 151,Edward,Hernandez,1983.03,0,false,hernandezedward,Fun!23,0.0
 519,Steven,Hernandez,2042.23,0,true,hernandezsteven,Fun!23,0.0
 586,Jamie,Hernandez,3343.0,0,false,hernandezjamie,Fun!23,0.0
@@ -667,14 +888,24 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 162,Stephanie,Harris,5833.29,7,false,harrisstephanie,Fun!23,0.0
 164,Dylan,Harris,5128.06,4,false,harrisdylan,Fun!23,0.0
 560,Kelly,Harris,1977.61,0,true,harriskelly,Fun!23,0.0
+<<<<<<< HEAD
 726,Victor,Harris,5417.35,8,true,harrisvictor,Fun!23,38.17
 1040,Kimberly,Harris,5562.39,10,false,harriskimberly,Fun!23,0.0
+=======
+726,Victor,Harris,5811.35,0,true,harrisvictor,Fun!23,0.0
+1040,Kimberly,Harris,6092.68,0,false,harriskimberly,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 183,Samuel,Harrington,6027.92,0,true,harringtonsamuel,Fun!23,0.0
 562,Dakota,Harper,3620.2,7,true,harperdakota,Fun!23,173.54
 869,Paul,Harmon,3828.91,5,false,harmonpaul,Fun!23,0.0
 335,Bryan,Hardy,1373.72,0,true,hardybryan,Fun!23,0.0
+<<<<<<< HEAD
 477,Theresa,Hardy,2917.11,11,true,hardytheresa,Fun!23,58.08
 398,Anthony,Hardin,5942.48,5,true,hardinanthony,Fun!23,32.14
+=======
+477,Theresa,Hardy,3515.66,0,true,hardytheresa,Fun!23,0.0
+398,Anthony,Hardin,6276.22,0,true,hardinanthony,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 505,Gabriel,Hansen,2601.36,0,false,hansengabriel,Fun!23,0.0
 982,John,Hansen,3433.35,6,false,hansenjohn,Fun!23,0.0
 1012,Joseph,Hanna,2144.64,4,false,hannajoseph,Fun!23,0.0
@@ -683,6 +914,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 199,James,Hammond,3103.96,3,false,hammondjames,Fun!23,0.0
 290,Lauren,Hall,4599.27,5,true,halllauren,Fun!23,16.39
 675,Lori,Hall,1475.01,0,false,halllori,Fun!23,0.0
+<<<<<<< HEAD
 717,Thomas,Hall,6330.74,3,false,hallthomas,Fun!23,0.0
 801,Colleen,Hall,4256.2,5,false,hallcolleen,Fun!23,0.0
 963,Amy,Hall,3924.13,0,false,hallamy,Fun!23,0.0
@@ -690,6 +922,15 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 730,Jorge,Haley,4583.75,0,true,haleyjorge,Fun!23,0.0
 537,Kaylee,Hale,646.99,9,true,halekaylee,Fun!23,39.59
 734,Jennifer,Guzman,5940.85,9,true,guzmanjennifer,Fun!23,41.78
+=======
+717,Thomas,Hall,6468.72,0,false,hallthomas,Fun!23,0.0
+801,Colleen,Hall,4435.46,0,false,hallcolleen,Fun!23,0.0
+963,Amy,Hall,3924.13,0,false,hallamy,Fun!23,0.0
+1010,Andrew,Hall,3815.39,0,true,hallandrew,Fun!23,0.0
+730,Jorge,Haley,4583.75,0,true,haleyjorge,Fun!23,0.0
+537,Kaylee,Hale,1053.59,0,true,halekaylee,Fun!23,0.0
+734,Jennifer,Guzman,6377.01,0,true,guzmanjennifer,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 62,Ian,Gutierrez,4678.83,0,true,gutierrezian,Fun!23,0.0
 235,Roberto,Gutierrez,1218.98,2,true,gutierrezroberto,Fun!23,17.03
 247,Anna,Gutierrez,4782.0,0,true,gutierrezanna,Fun!23,0.0
@@ -731,6 +972,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 58,Eric,Gardea,2944.65,4,false,gardeaeric,Fun!23,0.0
 54,Marco,GarciaFernandez,2252.25,13,true,garciafernandezmarco,Fun!23,52.39
 55,Christian,Garcia,4107.34,0,false,garciachristian,Fun!23,0.0
+<<<<<<< HEAD
 56,Isabella,Garcia,1122.57,3,false,garciaisabella,Fun!23,0.0
 57,Jorge,Garcia,3453.82,6,true,garciajorge,Fun!23,1116.12
 184,Andrew,Garcia,3350.52,6,true,garciaandrew,Fun!23,3154.14
@@ -744,14 +986,36 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 955,Ashley,Frye,1856.18,2,true,fryeashley,Fun!23,11.19
 832,Joseph,Fritz,4948.06,6,true,fritzjoseph,Fun!23,3302.35
 399,Norman,Freeman,2544.17,7,false,freemannorman,Fun!23,0.0
+=======
+56,Isabella,Garcia,1311.58,0,false,garciaisabella,Fun!23,0.0
+57,Jorge,Garcia,3805.92,0,true,garciajorge,Fun!23,0.0
+184,Andrew,Garcia,3697.37,0,true,garciaandrew,Fun!23,0.0
+286,Susan,Garcia,5479.1,0,true,garciasusan,Fun!23,0.0
+344,Kimberly,Garcia,2247.3,0,true,garciakimberly,Fun!23,0.0
+748,Jerry,Gamble,2622.85,0,false,gamblejerry,Fun!23,0.0
+117,Chelsea,Gallagher,5997.95,0,true,gallagherchelsea,Fun!23,0.0
+323,Lisa,Gaines,5799.68,0,true,gaineslisa,Fun!23,0.0
+977,Amy,Fuller,6258.54,0,false,fulleramy,Fun!23,0.0
+507,Jessica,Frye,6065.87,0,true,fryejessica,Fun!23,0.0
+955,Ashley,Frye,1970.17,0,true,fryeashley,Fun!23,0.0
+832,Joseph,Fritz,4953.16,0,true,fritzjoseph,Fun!23,0.0
+399,Norman,Freeman,2656.86,0,false,freemannorman,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 471,Alexandra,Fox,6231.03,0,false,foxalexandra,Fun!23,0.0
 495,Michael,Fox,5657.86,0,true,foxmichael,Fun!23,0.0
 770,Sara,Fox,5937.37,0,true,foxsara,Fun!23,0.0
 217,Shirley,Foster,1054.18,0,true,fostershirley,Fun!23,0.0
+<<<<<<< HEAD
 376,Christopher,Foster,2291.04,2,false,fosterchristopher,Fun!23,0.0
 380,Daniel,Foster,5652.93,3,false,fosterdaniel,Fun!23,0.0
 771,Jeremy,Foster,5769.39,6,true,fosterjeremy,Fun!23,18.48
 260,Alexis,Ford,2142.01,8,true,fordalexis,Fun!23,46.65
+=======
+376,Christopher,Foster,2419.28,0,false,fosterchristopher,Fun!23,0.0
+380,Daniel,Foster,5872.56,0,false,fosterdaniel,Fun!23,0.0
+771,Jeremy,Foster,5964.35,0,true,fosterjeremy,Fun!23,0.0
+260,Alexis,Ford,2619.53,0,true,fordalexis,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 698,Carl,Foley,5916.13,0,false,foleycarl,Fun!23,0.0
 667,Brandon,Flores,4040.56,3,false,floresbrandon,Fun!23,0.0
 772,Michael,Flores,2935.5,0,true,floresmichael,Fun!23,0.0
@@ -761,12 +1025,21 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 795,Tracy,Fitzgerald,1474.53,7,false,fitzgeraldtracy,Fun!23,0.0
 240,Paul,Fisher,1789.19,0,true,fisherpaul,Fun!23,0.0
 758,Rebecca,Fisher,5440.57,0,true,fisherrebecca,Fun!23,0.0
+<<<<<<< HEAD
 648,Christopher,Fields,2350.21,5,true,fieldschristopher,Fun!23,23.03
 784,Bryan,Fields,1755.3,5,true,fieldsbryan,Fun!23,32.14
 408,Jessica,Fernandez,5209.42,3,false,fernandezjessica,Fun!23,0.0
 242,Destiny,Ferguson,4838.01,2,false,fergusondestiny,Fun!23,0.0
 697,Jose,Farley,4835.43,20,true,farleyjose,Fun!23,2505.25
 111,Katherine,Evans,2639.08,7,false,evanskatherine,Fun!23,0.0
+=======
+648,Christopher,Fields,2590.05,0,true,fieldschristopher,Fun!23,0.0
+784,Bryan,Fields,2089.04,0,true,fieldsbryan,Fun!23,0.0
+408,Jessica,Fernandez,5323.18,0,false,fernandezjessica,Fun!23,0.0
+242,Destiny,Ferguson,4914.78,0,false,fergusondestiny,Fun!23,0.0
+697,Jose,Farley,5578.74,0,true,farleyjose,Fun!23,0.0
+111,Katherine,Evans,2996.39,0,false,evanskatherine,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 156,Ashley,Evans,4619.52,0,true,evansashley,Fun!23,0.0
 498,Jose,Evans,4350.77,0,true,evansjose,Fun!23,1838.88
 561,William,Evans,3844.41,5,false,evanswilliam,Fun!23,0.0
@@ -784,6 +1057,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 699,Christine,Ellis,5733.99,9,false,ellischristine,Fun!23,0.0
 845,Cynthia,Ellis,2346.09,3,false,elliscynthia,Fun!23,0.0
 875,Christian,Ellis,2441.46,0,true,ellischristian,Fun!23,0.0
+<<<<<<< HEAD
 917,Victoria,Ellis,5699.45,3,false,ellisvictoria,Fun!23,0.0
 391,Thomas,Elliott,927.65,6,true,elliottthomas,Fun!23,24.8
 947,Carol,Elliott,2641.29,2,true,elliottcarol,Fun!23,9.36
@@ -798,6 +1072,22 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 884,Carolyn,Dunn,4527.36,0,true,dunncarolyn,Fun!23,465.8
 898,Jesse,Dunn,3917.07,2,false,dunnjesse,Fun!23,0.0
 2,Donald,Duck,2194.36,6,false,donaldduck,Fun!23,0.0
+=======
+917,Victoria,Ellis,5919.08,0,false,ellisvictoria,Fun!23,0.0
+391,Thomas,Elliott,1184.0,0,true,elliottthomas,Fun!23,0.0
+947,Carol,Elliott,2737.11,0,true,elliottcarol,Fun!23,0.0
+1028,Tonya,Elliott,6444.37,0,true,elliotttonya,Fun!23,0.0
+410,Ruben,Edwards,5147.52,0,false,edwardsruben,Fun!23,0.0
+549,Richard,Edwards,5581.89,0,false,edwardsrichard,Fun!23,0.0
+577,Martin,Edwards,6337.18,0,true,edwardsmartin,Fun!23,0.0
+613,Antonio,Edwards,2310.91,0,true,edwardsantonio,Fun!23,0.0
+882,Sonia,Durham,4615.69,0,true,durhamsonia,Fun!23,0.0
+293,Jacqueline,Dunn,4899.94,0,false,dunnjacqueline,Fun!23,0.0
+672,Scott,Dunn,5963.66,0,true,dunnscott,Fun!23,0.0
+884,Carolyn,Dunn,4527.36,0,true,dunncarolyn,Fun!23,0.0
+898,Jesse,Dunn,4009.8,0,false,dunnjesse,Fun!23,0.0
+2,Donald,Duck,2579.47,0,false,donaldduck,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 325,Brenda,Douglas,3043.65,0,true,douglasbrenda,Fun!23,0.0
 514,Danielle,Dorsey,4033.71,8,true,dorseydanielle,Fun!23,25.03
 310,Lance,Dominguez,4457.07,3,true,dominguezlance,Fun!23,9.36
@@ -816,7 +1106,11 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 12,Simba,Disney,2270.43,6,false,simbadisney,Fun!23,0.0
 13,Mufassa,Disney,2647.59,3,false,mufassadisney,Fun!23,0.0
 14,Aurora,Disney,3155.3,0,false,auroradisney,Fun!23,0.0
+<<<<<<< HEAD
 16,Woody,Disney,5405.64,7,false,woodydisney,Fun!23,0.0
+=======
+16,Woody,Disney,5878.28,0,false,woodydisney,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 20,Beast,Disney,5228.54,0,false,beastdisney,Fun!23,0.0
 21,Belle,Disney,3582.16,0,false,belledisney,Fun!23,0.0
 25,Gaston,Disney,5299.07,7,false,gastondisney,Fun!23,0.0
@@ -831,7 +1125,11 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 52,Cesar,DiazCaraveo,1124.56,3,true,diazcaraveocesar,Fun!23,16.65
 53,Hector,Diaz,3325.66,0,true,diazhector,Fun!23,433.17
 400,Devin,Diaz,3393.85,0,false,diazdevin,Fun!23,0.0
+<<<<<<< HEAD
 22,Cruella,DeVil,3241.75,10,true,cruelladevil,Fun!23,43.03
+=======
+22,Cruella,DeVil,3690.12,0,true,cruelladevil,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 1020,Mikayla,Dennis,5105.63,0,true,dennismikayla,Fun!23,0.0
 218,Jeffrey,Delgado,3275.68,0,true,delgadojeffrey,Fun!23,0.0
 723,Jermaine,Dean,1755.06,0,true,deanjermaine,Fun!23,0.0
@@ -847,6 +1145,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 867,Karl,Davis,1670.39,11,true,daviskarl,Fun!23,665.31
 895,Joseph,Davis,5728.09,0,false,davisjoseph,Fun!23,0.0
 452,David,Davila,4483.12,0,false,daviladavid,Fun!23,0.0
+<<<<<<< HEAD
 808,Holly,Davidson,1921.16,6,false,davidsonholly,Fun!23,0.0
 887,Jennifer,Davidson,2590.86,6,false,davidsonjennifer,Fun!23,0.0
 135,Monica,Davenport,5863.12,0,false,davenportmonica,Fun!23,0.0
@@ -866,17 +1165,46 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 585,Christopher,Craig,4474.23,3,false,craigchristopher,Fun!23,0.0
 755,Monica,Craig,3962.82,6,true,craigmonica,Fun!23,19.62
 1025,Kim,Craig,5768.22,2,true,craigkim,Fun!23,10.06
+=======
+808,Holly,Davidson,2190.46,0,false,davidsonholly,Fun!23,0.0
+887,Jennifer,Davidson,2975.97,0,false,davidsonjennifer,Fun!23,0.0
+135,Monica,Davenport,5863.12,0,false,davenportmonica,Fun!23,0.0
+760,Howard,Davenport,6430.13,0,false,davenporthoward,Fun!23,0.0
+757,Brittney,Daniel,3868.74,0,true,danielbrittney,Fun!23,0.0
+822,Brandi,Daniel,5259.45,0,false,danielbrandi,Fun!23,0.0
+469,Anthony,Dalton,5754.24,0,false,daltonanthony,Fun!23,0.0
+143,Jerry,Curtis,1615.9,0,true,curtisjerry,Fun!23,0.0
+634,Heather,Cunningham,5971.02,0,false,cunninghamheather,Fun!23,0.0
+395,Michele,Cummings,5852.18,0,true,cummingsmichele,Fun!23,0.0
+920,Deanna,Cummings,5471.13,0,false,cummingsdeanna,Fun!23,0.0
+300,Mary,Cruz,2783.42,0,false,cruzmary,Fun!23,0.0
+431,Elizabeth,Cruz,5083.05,0,false,cruzelizabeth,Fun!23,0.0
+738,Holly,Cruz,2342.29,0,true,cruzholly,Fun!23,0.0
+412,Allison,Cross,1667.84,0,false,crossallison,Fun!23,0.0
+327,Jade,Crawford,5919.01,0,true,crawfordjade,Fun!23,0.0
+585,Christopher,Craig,4612.21,0,false,craigchristopher,Fun!23,0.0
+755,Monica,Craig,4169.68,0,true,craigmonica,Fun!23,0.0
+1025,Kim,Craig,5871.0,0,true,craigkim,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 253,Dorothy,Cox,3680.05,0,false,coxdorothy,Fun!23,0.0
 658,David,Cox,1393.51,0,false,coxdavid,Fun!23,0.0
 745,Michael,Cowan,2595.98,0,false,cowanmichael,Fun!23,0.0
 587,David,Costa,1340.02,13,false,costadavid,Fun!23,0.0
 365,Elizabeth,Cordova,3755.97,0,false,cordovaelizabeth,Fun!23,0.0
 456,Jennifer,Copeland,2245.22,0,true,copelandjennifer,Fun!23,0.0
+<<<<<<< HEAD
 651,Nicholas,Copeland,3207.0,3,true,copelandnicholas,Fun!23,9.36
 493,Samantha,Cooper,5847.38,6,true,coopersamantha,Fun!23,28.02
 942,Dennis,Cooper,5803.62,0,false,cooperdennis,Fun!23,0.0
 589,Cassandra,Cook,3319.44,12,true,cookcassandra,Fun!23,57.0
 967,Alexandra,Cook,6053.8,6,true,cookalexandra,Fun!23,23.94
+=======
+651,Nicholas,Copeland,3303.87,0,true,copelandnicholas,Fun!23,0.0
+493,Samantha,Cooper,6136.14,0,true,coopersamantha,Fun!23,0.0
+942,Dennis,Cooper,5803.62,0,false,cooperdennis,Fun!23,0.0
+589,Cassandra,Cook,3918.21,0,true,cookcassandra,Fun!23,0.0
+967,Alexandra,Cook,6305.72,0,true,cookalexandra,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 51,Valeria,Contreras,5957.14,0,false,contrerasvaleria,Fun!23,0.0
 107,Christopher,Contreras,4237.17,0,false,contreraschristopher,Fun!23,0.0
 531,Kim,Contreras,3378.51,4,false,contreraskim,Fun!23,0.0
@@ -884,10 +1212,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 1001,Danielle,Conrad,1808.92,0,false,conraddanielle,Fun!23,0.0
 526,Jamie,Conner,5533.52,2,false,connerjamie,Fun!23,0.0
 952,Amber,Conley,1252.85,0,false,conleyamber,Fun!23,0.0
+<<<<<<< HEAD
 423,Philip,Collins,4413.96,5,true,collinsphilip,Fun!23,4244.3
 146,Christopher,Coleman,4536.94,7,true,colemanchristopher,Fun!23,25.5
 190,Nathan,Coleman,4222.62,2,false,colemannathan,Fun!23,0.0
 899,Lauren,Coleman,1937.43,5,false,colemanlauren,Fun!23,0.0
+=======
+423,Philip,Collins,4653.8,0,true,collinsphilip,Fun!23,0.0
+146,Christopher,Coleman,4801.31,0,true,colemanchristopher,Fun!23,0.0
+190,Nathan,Coleman,4295.17,0,false,colemannathan,Fun!23,0.0
+899,Lauren,Coleman,2203.64,0,false,colemanlauren,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 893,Emily,Cole,5915.63,0,false,coleemily,Fun!23,0.0
 213,Molly,Cohen,1620.22,3,false,cohenmolly,Fun!23,0.0
 500,Joe,Cochran,6022.74,0,false,cochranjoe,Fun!23,0.0
@@ -901,10 +1236,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 906,David,Clark,6172.15,3,true,clarkdavid,Fun!23,13.92
 288,Mary,Church,2355.74,0,false,churchmary,Fun!23,0.0
 324,Jonathan,Christian,4063.68,0,true,christianjonathan,Fun!23,0.0
+<<<<<<< HEAD
 792,Keith,Christensen,1119.04,3,false,christensenkeith,Fun!23,0.0
 50,Bungein,Cheng,2806.53,6,true,chengbungein,Fun!23,24.35
 907,Danielle,Chavez,5898.57,0,true,chavezdanielle,Fun!23,1102.11
 542,Jenna,Chase,2263.8,2,true,chasejenna,Fun!23,220.62
+=======
+792,Keith,Christensen,1226.4,0,false,christensenkeith,Fun!23,0.0
+50,Bungein,Cheng,3057.16,0,true,chengbungein,Fun!23,0.0
+907,Danielle,Chavez,5898.57,0,true,chavezdanielle,Fun!23,0.0
+542,Jenna,Chase,4465.36,0,true,chasejenna,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 550,Amy,Chase,2872.5,0,false,chaseamy,Fun!23,0.0
 520,Mary,Chapman,2532.26,2,false,chapmanmary,Fun!23,0.0
 284,Allison,Chang,2609.73,0,true,changallison,Fun!23,0.0
@@ -914,6 +1256,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 271,Brian,Castillo,1766.67,0,true,castillobrian,Fun!23,0.0
 409,Michael,Castillo,3047.64,2,false,castillomichael,Fun!23,0.0
 814,Elizabeth,Castillo,1781.13,0,false,castilloelizabeth,Fun!23,0.0
+<<<<<<< HEAD
 950,Sharon,Castillo,5473.9,6,false,castillosharon,Fun!23,0.0
 972,Roger,Casey,3876.67,5,false,caseyroger,Fun!23,0.0
 252,Erik,Case,1156.14,0,true,caseerik,Fun!23,0.0
@@ -923,6 +1266,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 633,Anthony,Carson,5801.5,5,false,carsonanthony,Fun!23,0.0
 1038,Vanessa,Carson,2114.41,4,false,carsonvanessa,Fun!23,0.0
 49,Steven,Carrillo,3475.47,11,false,carrillosteven,Fun!23,0.0
+=======
+950,Sharon,Castillo,6182.48,0,false,castillosharon,Fun!23,0.0
+972,Roger,Casey,4055.93,0,false,caseyroger,Fun!23,0.0
+252,Erik,Case,1156.14,0,true,caseerik,Fun!23,0.0
+132,Pamela,Carter,4609.63,0,true,carterpamela,Fun!23,0.0
+540,Alexander,Carter,2670.69,0,false,carteralexander,Fun!23,0.0
+911,Christina,Carter,3585.04,0,true,carterchristina,Fun!23,0.0
+633,Anthony,Carson,6119.88,0,false,carsonanthony,Fun!23,0.0
+1038,Vanessa,Carson,2341.96,0,false,carsonvanessa,Fun!23,0.0
+49,Steven,Carrillo,3976.55,0,false,carrillosteven,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 451,Gregory,Carr,2229.26,0,false,carrgregory,Fun!23,0.0
 767,Jennifer,Carr,5109.14,3,true,carrjennifer,Fun!23,564.97
 752,Angela,Carney,2254.91,2,false,carneyangela,Fun!23,0.0
@@ -947,6 +1301,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 742,Douglas,Bryant,2168.71,0,false,bryantdouglas,Fun!23,0.0
 934,Dalton,Bryant,1143.19,0,true,bryantdalton,Fun!23,0.0
 278,Angelica,Bruce,6442.17,0,false,bruceangelica,Fun!23,0.0
+<<<<<<< HEAD
 108,David,Brown,3228.41,4,false,browndavid,Fun!23,0.0
 188,Richard,Brown,4883.23,0,false,brownrichard,Fun!23,0.0
 361,Lisa,Brown,4323.2,0,false,brownlisa,Fun!23,0.0
@@ -956,6 +1311,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 591,Phillip,Brown,3785.25,2,false,brownphillip,Fun!23,0.0
 786,Craig,Brown,2516.82,4,false,browncraig,Fun!23,0.0
 1005,Jamie,Brown,2428.3,3,true,brownjamie,Fun!23,9.93
+=======
+108,David,Brown,3371.34,0,false,browndavid,Fun!23,0.0
+188,Richard,Brown,4883.23,0,false,brownrichard,Fun!23,0.0
+361,Lisa,Brown,4323.2,0,false,brownlisa,Fun!23,0.0
+368,Amber,Brown,3112.0,0,false,brownamber,Fun!23,0.0
+444,Rebecca,Brown,2905.17,0,true,brownrebecca,Fun!23,0.0
+538,Ryan,Brown,6331.23,0,false,brownryan,Fun!23,0.0
+591,Phillip,Brown,3931.81,0,false,brownphillip,Fun!23,0.0
+786,Craig,Brown,2769.83,0,false,browncraig,Fun!23,0.0
+1005,Jamie,Brown,2530.93,0,true,brownjamie,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 152,Todd,Brooks,5142.78,0,false,brookstodd,Fun!23,0.0
 369,Antonio,Brooks,4424.08,0,false,brooksantonio,Fun!23,0.0
 397,Joseph,Brooks,5056.53,0,false,brooksjoseph,Fun!23,0.0
@@ -988,6 +1354,7 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 834,Ernest,Bentley,1506.22,0,false,bentleyernest,Fun!23,0.0
 179,Linda,Bennett,1987.03,0,false,bennettlinda,Fun!23,0.0
 282,Shannon,Bennett,3501.79,0,true,bennettshannon,Fun!23,0.0
+<<<<<<< HEAD
 377,Carrie,Bennett,2369.12,15,false,bennettcarrie,Fun!23,0.0
 524,Bobby,Bennett,2498.8,6,false,bennettbobby,Fun!23,0.0
 793,Patrick,Bennett,2903.7,3,false,bennettpatrick,Fun!23,0.0
@@ -997,6 +1364,17 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 584,Bradley,Bell,5248.62,5,true,bellbradley,Fun!23,0.25
 976,Krista,Beck,5698.95,0,false,beckkrista,Fun!23,0.0
 627,Tyler,Baxter,5734.7,6,false,baxtertyler,Fun!23,0.0
+=======
+377,Carrie,Bennett,2891.82,0,false,bennettcarrie,Fun!23,0.0
+524,Bobby,Bennett,2820.63,0,false,bennettbobby,Fun!23,0.0
+793,Patrick,Bennett,3190.96,0,false,bennettpatrick,Fun!23,0.0
+370,Dakota,Bender,1579.59,0,true,benderdakota,Fun!23,0.0
+569,Gerald,Beltran,1989.53,0,true,beltrangerald,Fun!23,0.0
+488,Kelly,Bell,2449.33,0,false,bellkelly,Fun!23,0.0
+584,Bradley,Bell,5253.7,0,true,bellbradley,Fun!23,0.0
+976,Krista,Beck,5698.95,0,false,beckkrista,Fun!23,0.0
+627,Tyler,Baxter,6014.33,0,false,baxtertyler,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 426,Adam,Bass,2763.24,0,true,bassadam,Fun!23,0.0
 1035,Erin,Barton,1862.95,8,false,bartonerin,Fun!23,0.0
 363,Heidi,Barker,3208.48,0,true,barkerheidi,Fun!23,0.0
@@ -1009,16 +1387,24 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 1046,Amanda,Baker,2872.68,4,false,bakeramanda,Fun!23,0.0
 644,Scott,Bailey,5837.49,0,true,baileyscott,Fun!23,0.0
 747,Jennifer,Bailey,5531.43,0,false,baileyjennifer,Fun!23,0.0
+<<<<<<< HEAD
 45,Raul,BaezRamirez,2436.92,11,false,baezramirezraul,Fun!23,0.0
 44,Rafael,Ayala,4659.43,0,false,ayalarafael,Fun!23,0.0
 809,George,Ayala,2910.44,0,true,ayalageorge,Fun!23,0.0
 238,Shannon,Avery,3030.11,5,true,averyshannon,Fun!23,329.31
+=======
+45,Raul,BaezRamirez,3161.63,0,false,baezramirezraul,Fun!23,0.0
+44,Rafael,Ayala,4659.43,0,false,ayalarafael,Fun!23,0.0
+809,George,Ayala,2910.44,0,true,ayalageorge,Fun!23,0.0
+238,Shannon,Avery,6426.18,0,true,averyshannon,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 704,Andrew,Atkins,3025.31,0,false,atkinsandrew,Fun!23,0.0
 388,Shane,Arnold,4521.29,11,true,arnoldshane,Fun!23,1081.29
 646,Allen,Arnold,4604.4,0,false,arnoldallen,Fun!23,0.0
 346,Emma,Armstrong,5614.37,0,true,armstrongemma,Fun!23,0.0
 636,Sherri,Armstrong,3583.57,5,true,armstrongsherri,Fun!23,32.14
 141,Hannah,Arias,3354.72,0,true,ariashannah,Fun!23,0.0
+<<<<<<< HEAD
 248,Joel,Arellano,845.22,7,false,arellanojoel,Fun!23,0.0
 43,Javier,Aranda,2241.97,0,true,arandajavier,Fun!23,0.0
 103,Brittany,Andrews,2503.38,0,false,andrewsbrittany,Fun!23,0.0
@@ -1027,10 +1413,24 @@ CustomerID,FirstName,LastName,MoneyAvailable,ConcertsPurchased,TicketMinerMember
 203,Nicholas,Anderson,3488.71,4,false,andersonnicholas,Fun!23,0.0
 499,Jessica,Anderson,1481.26,5,false,andersonjessica,Fun!23,0.0
 606,Sarah,Anderson,4115.49,10,false,andersonsarah,Fun!23,0.0
+=======
+248,Joel,Arellano,1047.01,0,false,arellanojoel,Fun!23,0.0
+43,Javier,Aranda,2241.97,0,true,arandajavier,Fun!23,0.0
+103,Brittany,Andrews,2503.38,0,false,andrewsbrittany,Fun!23,0.0
+133,Brian,Andrews,6084.57,0,true,andrewsbrian,Fun!23,0.0
+949,Ana,Andrade,4750.44,0,false,andradeana,Fun!23,0.0
+203,Nicholas,Anderson,3745.53,0,false,andersonnicholas,Fun!23,0.0
+499,Jessica,Anderson,1747.47,0,false,andersonjessica,Fun!23,0.0
+606,Sarah,Anderson,4630.47,0,false,andersonsarah,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 661,James,Anderson,6256.24,0,false,andersonjames,Fun!23,0.0
 849,Victor,Anderson,3046.83,6,false,andersonvictor,Fun!23,0.0
 974,Mary,Anderson,1778.23,0,true,andersonmary,Fun!23,0.0
+<<<<<<< HEAD
 42,Cesar,Alvarez,4427.61,2,false,alvarezcesar,Fun!23,0.0
+=======
+42,Cesar,Alvarez,4993.55,0,false,alvarezcesar,Fun!23,0.0
+>>>>>>> ab5b43ea69fceb02b007d92b2d42cddd9c967840
 195,Jeremy,Alvarez,3213.15,0,false,alvarezjeremy,Fun!23,0.0
 222,Susan,Alvarez,4878.76,0,false,alvarezsusan,Fun!23,0.0
 392,Elizabeth,Alvarez,2037.98,5,true,alvarezelizabeth,Fun!23,0.25
