@@ -372,6 +372,7 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
     String adminChoice = "";
     String adminNameChoice = "";
     int adminIdChoice = -999;
+    int eventIDtoCancel = -999;
     boolean adminLogged = false;
 
     adminLogged = false;
@@ -419,6 +420,8 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
 
             case "4":
                 ActionLogger.logInfo("Admin canceled an event"); // Log into text file
+                System.out.println("Select an Event ID to cancel: ");
+                eventIDtoCancel = keyboard.nextInt();
                 break;
                 
             case "5": // Option to create a new event
