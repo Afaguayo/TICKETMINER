@@ -166,3 +166,11 @@ Nov 16, 2023 10:33:33 AM ActionLogger logInfo
 INFO: Admin logged in
 Nov 16, 2023 10:33:35 AM ActionLogger logInfo
 INFO: Compute/print the amount of money gained by The TicketMiner Company for all events
+Nov 16, 2023 11:23:25 AM ActionLogger logInfo
+INFO: Admin logged in
+Nov 16, 2023 11:23:28 AM ActionLogger logInfo
+INFO: Compute/print the amount of money gained by The TicketMiner Company for all events
+Nov 16, 2023 11:23:45 AM ActionLogger logInfo
+INFO: Admin created an invoice
+Nov 16, 2023 11:23:47 AM ActionLogger logInfo
+INFO: Admin logged out

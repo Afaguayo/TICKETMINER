@@ -114,7 +114,7 @@ public class RunTicket {
                                 System.out.println("Exiting menu.....");
                                 break;
                             case 3:
-                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1K.csv");
+                                autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100K.csv");
                                 terminateAutoBuy = true;
                                 System.out.println("Exiting menu.....");
                                 break;
