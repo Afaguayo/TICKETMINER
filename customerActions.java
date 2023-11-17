@@ -258,10 +258,12 @@ public class customerActions {
                         System.out.println("You are a TicketMiner Member, you will get 10% off.");
                         System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
                         System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                        System.out.println(convenienceFee);
                         System.out.println();
                     } else {
                         System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
                         System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                        System.out.println(convenienceFee);
                         System.out.println();
                     }
 
@@ -277,19 +279,6 @@ public class customerActions {
 
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-
-        
-                        // Deduct the total amount (including fees) from the customer's balance
-                        customer.setMoneyAvailable(customer.getMoneyAvailable() - total);
-        
-                        // Track the fees collected for this event
-                        event.getVenue().setConvenienceFee(convenienceFee);
-                        event.getVenue().setServiceFee(serviceFee);
-                        event.getVenue().setCharityFee(charityFee);
-        
-                        isValidEvent = true;
-        
-                        // Create a map to store purchase details
                         Invoice invoice = new Invoice(event, ticketType, ticketQuantity, total, confirmationNumber, customer, subtotal, taxes, charityFee, serviceFee, convenienceFee);
                         event.getVenue().setConvenienceFee(convenienceFee);
                         event.getVenue().setCharityFee(charityFee);
