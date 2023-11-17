@@ -36,7 +36,7 @@ public class RunTicket {
         int userType = 0;
         boolean terminateProgram = false;
         int userChoice = 0;
-        boolean terminateAutoBuy = false;
+        boolean terminateAutoBuy = false; 
 
         while (!terminateProgram) {
             System.out.println("-----------------------------------------------------------------");

@@ -36,13 +36,14 @@ public class customerActions {
     public static void userCustomer(Scanner scanner, List<Event> events, Customer selectedCustomer) {
         int eventTypeChoice = -99;
         int choice = 0;
+        Boolean customerMenuRunning = true;
 
-        while (choice <= 0 || choice > 3) {
+        while (customerMenuRunning) {
             System.out.println("\n_____M_A_I_N___M_E_N_U_____");
             System.out.println("[1] Look events by type");
             System.out.println("[2] Search with Event ID");
-            System.out.println("[3] Exit");
-            System.out.println("[4] Cancel Order");
+            System.out.println("[3] Cancel Order");
+            System.out.println("[4] Exit");
             System.out.print("\nPlease enter an option: ");
 
             try {
@@ -107,12 +108,12 @@ public class customerActions {
                     break;
 
                 case 3:
-                    System.out.println("\nExiting. Thank you!\n");
-                    break;
-                case 4:  // Add a new case for canceling a ticket purchase
-                            cancelTicketPurchase(scanner, selectedCustomer);
+                cancelTicketPurchase(scanner, selectedCustomer);
                             break;
-
+                case 4: 
+                    System.out.println("\nExiting. Thank you!\n");
+                    customerMenuRunning = false;           
+                    break;
                 default:
                     System.out.println("Invalid option. Please try again.");
                     break;
@@ -278,7 +279,7 @@ public class customerActions {
 
                     if (proceed.equalsIgnoreCase("yes")) {
                         String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer);
-                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, ticketPrice, confirmationNumber, customer, taxes);
+
         
                         // Deduct the total amount (including fees) from the customer's balance
                         customer.setMoneyAvailable(customer.getMoneyAvailable() - total);

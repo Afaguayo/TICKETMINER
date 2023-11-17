@@ -198,7 +198,7 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
     
             // Calculate and print service fees
             calculateServiceFees(ticketPurchases);
-            printServiceFees(writer, ticketPurchases);
+            //printServiceFees(writer, ticketPurchases);
     
             // Do not close the file to keep it open for appending
         } catch (IOException e) {
