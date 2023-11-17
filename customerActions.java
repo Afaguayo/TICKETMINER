@@ -120,11 +120,14 @@ public class customerActions {
             }
         }
     }
+
+
     private static void cancelTicketPurchase(Scanner scanner, Customer customer) {
         System.out.println("\n----- CANCEL TICKET PURCHASE -----");
         
         // Display the list of the customer's purchases
         List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
+
         if (customerPurchases.isEmpty()) {
             System.out.println("You have no ticket purchases to cancel.");
             return;
@@ -132,15 +135,24 @@ public class customerActions {
     
         System.out.println("Select a ticket purchase to cancel:");
     
+        for (Map<String, Object> purchase : customerPurchases) {
+            System.out.println("Keys in Purchase:");
+            for (String key : purchase.keySet()) {
+                System.out.println(key);
+            }
+            System.out.println(); // Empty line between purchases
+        }
+
+
         int purchaseIndex = 1;
         for (Map<String, Object> purchase : customerPurchases) {
             System.out.println("[" + purchaseIndex + "]");
-            System.out.println("Event: " + purchase.get("eventName"));
-            System.out.println("Date: " + purchase.get("eventDate"));
-            System.out.println("Ticket Type: " + purchase.get("ticketType"));
-            System.out.println("Number of Tickets: " + purchase.get("numberOfTickets"));
-            System.out.println("Total Price: " + purchase.get("totalPrice"));
-            System.out.println("Confirmation Number: " + purchase.get("confirmationNumber"));
+            System.out.println("Event: " + purchase.get("Event Name"));
+            System.out.println("Date: " + purchase.get("Event Date"));
+            System.out.println("Ticket Type: " + purchase.get("Ticket Type"));
+            System.out.println("Number of Tickets: " + purchase.get("Number Of Tickets"));
+            System.out.println("Total Price: " + purchase.get("Total Price"));
+            System.out.println("Confirmation Number: " + purchase.get("Confirmation Number"));
             System.out.println();
             purchaseIndex++;
         }
@@ -164,7 +176,7 @@ public class customerActions {
         String confirmationNumber = (String) selectedPurchase.get("confirmationNumber");
     
         // Calculate the refund amount (excluding fees)
-        String totalPriceStr = ((String) selectedPurchase.get("totalPrice")).replace("$", "");
+        String totalPriceStr = ((String) selectedPurchase.get("Total Price")).replace("$", "");
         double refundAmount = Double.parseDouble(totalPriceStr);        
         // Update the customer's balance
         customer.setMoneyAvailable(customer.getMoneyAvailable() + refundAmount);

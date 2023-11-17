@@ -25,6 +25,7 @@ public class InvoiceGenerator {
      * @param ticketPurchases A list of maps representing ticket purchases.
      */
     private static Map<String, List<Map<String, Object>>> purchaseHistory = new HashMap<>();
+
     public static void generateInvoiceSummary(Customer customer, List<Map<String, Object>> ticketPurchases) {
         // Define the folder where you want to store the invoices
         String folderPath = "Invoices/";
@@ -58,9 +59,19 @@ public class InvoiceGenerator {
             // Close the file
             writer.close();
 
+        // Check if the customer's purchase history already exists
+        List<Map<String, Object>> existingHistory = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
+
+        // Append new purchases to existing history
+        existingHistory.addAll(ticketPurchases);
+
+        // Update the purchase history for the customer
+        purchaseHistory.put(customer.getUserName(), existingHistory);
+
+
             // Print service fees for each ticket purchase
             printServiceFees(ticketPurchases);
-            purchaseHistory.put(customer.getUserName(), ticketPurchases);
+           
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
             e.printStackTrace();
@@ -69,15 +80,17 @@ public class InvoiceGenerator {
 public static List<Map<String, Object>> getCustomerPurchaseHistory(Customer customer) {
     return purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
 }
+
+
 public static void removePurchaseFromHistory(Customer customer, String confirmationNumber) {
+    // Same logic to remove the purchase with the specified confirmation number
     List<Map<String, Object>> purchaseHistoryList = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
-
-    // Remove the purchase with the specified confirmation number
     purchaseHistoryList.removeIf(purchase -> confirmationNumber.equals(purchase.get("confirmationNumber")));
-
-    // Update the purchase history
     purchaseHistory.put(customer.getUserName(), purchaseHistoryList);
 }
+
+
+
 public static void cancelOrderAndUpdateInvoice(Customer customer, String confirmationNumber) {
     // Step 1: Update in-memory purchase history
     removePurchaseFromHistory(customer, confirmationNumber);
