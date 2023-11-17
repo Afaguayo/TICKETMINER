@@ -104,8 +104,8 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
         int startIndex = content.indexOf(purchaseIdentifier);
 
         if (startIndex != -1) {
-            // Modify the details in the content to indicate cancellation
-            content.insert(startIndex, "Order Canceled" + System.lineSeparator());
+            // Replace the purchase details with a message indicating cancellation
+            content.replace(startIndex, content.indexOf(System.lineSeparator(), startIndex) + 1, "Order Canceled" + System.lineSeparator());
         }
 
         // Write the updated content back to the file
@@ -120,6 +120,7 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
         e.printStackTrace();
     }
 }
+
 
     private static void updateInvoiceFile(Customer customer, String confirmationNumber) {
         String folderPath = "Invoices/";
@@ -210,11 +211,7 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
     public static void calculateServiceFees(List<Map<String, Object>> ticketPurchases) {
         // Loop through the ticket purchases and calculate service fees for each purchase
         for (Map<String, Object> purchase : ticketPurchases) {
-            String totalPriceStr = (String) purchase.get("totalPrice");
-            // Remove the dollar sign from the totalPrice string
-            totalPriceStr = totalPriceStr.replace("$", "");
-            double totalPrice = Double.parseDouble(totalPriceStr);
-            int numberOfTickets = (int) purchase.get("numberOfTickets");
+            Double totalPrice = (Double) purchase.get("totalPrice");
     
             double convenienceFee = 2.50;
             double serviceFee = 0.005 * totalPrice;
@@ -229,8 +226,8 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
             purchase.put("totalServiceFees", String.format("$%.2f", totalServiceFees));
             purchase.put("totalPrice", String.format("$%.2f", totalPriceWithFees));
         }
-    
     }
+    
     
     public static void printServiceFees(BufferedWriter writer, List<Map<String, Object>> ticketPurchases) throws IOException {
         writer.write("Service Fees:");
