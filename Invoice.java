@@ -176,11 +176,14 @@ public class Invoice {
         System.out.println("Ticket Type: " + getTicketTypeName(ticketType));
         System.out.println("Cost for each ticket" + ": $" + roundToTwoDecimals((totalPrice)/ticketQuantity));
         System.out.println("Ticket Quantity: " + ticketQuantity);
+        // if(customer.getIsMember()){
+        //     System.out.println("You received 10% off discount");
+        // }
         System.out.println("Subtotal: $" + roundToTwoDecimals(subtotal));
         System.out.println("Tax 8.25%: $" + roundToTwoDecimals(taxes));
-        System.out.println("Convenience Fees: S" + convenienceFee);
-        System.out.println("Service Fees: $" + serviceFee);
-        System.out.println("Charity Fees: $" + charityFee);
+        System.out.println("Convenience Fees: $" + roundToTwoDecimals(convenienceFee));
+        System.out.println("Service Fees: $" + roundToTwoDecimals(serviceFee));
+        System.out.println("Charity Fees: $" + Invoice.roundToTwoDecimals(charityFee));
         System.out.println("---> Total Price: $" + roundToTwoDecimals(totalPrice) + " <---");
         System.out.println("Confirmation Number: " + confirmationNumber);
         double actualMoney = customer.getMoneyAvailable();

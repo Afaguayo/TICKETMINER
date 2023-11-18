@@ -2,8 +2,10 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * 
@@ -85,9 +87,7 @@ public class customerActions {
                             buyTickets(scanner, events, selectedCustomer);
                             break;
                         case 4:
-                            for (Event event : events) {
-                                event.printInfo();
-                            }
+                            printEventsSortedByID(events);
                             buyTickets(scanner, events, selectedCustomer);
                             break;
                         default:
@@ -108,7 +108,7 @@ public class customerActions {
                     break;
 
                 case 3:
-                cancelTicketPurchase(scanner, selectedCustomer);
+                cancelTicketPurchase(scanner, selectedCustomer, events);
                             break;
                 case 4: 
                     System.out.println("\nExiting. Thank you!\n");
@@ -122,82 +122,163 @@ public class customerActions {
     }
 
 
-    private static void cancelTicketPurchase(Scanner scanner, Customer customer) {
+    private static void cancelTicketPurchase(Scanner scanner, Customer customer, List<Event> events) {
+        boolean endCancelMenu = false;
+        
+        while (!endCancelMenu) {
+            System.out.println("\n----- CANCEL TICKET PURCHASE -----");
+    
+            // Display the list of the customer's purchases
+            List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
+    
+            if (customerPurchases.isEmpty()) {
+                System.out.println("You have no ticket purchases to cancel.");
+                return;
+            }
+    
+            System.out.println("Select a ticket purchase to cancel:");
+    
+            int purchaseIndex = 1;
+            for (Map<String, Object> purchase : customerPurchases) {
+                System.out.println("[" + purchaseIndex + "]");
+                System.out.println("Event: " + purchase.get("Event Name"));
+                System.out.println("Date: " + purchase.get("Event Date"));
+                System.out.println("Ticket Type: " + purchase.get("Ticket Type"));
+                System.out.println("Number of Tickets: " + purchase.get("Number Of Tickets"));
+                System.out.println("Total Price: " + purchase.get("Total Price"));
+                System.out.println("Confirmation Number: " + purchase.get("Confirmation Number"));
+                System.out.println();
+                System.out.println(); // Empty line between purchases
+                purchaseIndex++;
+            }
+    
+            System.out.println("Disclaimer: Fees will not be refunded");
+            System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
+            int cancelChoice;
+            
+            try {
+                cancelChoice = scanner.nextInt();
+                scanner.nextLine();  // Consume the newline character
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine();
+                continue;
+            }
+    
+            if (cancelChoice == 0) {
+                System.out.println("Exiting Cancel order menu...");
+                endCancelMenu = true;
+                break; // Use break to exit the loop without leaving the method
+            }
+    
+            if (cancelChoice < 0 || cancelChoice > customerPurchases.size()) {
+                System.out.println("Invalid selection. Please try again.");
+                // Use continue to go back to the start of the loop for a new selection
+                continue;
+            }
+    
+            // Retrieve the selected purchase details (adjusting for zero-based indexing)
+            Map<String, Object> selectedPurchase = customerPurchases.get(cancelChoice - 1);
+            String confirmationNumber = (String) selectedPurchase.get("Confirmation Number");
+            String eventName = (String) selectedPurchase.get("Event Name");
+            int ticketType = (int) selectedPurchase.get("Ticket Type");
+            int amount = (int) selectedPurchase.get("Number Of Tickets");
+            double costForEachTicket = (double) selectedPurchase.get("Subtotal");
+            double charity = (double) selectedPurchase.get("Charity Fees");
+            double service = (double) selectedPurchase.get("Service Fees");
+            double convenience = (double) selectedPurchase.get("Convenience Fees");
 
-        Boolean endCancelMenu = false;
-        while (!endCancelMenu){
-        
-        System.out.println("\n----- CANCEL TICKET PURCHASE -----");
-        
-        // Display the list of the customer's purchases
-        List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
+            double subtotal = costForEachTicket - charity - service - convenience;
     
-        if (customerPurchases.isEmpty()) {
-            System.out.println("You have no ticket purchases to cancel.");
-            return;
+            // Find the corresponding event using the event name
+            Event canceledEvent = findEventByName(events, eventName);
+    
+            if (canceledEvent != null) {
+    
+                // Update the customer's balance
+                customer.setMoneyAvailable(customer.getMoneyAvailable() + subtotal);
+                //fixRevenues(customer, events, ticketType, amount, canceledEvent);
+    
+                // Remove the canceled purchase from the customer's purchase history
+                InvoiceGenerator.removePurchaseFromHistory(customer, confirmationNumber);
+    
+                System.out.println("\nYou canceled your ticket for " + canceledEvent.getName());
+            } else {
+                System.out.println("Event not found for the canceled purchase.");
+            }
+            
         }
-        
-        System.out.println("Select a ticket purchase to cancel:");
-    
-        int purchaseIndex = 1;
-        for (Map<String, Object> purchase : customerPurchases) {
-            System.out.println("[" + purchaseIndex + "]");
-            System.out.println("Event: " + purchase.get("Event Name"));
-            System.out.println("Date: " + purchase.get("Event Date"));
-            System.out.println("Ticket Type: " + purchase.get("Ticket Type"));
-            System.out.println("Number of Tickets: " + purchase.get("Number Of Tickets"));
-            System.out.println("Total Price: " + purchase.get("Total Price"));
-            System.out.println("Confirmation Number: " + purchase.get("Confirmation Number"));
-            System.out.println();
-            System.out.println(); // Empty line between purchases
-            purchaseIndex++;
-        }
-    
-        System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
-        int cancelChoice = scanner.nextInt();
-        scanner.nextLine();  // Consume the newline character
-        
-        if (cancelChoice == 0) {
-            System.out.println("Exiting Cancel order menu...");
-            endCancelMenu = true;
-            break; // Use break to exit the loop without leaving the method
-        }
-        
-        if (cancelChoice < 0 || cancelChoice > customerPurchases.size()) {
-            System.out.println("Invalid selection. Please try again.");
-            // Use continue to go back to the start of the loop for a new selection
-            continue;
-        }
-    
-        // Retrieve the selected purchase details (adjusting for zero-based indexing)
-        Map<String, Object> selectedPurchase = customerPurchases.get(cancelChoice - 1);
-        String confirmationNumber = (String) selectedPurchase.get("Confirmation Number");
-    
-        // Calculate the refund amount (excluding fees)
-        double refundAmount = 0.0;
-        Object totalPriceObject = selectedPurchase.get("Total Price");
-        if (totalPriceObject instanceof String) {
-            String totalPriceStr = (String) totalPriceObject;
-            refundAmount = Double.parseDouble(totalPriceStr.replace("$", ""));
-        } else if (totalPriceObject instanceof Double) {
-            refundAmount = (Double) totalPriceObject;
-        }
-    
-        // Update the customer's balance
-        customer.setMoneyAvailable(customer.getMoneyAvailable() + refundAmount);
-    
-        // Remove the canceled purchase from the customer's purchase history
-        //InvoiceGenerator.removePurchaseFromHistory(customer, confirmationNumber);
-        // Additional line to cancel the order and update the invoice
-        InvoiceGenerator.cancelOrderAndUpdateInvoice(customer, confirmationNumber);
-    
-        System.out.println("Ticket purchase cancelled successfully.");
-    
-        
     }
-    } //  end of method
-    
 
+    // private static void fixRevenues(Customer customer, List<Event> events, int ticketType, int amount, Event event){
+    //     double sub = 0.0;
+    //     double discounts = 0.0;
+    //     if (ticketType == 1) {
+    //         if (customer.getIsMember()) {
+    //             sub = event.getGeneralAdmissionPrice() * amount * 0.9; // Apply 10% discount for members
+    //             discounts = event.getGeneralAdmissionPrice() * amount * 0.1; // Calculate the discount
+    //         } else {
+    //             sub = event.getGeneralAdmissionPrice() * amount;
+    //         }
+    //         event.getVenue().decrementGeneralAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueGeneralAdm(sub);
+    //         event.getVenue().decrementGeneralAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueGeneralAdm(sub);
+    //         event.getVenue().decrementTotalRevenue(sub);
+    //         event.getVenue().decrementDiscounts(discounts);
+    //     }
+    //     if( ticketType == 2){
+    //                     if(customer.getIsMember()){
+    //             sub = (event.getBronzePrice() * 0.9) * amount;
+    //             discounts = (event.getBronzePrice() * 0.1);
+    //         }else{sub = (event.getBronzePrice()) * amount;}
+    //         event.getVenue().decrementBronzeAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueBronze(sub);
+    //         event.getVenue().decrementTotalRevenue(sub);
+    //         event.getVenue().decrementDiscounts(discounts);
+    //     }
+    //     if( ticketType == 3){
+    //                     if(customer.getIsMember()){
+    //             sub = (event.getSilverPrice() * 0.9) * amount;
+    //             discounts = (event.getSilverPrice() * 0.1);
+    //         }else{sub = (event.getSilverPrice()) * amount;}
+    //         event.getVenue().decrementSilverAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueSilver(sub);
+    //         event.getVenue().decrementTotalRevenue(sub);
+    //         event.getVenue().decrementDiscounts(discounts);
+    //     }
+    //     if( ticketType == 4){
+    //                     if(customer.getIsMember()){
+    //             sub = (event.getGoldPrice() * 0.9) * amount;
+    //             discounts = (event.getGoldPrice() * 0.1);
+    //         }else{sub = (event.getGoldPrice()) * amount;}
+    //         event.getVenue().decrementGoldAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueGold(sub);
+    //         event.getVenue().decrementTotalRevenue(sub);
+    //         event.getVenue().decrementDiscounts(discounts);
+    //     }
+    //     if( ticketType == 5){
+    //                     if(customer.getIsMember()){
+    //             sub = (event.getVipPrice() * 0.9) * amount;
+    //             discounts = (event.getVipPrice() * 0.1);
+    //         }else{sub = (event.getVipPrice()) * amount;}
+    //         event.getVenue().decrementVIPAdmSeatsSold(amount);
+    //         event.getVenue().decrementTotalRevenueVIP(sub);
+    //         event.getVenue().decrementTotalRevenue(sub);
+    //         event.getVenue().decrementDiscounts(discounts);
+    //     }
+    
+    // }
+
+    private static Event findEventByName(List<Event> events, String eventName) {
+        for (Event event : events) {
+            if (event.getName().equals(eventName)) {
+                return event;
+            }
+        }
+        return null; // Event not found
+    }
+    
 
     /**
      * Facilitates the process of buying tickets for events.
@@ -292,7 +373,7 @@ public class customerActions {
                         continue;
                     }
 
-                    System.out.print("Would you like to proceed with this purchase? (Yes/No): ");
+                    System.out.print("\nWould you like to proceed with this purchase? (Yes/No): ");
                     String proceed = scanner.nextLine();
 
                     if (proceed.equalsIgnoreCase("yes")) {
@@ -302,44 +383,7 @@ public class customerActions {
                         event.getVenue().setCharityFee(charityFee);
                         event.getVenue().setServiceFee(serviceFee);
 
-                        switch (ticketType) {
-                            case 1:
-                                events.get(eventID - 1).getVenue().incrementGeneralAdmSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                break;
-
-                            case 2:
-                                events.get(eventID - 1).getVenue().incrementBronzeSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                break;
-                            case 3:
-                                events.get(eventID - 1).getVenue().incrementSilverSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                break;
-
-                            case 4:
-                                events.get(eventID - 1).getVenue().incrementGoldSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                break;
-
-                            case 5:
-                                events.get(eventID - 1).getVenue().incrementVIPSeatsSold(ticketQuantity);
-                                events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
-                                customer.setTransactionCount(ticketQuantity);
-                                customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                break;
-
-                            default:
-                                break;
-                        }
+                        event.purchaseTickets(ticketType, ticketQuantity, customer);
 
                         invoice.displayInvoice();
 
@@ -348,6 +392,7 @@ public class customerActions {
                     purchase.put("Event Name", event.getName());
                     purchase.put("Event Date", event.getDate());
                     purchase.put("Ticket Type", ticketType);
+                    purchase.put("Subtotal", Invoice.roundToTwoDecimals(subtotal));
                     purchase.put("Number Of Tickets", ticketQuantity);
                     purchase.put("Service Fees", Invoice.roundToTwoDecimals(serviceFee));
                     purchase.put("Convenience Fees", Invoice.roundToTwoDecimals(convenienceFee));
@@ -358,17 +403,17 @@ public class customerActions {
 
                     isValidEvent = true;
                 } else {
-                    System.out.println("Purchase cancelled. Returning to the event selection.");
+                    System.out.println("\nPurchase cancelled. Returning to the event selection.");
                     isValidEvent = true;
                 }
 
-                System.out.print("Would you like to make another purchase? (Yes/No): ");
+                System.out.print("\nWould you like to make another purchase? (Yes/No): ");
                 String response = scanner.nextLine();
                 if (response.equalsIgnoreCase("no")) {
                     wantToPurchase = false;
-                    System.out.println("\nExiting. Thank you!\n");
-                    // Generate a summary invoice for all purchases
-    InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
+                    System.out.println("\nExiting... Thank you!\n");
+
+                    InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
                     break;
                 }
 
@@ -380,7 +425,6 @@ public class customerActions {
     }
 
 }
-
 
     /**
      * Automates the ticket purchase process for a specific customer.
@@ -482,6 +526,7 @@ public class customerActions {
                 purchase.put("eventName", event.getName());
                 purchase.put("eventDate", event.getDate());
                 purchase.put("ticketType", ticketType);
+                purchase.put("subtotal", Invoice.roundToTwoDecimals(subtotal));
                 purchase.put("convenienceFee", convenienceFee);
                 purchase.put("serviceFee", serviceFee);
                 purchase.put("charityFee", charityFee);
@@ -495,58 +540,15 @@ public class customerActions {
                 return;
             }
     
-            String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer,event);
-    
-            switch (intTicketType) {
-                case 1:
-                    events.get(eventID - 1).getVenue().incrementGeneralAdmSeatsSold(ticketQuantity);
-                    events.get(eventID - 1).getVenue().updateRevenueGeneralAdm(events.get(eventID - 1).getGeneralAdmissionPrice(), ticketQuantity, customer);
-                    customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
-                    event.getVenue().setCharityFee(charityFee);
-                    event.getVenue().setServiceFee(serviceFee);
-                    break;
-                case 2:
-                    events.get(eventID - 1).getVenue().incrementBronzeSeatsSold(ticketQuantity);
-                    events.get(eventID - 1).getVenue().updateRevenueBronze(events.get(eventID - 1).getBronzePrice(), ticketQuantity, customer);
-                    customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
-                    event.getVenue().setCharityFee(charityFee);
-                    event.getVenue().setServiceFee(serviceFee);
-                    break;
-                case 3:
-                    events.get(eventID - 1).getVenue().incrementSilverSeatsSold(ticketQuantity);
-                    events.get(eventID - 1).getVenue().updateRevenueSilver(events.get(eventID - 1).getSilverPrice(), ticketQuantity, customer);
-                    customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
-                    event.getVenue().setCharityFee(charityFee);
-                    event.getVenue().setServiceFee(serviceFee);
-                    break;
-                case 4:
-                    events.get(eventID - 1).getVenue().incrementGoldSeatsSold(ticketQuantity);
-                    events.get(eventID - 1).getVenue().updateRevenueGold(events.get(eventID - 1).getGoldPrice(), ticketQuantity, customer);
-                    customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
-                    event.getVenue().setCharityFee(charityFee);
-                    event.getVenue().setServiceFee(serviceFee);
-                    break;
-                case 5:
-                    events.get(eventID - 1).getVenue().incrementVIPSeatsSold(ticketQuantity);
-                    events.get(eventID - 1).getVenue().updateRevenueVIP(events.get(eventID - 1).getVipPrice(), ticketQuantity, customer);
-                    customer.setTransactionCount(ticketQuantity);
-                    customer.setMoneyAvailable(customer.getMoneyAvailable() - (total));
-                                        event.getVenue().setConvenienceFee(convenienceFee);
-                    event.getVenue().setCharityFee(charityFee);
-                    event.getVenue().setServiceFee(serviceFee);
-                    break;
-                default:
-                    break;
-            }
-    
+            String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer, event);
+
+            event.getVenue().setConvenienceFee(convenienceFee);
+            event.getVenue().setCharityFee(charityFee);
+            event.getVenue().setServiceFee(serviceFee);
+        
+            // Modify the method call to use intTicketType instead of ticketType
+            event.purchaseTickets(intTicketType, ticketQuantity, customer);
+        
             List<Map<String, Object>> ticketPurchases = new ArrayList<>();
             Map<String, Object> purchase = new HashMap<>();
             purchase.put("purchase status", "PURCHASE SUCCESSFUL");
@@ -554,9 +556,10 @@ public class customerActions {
             purchase.put("eventName", event.getName());
             purchase.put("eventDate", event.getDate());
             purchase.put("ticketType", ticketType);
-            purchase.put("convenienceFee", convenienceFee);
-            purchase.put("serviceFee", serviceFee);
-            purchase.put("charityFee", charityFee);
+            purchase.put("subtotal", Invoice.roundToTwoDecimals(subtotal));
+            purchase.put("convenienceFee", Invoice.roundToTwoDecimals(convenienceFee));
+            purchase.put("serviceFee", Invoice.roundToTwoDecimals(serviceFee));
+            purchase.put("charityFee", Invoice.roundToTwoDecimals(charityFee));
             purchase.put("numberOfTickets", ticketQuantity);
             purchase.put("totalPrice", Invoice.roundToTwoDecimals(total));
             purchase.put("confirmationNumber", confirmationNumber);
@@ -565,6 +568,18 @@ public class customerActions {
             // Generate the invoice summary with the accumulated purchase details
             InvoiceGenerator.generateInvoiceSummaryAuto(customer, ticketPurchases);
 
+        }
+    }
+
+    public static void printEventsSortedByID(List<Event> events) {
+        // Sort the events based on their IDs before displaying
+        List<Event> sortedEvents = events.stream()
+                .sorted(Comparator.comparingInt(Event::getEventID))
+                .collect(Collectors.toList());
+
+        // Display the sorted events
+        for (Event event : sortedEvents) {
+            event.printInfo();
         }
     }
     

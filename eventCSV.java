@@ -125,6 +125,9 @@ public class eventCSV {
                         .append(",")
                         .append(String.valueOf(Invoice.roundToTwoDecimals(event.getVenue().getConvenienceFee())))
                         .append("\n");
+
+                // Flush the writer after writing each event
+                writer.flush();
             }
         } catch (IOException e) {
             System.err.println("Error writing event data to " + filename + ": " + e.getMessage());

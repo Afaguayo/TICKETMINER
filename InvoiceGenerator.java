@@ -69,16 +69,13 @@ public class InvoiceGenerator {
 
         // Update the purchase history for the customer
         purchaseHistory.put(customer.getUserName(), existingHistory);
-
-
-            // Print service fees for each ticket purchase
-            printServiceFees(ticketPurchases);
            
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
             e.printStackTrace();
         }
     }
+
 public static List<Map<String, Object>> getCustomerPurchaseHistory(Customer customer) {
     return purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
 }
@@ -86,8 +83,6 @@ public static List<Map<String, Object>> getCustomerPurchaseHistory(Customer cust
 
 public static void removePurchaseFromHistory(Customer customer, String confirmationNumber) {
     List<Map<String, Object>> purchaseHistoryList = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
-
-
 
     boolean foundAndRemoved = false;
     Iterator<Map<String, Object>> iterator = purchaseHistoryList.iterator();
@@ -103,13 +98,6 @@ public static void removePurchaseFromHistory(Customer customer, String confirmat
 }
 
 
-
-
-
-
-
-
-
 public static void cancelOrderAndUpdateInvoice(Customer customer, String confirmationNumber) {
     // Step 1: Update in-memory purchase history
     removePurchaseFromHistory(customer, confirmationNumber);
@@ -117,7 +105,6 @@ public static void cancelOrderAndUpdateInvoice(Customer customer, String confirm
     // Step 2: Update physical invoice file
     cancelInvoiceFile(customer, confirmationNumber);
 }
-
 
 
 private static void cancelInvoiceFile(Customer customer, String confirmationNumber) {
@@ -228,35 +215,4 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
         }
     }
     
-    
-    public static void printServiceFees(BufferedWriter writer, List<Map<String, Object>> ticketPurchases) throws IOException {
-        writer.write("Service Fees:");
-        writer.newLine();
-        for (Map<String, Object> purchase : ticketPurchases) {
-            writer.write("Convenience Fee: " + purchase.get("convenienceFee"));
-            writer.newLine();
-            writer.write("Service Fee: " + purchase.get("serviceFee"));
-            writer.newLine();
-            writer.write("Charity Fee: " + purchase.get("charityFee"));
-            writer.newLine();
-            writer.write("Total Service Fees: " + purchase.get("totalServiceFees"));
-            writer.newLine();
-            writer.newLine();
-        }
-    }
-    /**
-     * Prints service fees for each ticket purchase.
-     *
-     * @param ticketPurchases A list of maps representing ticket purchases.
-     */
-    public static void printServiceFees(List<Map<String, Object>> ticketPurchases) {
-        for (Map<String, Object> purchase : ticketPurchases) {
-            System.out.println("Service Fees for Purchase:");
-            System.out.println("Convenience Fee: $" + purchase.get("convenienceFee"));
-            System.out.println("Service Fee: $" + purchase.get("serviceFee"));
-            System.out.println("Charity Fee: $" + purchase.get("charityFee"));
-            System.out.println("Total Service Fees: $" + purchase.get("totalServiceFees"));
-            System.out.println();
-        }
-    }
 }

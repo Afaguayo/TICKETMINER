@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * The `Event` class represents an abstract event with various properties and methods.
@@ -339,12 +341,20 @@ public abstract class Event {
      * @param eventType The type of event to filter.
      */
     public static void showEventsByType(List<Event> events, String eventType) {
-        for (Event event : events) {
-            if (event.getEventType().equalsIgnoreCase(eventType)) {
-                event.displayEventDetails();
-            }
+        // Filter events based on the given eventType
+        List<Event> filteredEvents = events.stream()
+                .filter(event -> event.getEventType().equalsIgnoreCase(eventType))
+                .collect(Collectors.toList());
+
+        // Sort the filtered events based on their IDs before displaying
+        filteredEvents.sort(Comparator.comparingInt(Event::getEventID));
+
+        // Display the sorted events
+        for (Event event : filteredEvents) {
+            event.displayEventDetails();
         }
     }
+
 
     /**
      * Retrieve a list of purchased tickets for this event and print their information.
@@ -358,6 +368,35 @@ public abstract class Event {
         return purchasedTickets;
     }
 
+
+    public void purchaseTickets(int ticketType, int ticketQuantity, Customer customer) {
+        switch (ticketType) {
+            case 1:
+                venue.incrementGeneralAdmSeatsSold(ticketQuantity);
+                venue.updateRevenueGeneralAdm(generalAdmissionPrice, ticketQuantity, customer);
+
+                break;
+            case 2:
+                venue.incrementBronzeSeatsSold(ticketQuantity);
+                venue.updateRevenueBronze(bronzePrice, ticketQuantity, customer);
+                break;
+            case 3:
+                venue.incrementSilverSeatsSold(ticketQuantity);
+                venue.updateRevenueSilver(silverPrice, ticketQuantity, customer);
+                break;
+            case 4:
+                venue.incrementGoldSeatsSold(ticketQuantity);
+                venue.updateRevenueGold(goldPrice, ticketQuantity, customer);
+                break;
+            case 5:
+                venue.incrementVIPSeatsSold(ticketQuantity);
+                venue.updateRevenueVIP(vipPrice, ticketQuantity, customer);
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * Calculate the expected profit for the event, assuming a sellout of all available seats.
      * 
@@ -369,23 +408,18 @@ public abstract class Event {
         int silverSeatsAvailable = venue.calculateSilverSeatsAvailable();
         int bronzeSeatsAvailable = venue.calculateBronzeSeatsAvailable();
         int generalAdmissionSeatsAvailable = venue.calculateGeneralAdmissionSeatsAvailable();
-
         double vipPrice = getVipPrice();
         double goldPrice = getGoldPrice();
         double silverPrice = getSilverPrice();
         double bronzePrice = getBronzePrice();
         double generalAdmissionPrice = getGeneralAdmissionPrice();
-
         double totalProfit = (vipSeatsAvailable * vipPrice) + (goldSeatsAvailable * goldPrice) +
                             (silverSeatsAvailable * silverPrice) + (bronzeSeatsAvailable * bronzePrice) +
                             (generalAdmissionSeatsAvailable * generalAdmissionPrice);
-
         // Format the totalProfit as a string with two decimal places
         String formattedTotalProfit = String.format("%.2f", totalProfit);
-
         return formattedTotalProfit;
     }
-
     /**
      * Create a log string with useful information about the event for logging purposes.
      * 

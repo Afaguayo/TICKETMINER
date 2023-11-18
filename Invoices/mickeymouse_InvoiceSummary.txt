@@ -1,0 +1,15 @@
+Electronic Invoice Summary
+Customer Name: Mickey Mouse
+
+Number Of Tickets: 1
+Total Price: 35.59
+Event Date: 9/4/23
+Charity Fees: 0.25
+Event Name: UTEP Football 1
+Convenience Fees: 2.5
+Event Type: Sport
+Confirmation Number: EE6A8B8F
+Subtotal: 32.88
+Service Fees: 0.16
+Ticket Type: 1
+
