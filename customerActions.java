@@ -344,42 +344,42 @@ public class customerActions {
                         invoice.displayInvoice();
 
                         Map<String, Object> purchase = new HashMap<>();
-                        purchase.put("Event Type", event.getEventType());
-                        purchase.put("Event Name", event.getName());
-                        purchase.put("Event Date", event.getDate());
-                        purchase.put("Ticket Type", ticketType);
-                        purchase.put("Number Of Tickets", ticketQuantity);
-                        purchase.put("Service Fees", Invoice.roundToTwoDecimals(serviceFee));
-                        purchase.put("Convenience Fees", Invoice.roundToTwoDecimals(convenienceFee));
-                        purchase.put("Charity Fees", Invoice.roundToTwoDecimals(charityFee));
-                        purchase.put("Total Price", Invoice.roundToTwoDecimals(total));
-                        purchase.put("Confirmation Number", confirmationNumber);
-                        allPurchases.add(purchase); // Add the purchase to the list
+                    purchase.put("Event Type", event.getEventType());
+                    purchase.put("Event Name", event.getName());
+                    purchase.put("Event Date", event.getDate());
+                    purchase.put("Ticket Type", ticketType);
+                    purchase.put("Number Of Tickets", ticketQuantity);
+                    purchase.put("Service Fees", Invoice.roundToTwoDecimals(serviceFee));
+                    purchase.put("Convenience Fees", Invoice.roundToTwoDecimals(convenienceFee));
+                    purchase.put("Charity Fees", Invoice.roundToTwoDecimals(charityFee));
+                    purchase.put("Total Price", Invoice.roundToTwoDecimals(total));
+                    purchase.put("Confirmation Number", confirmationNumber);
+                    allPurchases.add(purchase); // Add the purchase to the list
 
-                        isValidEvent = true;
-                    } else {
-                        System.out.println("Purchase cancelled. Returning to the event selection.");
-                        isValidEvent = true;
-                    }
-
-                    System.out.print("Would you like to make another purchase? (Yes/No): ");
-                    String response = scanner.nextLine();
-                    if (response.equalsIgnoreCase("no")) {
-                        wantToPurchase = false;
-                        System.out.println("\nExiting. Thank you!\n");
-                        break;
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter a valid number.");
-                    scanner.nextLine();
+                    isValidEvent = true;
+                } else {
+                    System.out.println("Purchase cancelled. Returning to the event selection.");
+                    isValidEvent = true;
                 }
-            }
-        }//Updated by Javier to allow multiple ticket purchases
-        // in the same invoice.
-        InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
 
+                System.out.print("Would you like to make another purchase? (Yes/No): ");
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("no")) {
+                    wantToPurchase = false;
+                    System.out.println("\nExiting. Thank you!\n");
+                    // Generate a summary invoice for all purchases
+    InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
+                    break;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine();
+            }
+        }
     }
+
+}
 
 
     /**
