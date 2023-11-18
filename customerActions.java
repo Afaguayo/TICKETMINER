@@ -152,7 +152,7 @@ public class customerActions {
                 purchaseIndex++;
             }
     
-            System.out.println("Disclaimer: Fees will not be refunded");
+            System.out.println("--> Disclaimer: Fees will not be refunded <--");
             System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
             int cancelChoice;
             
@@ -292,139 +292,126 @@ public class customerActions {
         List<Map<String, Object>> allPurchases = new ArrayList<>(); // Initialize the list to store all purchases
     
         while (wantToPurchase) {
-            boolean isValidEvent = false;
+            System.out.print("\nSelect an Event ID to choose the event (type 0 to go back): ");
+            int eventID;
     
-            while (!isValidEvent) {
-                try {
-                    System.out.print("\nSelect an Event ID to choose the event: ");
-                    int eventID = scanner.nextInt();
-                    scanner.nextLine();
-
-                    Event event = null;
-
-                    for (Event e : events) {
-                        if (e.getEventID() == eventID) {
-                            event = e;
-                            break;
-                        }
-                    }
-
-                    if (event == null) {
-                        System.out.println("Event not found.");
-                        continue;
-                    }
-
-                    int seatsUnavailable = (int) (((double) event.getVenue().getPctSeatsUnavailable() / 100.0) * event.getVenue().getCapacity());
-                    int venueCapacity = event.getVenue().getCapacity();
-                    int seatsAvailable = venueCapacity - seatsUnavailable;
-
-                    if (seatsAvailable <= 0) {
-                        System.out.println("Sorry, no tickets available for this event.");
-                        continue;
-                    }
-
-                    event.eventPrices(customer);
-
-                    System.out.print("\nSelect a Ticket Type you would like to buy: ");
-                    int ticketType = scanner.nextInt();
-                    scanner.nextLine();
-
-                    System.out.print("\nEnter the quantity of tickets (up to 6 tickets): ");
-                    int ticketQuantity = scanner.nextInt();
-                    scanner.nextLine();
-
-                    if (ticketQuantity <= 0 || ticketQuantity > 6) {
-                        System.out.println("Invalid number of tickets. Please select between 1 and 6 tickets.");
-                        return;
-                    }
-
-                    if (customer.getIsMember()) {
-                        customer.setPricingStrategy(new MemberPricingStrategy(customer));
-                    } else {
-                        customer.setPricingStrategy(new RegularPricingStrategy());
-                    }
-
-                    double subtotal = customer.pricingStrategy.calculateTicketPrice(event, ticketType, ticketQuantity);
-                    double taxes = (subtotal * 0.0825);
-                    double total = subtotal + taxes;
-
-                    // Example usage in the buyTickets method
-                    double convenienceFee = 2.5;
-                    double serviceFee = RegularPricingStrategy.getServiceFee(subtotal);
-                    double charityFee = RegularPricingStrategy.getCharityFee(subtotal);
-
-
-                    if (customer.getIsMember()) {
-                        System.out.println("------------------------------------------------------------------");
-                        System.out.println("You are a TicketMiner Member, you will get 10% off.");
-                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
-                        System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
-                        System.out.println();
-                    } else {
-                        System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
-                        System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
-                        System.out.println();
-                    }
-
-                    if ((total) > customer.getMoneyAvailable()) {
-                        System.out.println("\n*************************************");
-                        System.out.println("\n*** Insufficient Funds, try again ***");
-                        System.out.println("\n*************************************");
-                        continue;
-                    }
-
-                    System.out.print("\nWould you like to proceed with this purchase? (Yes/No): ");
-                    String proceed = scanner.nextLine();
-
-                    if (proceed.equalsIgnoreCase("yes")) {
-                        String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer,event);
-                        Invoice invoice = new Invoice(event, ticketType, ticketQuantity, total, confirmationNumber, customer, subtotal, taxes, charityFee, serviceFee, convenienceFee);
-                        event.getVenue().setConvenienceFee(convenienceFee);
-                        event.getVenue().setCharityFee(charityFee);
-                        event.getVenue().setServiceFee(serviceFee);
-
-                        event.purchaseTickets(ticketType, ticketQuantity, customer);
-
-                        invoice.displayInvoice();
-
-                        Map<String, Object> purchase = new HashMap<>();
-                    purchase.put("Event Type", event.getEventType());
-                    purchase.put("Event Name", event.getName());
-                    purchase.put("Event Date", event.getDate());
-                    purchase.put("Ticket Type", ticketType);
-                    purchase.put("Subtotal", Invoice.roundToTwoDecimals(subtotal));
-                    purchase.put("Number Of Tickets", ticketQuantity);
-                    purchase.put("Service Fees", Invoice.roundToTwoDecimals(serviceFee));
-                    purchase.put("Convenience Fees", Invoice.roundToTwoDecimals(convenienceFee));
-                    purchase.put("Charity Fees", Invoice.roundToTwoDecimals(charityFee));
-                    purchase.put("Total Price", Invoice.roundToTwoDecimals(total));
-                    purchase.put("Confirmation Number", confirmationNumber);
-                    allPurchases.add(purchase); // Add the purchase to the list
-
-                    isValidEvent = true;
-                } else {
-                    System.out.println("\nPurchase cancelled. Returning to the event selection.");
-                    isValidEvent = true;
-                }
-
-                System.out.print("\nWould you like to make another purchase? (Yes/No): ");
-                String response = scanner.nextLine();
-                if (response.equalsIgnoreCase("no")) {
-                    wantToPurchase = false;
-                    System.out.println("\nExiting... Thank you!\n");
-
-                    InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
+            try {
+                eventID = scanner.nextInt();
+                scanner.nextLine();
+    
+                // Check if the user wants to go back
+                if (eventID == 0) {
+                    System.out.println("\nGoing back to the main menu...");
                     break;
                 }
-
+    
+                Event event = events.stream()
+                        .filter(e -> e.getEventID() == eventID)
+                        .findFirst()
+                        .orElse(null);
+    
+                if (event == null) {
+                    System.out.println("Event not found.");
+                    continue;
+                }
+    
+                int seatsUnavailable = (int) (((double) event.getVenue().getPctSeatsUnavailable() / 100.0) * event.getVenue().getCapacity());
+                int venueCapacity = event.getVenue().getCapacity();
+                int seatsAvailable = venueCapacity - seatsUnavailable;
+    
+                if (seatsAvailable <= 0) {
+                    System.out.println("Sorry, no tickets available for this event.");
+                    continue;
+                }
+    
+                event.eventPrices(customer);
+    
+                System.out.print("\nSelect a Ticket Type you would like to buy: ");
+                int ticketType = scanner.nextInt();
+                scanner.nextLine();
+    
+                System.out.print("\nEnter the quantity of tickets (up to 6 tickets): ");
+                int ticketQuantity = scanner.nextInt();
+                scanner.nextLine();
+    
+                if (ticketQuantity <= 0 || ticketQuantity > 6) {
+                    System.out.println("Invalid number of tickets. Please select between 1 and 6 tickets.");
+                    continue;
+                }
+    
+                if (customer.getIsMember()) {
+                    customer.setPricingStrategy(new MemberPricingStrategy(customer));
+                } else {
+                    customer.setPricingStrategy(new RegularPricingStrategy());
+                }
+    
+                double subtotal = customer.pricingStrategy.calculateTicketPrice(event, ticketType, ticketQuantity);
+                double taxes = (subtotal * 0.0825);
+                double total = subtotal + taxes;
+    
+                double convenienceFee = 2.5;
+                double serviceFee = RegularPricingStrategy.getServiceFee(subtotal);
+                double charityFee = RegularPricingStrategy.getCharityFee(subtotal);
+    
+                if (total > customer.getMoneyAvailable()) {
+                    System.out.println("\n*************************************");
+                    System.out.println("\n*** Insufficient Funds, try again ***");
+                    System.out.println("\n*************************************");
+                    continue;
+                }
+    
+                System.out.print("\nWould you like to proceed with this purchase? (Yes/No): ");
+                String proceed = scanner.nextLine();
+    
+                if (!proceed.equalsIgnoreCase("yes")) {
+                    System.out.println("\nPurchase cancelled. Returning to Main Menu...");
+                    return;  // Return to the main menu without processing further
+                }
+    
+                // Proceed with the purchase logic
+                String confirmationNumber = ConfirmationNumberGenerator.generateConfirmationNumber(customer, event);
+                Invoice invoice = new Invoice(event, ticketType, ticketQuantity, total, confirmationNumber, customer, subtotal, taxes, charityFee, serviceFee, convenienceFee);
+                event.getVenue().setConvenienceFee(convenienceFee);
+                event.getVenue().setCharityFee(charityFee);
+                event.getVenue().setServiceFee(serviceFee);
+    
+                event.purchaseTickets(ticketType, ticketQuantity, customer);
+    
+                invoice.displayInvoice();
+    
+                Map<String, Object> purchase = new HashMap<>();
+                purchase.put("Event Type", event.getEventType());
+                purchase.put("Event Name", event.getName());
+                purchase.put("Event Date", event.getDate());
+                purchase.put("Ticket Type", ticketType);
+                purchase.put("Subtotal", Invoice.roundToTwoDecimals(subtotal));
+                purchase.put("Number Of Tickets", ticketQuantity);
+                purchase.put("Service Fees", Invoice.roundToTwoDecimals(serviceFee));
+                purchase.put("Convenience Fees", Invoice.roundToTwoDecimals(convenienceFee));
+                purchase.put("Charity Fees", Invoice.roundToTwoDecimals(charityFee));
+                purchase.put("Total Price", Invoice.roundToTwoDecimals(total));
+                purchase.put("Confirmation Number", confirmationNumber);
+                allPurchases.add(purchase); // Add the purchase to the list
+    
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
                 scanner.nextLine();
             }
+    
+            // Check if the user wants to make another purchase
+            System.out.print("\nWould you like to make another purchase? (Yes/No): ");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("no")) {
+                wantToPurchase = false;
+                System.out.println("\nExiting... Thank you!\n");
+    
+                InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
+                break;
+            }
         }
     }
-
-}
+    
+    
 
     /**
      * Automates the ticket purchase process for a specific customer.

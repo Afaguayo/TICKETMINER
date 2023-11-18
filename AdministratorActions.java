@@ -421,9 +421,10 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
                 break;
 
             case "4":
-                ActionLogger.logInfo("Admin canceled an event"); // Log into text file
                 System.out.println("Select an Event ID to cancel: ");
                 eventIDtoCancel = keyboard.nextInt();
+                cancelEvent(events, eventIDtoCancel);
+                ActionLogger.logInfo("Admin canceled an event with ID: " + eventIDtoCancel); // Log into text file
                 break;
                 
             case "5": // Option to create a new event
@@ -595,6 +596,30 @@ public static void createInvoice(List<Customer> customers){
         if (!anotherSummary.equalsIgnoreCase("yes")) {
             generateAnother = false;
         }
+    }
+}
+
+/**
+ * Cancels an event with the specified ID. If the event is found in the list of events, it is removed.
+ *
+ * @param events  A list of events where the event will be canceled.
+ * @param eventId The ID of the event to be canceled.
+ */
+public static void cancelEvent(List<Event> events, int eventId) {
+    Event eventToRemove = null;
+
+    for (Event event : events) {
+        if (eventId == event.getEventID()) {
+            eventToRemove = event;
+            break;
+        }
+    }
+
+    if (eventToRemove != null) {
+        events.remove(eventToRemove);
+        System.out.println("Event with ID " + eventId + " has been canceled.");
+    } else {
+        System.out.println("Event with ID " + eventId + " not found. No action taken.");
     }
 }
 
