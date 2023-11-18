@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Iterator;
+
 
 public class InvoiceGenerator {
 
@@ -83,11 +85,28 @@ public static List<Map<String, Object>> getCustomerPurchaseHistory(Customer cust
 
 
 public static void removePurchaseFromHistory(Customer customer, String confirmationNumber) {
-    // Same logic to remove the purchase with the specified confirmation number
     List<Map<String, Object>> purchaseHistoryList = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
-    purchaseHistoryList.removeIf(purchase -> confirmationNumber.equals(purchase.get("confirmationNumber")));
-    purchaseHistory.put(customer.getUserName(), purchaseHistoryList);
+
+
+
+    boolean foundAndRemoved = false;
+    Iterator<Map<String, Object>> iterator = purchaseHistoryList.iterator();
+    while (iterator.hasNext()) {
+        Map<String, Object> purchase = iterator.next();
+        Object confirmation = purchase.get("Confirmation Number");
+        if (confirmation != null && confirmationNumber != null && confirmationNumber.equals(confirmation.toString())) {
+            iterator.remove();
+            foundAndRemoved = true;
+            break; // Exit loop after removal
+        }
+    }
 }
+
+
+
+
+
+
 
 
 
@@ -98,6 +117,8 @@ public static void cancelOrderAndUpdateInvoice(Customer customer, String confirm
     // Step 2: Update physical invoice file
     cancelInvoiceFile(customer, confirmationNumber);
 }
+
+
 
 private static void cancelInvoiceFile(Customer customer, String confirmationNumber) {
     String folderPath = "Invoices/";

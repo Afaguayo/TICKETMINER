@@ -1,0 +1,27 @@
+Electronic Invoice Summary
+Customer Name: Peter Pan
+
+Number Of Tickets: 1
+Total Price: 32.03
+Event Date: 12/18/23
+Charity Fees: 0.22
+Event Name: UTEP Basketball 9
+Convenience Fees: 2.5
+Event Type: Sport
+Order Canceled
+
+Service Fees: 0.15
+Ticket Type: 1
+
+Number Of Tickets: 1
+Total Price: 32.03
+Event Date: 9/4/23
+Charity Fees: 0.22
+Event Name: UTEP Football 1
+Convenience Fees: 2.5
+Event Type: Sport
+Order Canceled
+
+Service Fees: 0.15
+Ticket Type: 1
+
