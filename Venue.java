@@ -664,66 +664,141 @@ public abstract class Venue {
         this.actualProfit = actualProfit;
     }
 
+    /**
+     * Gets the total discounts applied to the venue.
+     *
+     * @return The total discounts applied.
+     */
     public Double getDiscounts() {
         return this.discounts;
     }
 
+    /**
+     * Sets the total discounts applied to the venue.
+     *
+     * @param discounts The additional discounts to be applied.
+     */
     public void setDiscounts(Double discounts) {
         this.discounts += discounts;
     }
 
-
+    /**
+     * Gets the charity fee for the venue.
+     *
+     * @return The charity fee for the venue.
+     */
     public Double getCharityFee() {
         return this.charityFee;
     }
 
+    /**
+     * Sets the charity fee for the venue.
+     *
+     * @param charityFee The additional charity fee to be applied.
+     */
     public void setCharityFee(Double charityFee) {
         this.charityFee += charityFee;
     }
-    
+
+    /**
+     * Gets the convenience fee for the venue.
+     *
+     * @return The convenience fee for the venue.
+     */
     public Double getConvenienceFee() {
         return this.convenienceFee;
     }
-    
+
+    /**
+     * Sets the convenience fee for the venue.
+     *
+     * @param convenienceFee The additional convenience fee to be applied.
+     */
     public void setConvenienceFee(Double convenienceFee) {
         this.convenienceFee += convenienceFee;
     }
-    
+
+    /**
+     * Gets the service fee for the venue.
+     *
+     * @return The service fee for the venue.
+     */
     public Double getServiceFee() {
         return this.serviceFee;
     }
-    
+
+    /**
+     * Sets the service fee for the venue.
+     *
+     * @param serviceFee The additional service fee to be applied.
+     */
     public void setServiceFee(Double serviceFee) {
         this.serviceFee += serviceFee;
     }
 
+    /**
+     * Decrements the total revenue for general admission tickets.
+     *
+     * @param num The amount to decrement from the total revenue for general admission tickets.
+     */
     public void decrementTotalRevenueGeneralAdm(double num) {
         this.totalRevenueGeneralAdm += num;
     }
-    
+
+    /**
+     * Decrements the total revenue for bronze tickets.
+     *
+     * @param num The amount to decrement from the total revenue for bronze tickets.
+     */
     public void decrementTotalRevenueBronze(double num) {
         this.totalRevenueBronze += num;
     }
-    
+
+    /**
+     * Decrements the total revenue for silver tickets.
+     *
+     * @param num The amount to decrement from the total revenue for silver tickets.
+     */
     public void decrementTotalRevenueSilver(double num) {
         this.totalRevenueSilver += num;
     }
-    
+
+    /**
+     * Decrements the total revenue for gold tickets.
+     *
+     * @param num The amount to decrement from the total revenue for gold tickets.
+     */
     public void decrementTotalRevenueGold(double num) {
         this.totalRevenueGold += num;
     }
-    
+
+    /**
+     * Decrements the total revenue for VIP tickets.
+     *
+     * @param num The amount to decrement from the total revenue for VIP tickets.
+     */
     public void decrementTotalRevenueVIP(double num) {
         this.totalRevenueVIP += num;
     }
-    
+
+    /**
+     * Decrements the total revenue for all ticket types.
+     *
+     * @param num The amount to decrement from the total revenue for all ticket types.
+     */
     public void decrementTotalRevenue(double num) {
         this.totalRevenueAllTickets -= num;
     }
-    
+
+    /**
+     * Decrements the total discounts applied to the venue.
+     *
+     * @param num The amount to decrement from the total discounts applied.
+     */
     public void decrementDiscounts(double num) {
         this.discounts += num;
     }
+
     
     /**
      * Calculates and returns the amount of VIP seats available based on capacity and availability.
@@ -811,7 +886,7 @@ public abstract class Venue {
 
     public void printMoneyRaised(Event event){
         System.out.println("______________________________________________________");
-        System.out.println("The amount of money gained by TICKETMINER on event : " + event.getName() + " ID: " + event.getEventID());
+        System.out.println("The amount of money gained by TICKETMINER on event: " + event.getName() + " -- [ID #" + event.getEventID() + "]");
     
         // Round each fee to two decimal places
         double serviceFee = getServiceFee();

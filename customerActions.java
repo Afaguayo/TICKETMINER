@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
+ * This class includes all methods used to compute the customer actions like buy tickets, cancel tickets, and iterate over a list of events.
  * 
  * @author Angel, Caleb, Chris & Javier
  * @since November 19, 2023
@@ -105,13 +106,16 @@ public class customerActions {
                 case 2:
                     scanner.nextLine();
                     buyTickets(scanner, events, selectedCustomer);
+                    ActionLogger.logInfo("Customer " + selectedCustomer.getFirstName() + " bought tickets");
                     break;
 
                 case 3:
-                cancelTicketPurchase(scanner, selectedCustomer, events);
-                            break;
+                    cancelTicketPurchase(scanner, selectedCustomer, events);
+                    ActionLogger.logInfo( "Customer " + selectedCustomer.getFirstName() + " canceled a purchase");
+                    break;
                 case 4: 
                     System.out.println("\nExiting... Thank you! " + selectedCustomer.getFirstName());
+                    ActionLogger.logInfo( "Customer " + selectedCustomer.getFirstName() + " logged out");
                     customerMenuRunning = false;           
                     break;
                 default:
@@ -121,6 +125,16 @@ public class customerActions {
         }
     }
 
+
+     /**
+     * Allows a customer to cancel a previously made ticket purchase, providing a list of their purchases for selection.
+     * Displays purchase details and prompts the user to choose a purchase to cancel. Refunds are processed, and relevant
+     * records are updated, including customer balance, purchase history, and event revenues.
+     *
+     * @param scanner   Scanner object for user input.
+     * @param customer  The customer initiating the cancellation.
+     * @param events    The list of events containing details about available tickets and revenues.
+     */
     private static void cancelTicketPurchase(Scanner scanner, Customer customer, List<Event> events) {
         Boolean endCancelMenu = false;
         while (!endCancelMenu){
@@ -210,6 +224,15 @@ public class customerActions {
     } //  end of method
 
 
+     /**
+     * Adjusts the revenues and seat counts for a specific ticket type in an event based on a customer's purchase.
+     *
+     * @param customer  The customer making the purchase.
+     * @param events    The list of events.
+     * @param ticketType The type of the ticket (1 for General Admission, 2 for Bronze, 3 for Silver, 4 for Gold, 5 for VIP).
+     * @param amount    The number of tickets purchased.
+     * @param event     The event for which the tickets are purchased.
+     */
     public static void fixRevenues(Customer customer, List<Event> events, int ticketType, int amount, Event event) {
         double sub = 0.0;
         double discounts = 0.0;
@@ -387,8 +410,9 @@ public class customerActions {
                 event.getVenue().setServiceFee(serviceFee);
     
                 event.purchaseTickets(ticketType, ticketQuantity, customer);
-    
+                // Display invoice to customer
                 invoice.displayInvoice();
+                ActionLogger.logInfo( "Customer " + customer.getFirstName() + " bought tickets for event " + event.getName());
     
                 Map<String, Object> purchase = new HashMap<>();
                 purchase.put("Event Type", event.getEventType());
@@ -569,6 +593,12 @@ public class customerActions {
         }
     }
 
+    /**
+     * Prints information about events, sorted by their IDs in ascending order.
+     * Utilizes the natural order of event IDs to sort the events before displaying them.
+     *
+     * @param events The list of events to be printed.
+     */
     public static void printEventsSortedByID(List<Event> events) {
         // Sort the events based on their IDs before displaying
         List<Event> sortedEvents = events.stream()
@@ -580,5 +610,5 @@ public class customerActions {
             event.printInfo();
         }
     }
-    
+
 }
