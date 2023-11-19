@@ -22,6 +22,7 @@ class RegularPricingStrategy implements TicketPricingStrategy {
     @Override
     public double calculateTicketPrice(Event event, int ticketType, int ticketQuantity) {
         // Calculate the base ticket price
+        double total = 0.0;
         double ticketPrice = Event.calculateTicketPrice(event, ticketType);
 
         // Calculate the total price without any discounts
@@ -31,9 +32,9 @@ class RegularPricingStrategy implements TicketPricingStrategy {
         double serviceFee = getServiceFee(totalPrice);
         double charityFee = getCharityFee(totalPrice);
 
-        double total = totalPrice + convenienceFee + serviceFee + charityFee;
-
+        total = totalPrice + convenienceFee + serviceFee + charityFee;
         return total;
+        
     }
 
     /**

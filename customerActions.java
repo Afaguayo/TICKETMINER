@@ -151,6 +151,7 @@ public class customerActions {
             purchaseIndex++;
         }
     
+        System.out.println("--> Disclaimer: Fees will not be refunded <--");
         System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
         int cancelChoice = scanner.nextInt();
         scanner.nextLine();  // Consume the newline character
