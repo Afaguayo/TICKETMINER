@@ -3,7 +3,7 @@
  * It provides specific properties and methods for managing festival events.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class Festival extends Event {
 

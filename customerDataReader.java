@@ -11,7 +11,7 @@ import java.util.Scanner;
  * It parses a CSV file and creates a list of Customer objects with the data.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class customerDataReader {
 

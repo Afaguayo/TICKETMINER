@@ -5,7 +5,7 @@
  * @return The generated confirmation number.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 import java.util.Objects;
 

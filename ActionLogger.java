@@ -18,7 +18,7 @@ import java.util.logging.SimpleFormatter;
  * - Use logError for error messages.
  *
  * @author Angel, Caleb, Christian, & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class ActionLogger {
     private static final Logger logger = Logger.getLogger("ActionLogger");

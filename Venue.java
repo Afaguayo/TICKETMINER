@@ -2,7 +2,7 @@
  * The `Venue` class holds the data for a venue where events are held.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public abstract class Venue {
 
@@ -698,43 +698,23 @@ public abstract class Venue {
     }
 
     public void decrementTotalRevenueGeneralAdm(double num) {
-        this.totalGeneralAdmSeatsSold -= num;
+        this.totalRevenueGeneralAdm += num;
     }
     
     public void decrementTotalRevenueBronze(double num) {
-        this.totalRevenueBronze -= num;
+        this.totalRevenueBronze += num;
     }
     
     public void decrementTotalRevenueSilver(double num) {
-        this.totalRevenueSilver -= num;
+        this.totalRevenueSilver += num;
     }
     
     public void decrementTotalRevenueGold(double num) {
-        this.totalRevenueGold -= num;
+        this.totalRevenueGold += num;
     }
     
     public void decrementTotalRevenueVIP(double num) {
-        this.totalRevenueVIP -= num;
-    }
-    
-    public void decrementGeneralAdmSeatsSold(int num) {
-        this.totalGeneralAdmSeatsSold -= num;
-    }
-    
-    public void decrementBronzeAdmSeatsSold(int num) {
-        this.totalBronzeSeatsSold -= num;
-    }
-    
-    public void decrementSilverAdmSeatsSold(int num) {
-        this.totalSilverSeatsSold -= num;
-    }
-    
-    public void decrementGoldAdmSeatsSold(int num) {
-        this.totalGoldSeatsSold -= num;
-    }
-    
-    public void decrementVIPAdmSeatsSold(int num) {
-        this.totalVIPSeatsSold -= num;
+        this.totalRevenueVIP += num;
     }
     
     public void decrementTotalRevenue(double num) {
@@ -742,7 +722,7 @@ public abstract class Venue {
     }
     
     public void decrementDiscounts(double num) {
-        this.discounts -= num;
+        this.discounts += num;
     }
     
     /**

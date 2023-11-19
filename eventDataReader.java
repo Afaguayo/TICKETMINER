@@ -11,7 +11,7 @@ import java.util.Scanner;
  * It provides methods to store event data in a structured list.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class eventDataReader {
    

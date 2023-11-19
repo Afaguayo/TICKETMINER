@@ -3,7 +3,7 @@
  * It represents a ticket for an event in a venue.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class Ticket {
 

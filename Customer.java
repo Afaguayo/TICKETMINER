@@ -7,7 +7,7 @@ import java.util.Scanner;
  * The `Customer` class represents customer credentials, money balances, and membership status.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 class Customer {
 

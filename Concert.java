@@ -2,7 +2,7 @@
  * This is the Concert class and it extends Event class
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class Concert extends Event {
 

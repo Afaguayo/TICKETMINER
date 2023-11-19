@@ -3,7 +3,7 @@
  * implementing the `TicketPricingStrategy` interface. Regular customers do not receive any discounts.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 class RegularPricingStrategy implements TicketPricingStrategy {
 

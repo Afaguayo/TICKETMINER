@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -7,7 +8,7 @@ import java.util.stream.Collectors;
  * This class serves as a base class for specific event types.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public abstract class Event {
     
@@ -362,12 +363,26 @@ public abstract class Event {
      * @return The list of purchased tickets.
      */
     public List<Ticket> getPurchasedTickets() {
-        for (Ticket ticket : purchasedTickets) {
-            ticket.printInfo();
+        if (purchasedTickets != null) {
+            for (Ticket ticket : purchasedTickets) {
+                ticket.printInfo();
+            }
+            return purchasedTickets;
+        } else {
+            System.out.println("No purchased tickets for this event.");
+            return new ArrayList<>(); // Return an empty list if purchasedTickets is null
         }
-        return purchasedTickets;
     }
 
+
+    /**
+     * Set the purchased tickets for this event.
+     * 
+     * @param purchasedTickets The list of purchased tickets to set.
+     */
+    public void setPurchasedTickets(List<Ticket> purchasedTickets) {
+        this.purchasedTickets = purchasedTickets;
+    }
 
     public void purchaseTickets(int ticketType, int ticketQuantity, Customer customer) {
         switch (ticketType) {

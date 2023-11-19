@@ -2,7 +2,7 @@
  * The `Sport` class represents sporting events and extends the `Event` class.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class Sport extends Event {
 

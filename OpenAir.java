@@ -2,7 +2,7 @@
  * This is the OpenAir class and it extends Venue class
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 class OpenAir extends Venue {
 

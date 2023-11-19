@@ -6,12 +6,12 @@ import java.util.Scanner;
  * It allows customers and administrators to interact with the system and provides options for autopurchase testing.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
- * @version 1.4
+ * @since November 19, 2023
+ * @version 1.5
  * 
  * Class: CS 3331 - Object-Oriented Programming
  * Instructor: Daniel Mejia
- * Programming Assignment 4
+ * Programming Assignment 5
  * Honesty Statement: We, Angel, Caleb, Chris, and Javier, completed this work entirely on our own without any outside sources, including peers, experts, online sources, or the like.
  * Lab description - Utilize Object-Oriented programming design and principles to create a system.
  * 

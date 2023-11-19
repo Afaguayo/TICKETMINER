@@ -1,9 +1,11 @@
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
  * This class logs administrative actions to a text file.
  *
  * @author Angel, Caleb, Christian, & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class AdministratorActions {
 
@@ -389,7 +391,8 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
         System.out.println("[6] Compute/print the amount of money gained by The TicketMiner Company for an event");
         System.out.println("[7] Compute/print the amount of money gained by The TicketMiner Company for all events");
         System.out.println("[8] Create invoice for customer");
-        System.out.println("[9] Exit admin menu");
+        System.out.println("[9] Retrieve all customer purchases");
+        System.out.println("[10] Exit admin menu");
         System.out.println("\nPlease enter an option: ");
 
         adminChoice = keyboard.next();
@@ -423,7 +426,11 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
             case "4":
                 System.out.println("Select an Event ID to cancel: ");
                 eventIDtoCancel = keyboard.nextInt();
-                cancelEvent(events, eventIDtoCancel);
+                Event event  = getEventById(events, eventIDtoCancel);
+                for(Customer customer: customers){
+                    cancelEventTicketPurchases(keyboard, customer, event, events);
+                }
+                cancelEvent(events, eventIDtoCancel, customers);
                 ActionLogger.logInfo("Admin canceled an event with ID: " + eventIDtoCancel); // Log into text file
                 break;
                 
@@ -459,12 +466,16 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
                 break;
 
             case "9":
+                InvoiceGenerator.printPurchaseHistoryForCustomers(customers);
+
+
+            case "10":
                 ActionLogger.logInfo( "Admin logged out"); // Log into text file
                 adminLogged = true;
                 break;
 
             default:
-                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, 8, or 9).");
+                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, 8, 9, or 10).");
         }
     }
 }
@@ -599,31 +610,101 @@ public static void createInvoice(List<Customer> customers){
     }
 }
 
+    /**
+     * Retrieves an event based on its unique ID.
+     *
+     * @param events  A list of events to search for the event by ID.
+     * @param eventID The ID of the event to be retrieved.
+     * @return The event with the specified ID, or null if not found.
+     */
+    public static Event getEventById(List<Event> events, int eventID) {
+        for (Event event : events) {
+            if (eventID == event.getEventID()) {
+                return event;
+            }
+        }
+        return null; // Event with the specified ID not found
+    }
+
+
 /**
  * Cancels an event with the specified ID. If the event is found in the list of events, it is removed.
  *
  * @param events  A list of events where the event will be canceled.
  * @param eventId The ID of the event to be canceled.
  */
-public static void cancelEvent(List<Event> events, int eventId) {
-    Event eventToRemove = null;
+    public static void cancelEvent(List<Event> events, int eventId, List<Customer> customers) {
+        Event eventToRemove = null;
 
-    for (Event event : events) {
-        if (eventId == event.getEventID()) {
-            eventToRemove = event;
-            break;
+        for (Event event : events) {
+            if (eventId == event.getEventID()) {
+                eventToRemove = event;
+                break;
+            }
+        }
+
+        if (eventToRemove != null) {
+            // Remove the canceled event from the list of events
+            events.remove(eventToRemove);
+            System.out.println("Event with ID " + eventId + " has been canceled.");
         }
     }
 
-    if (eventToRemove != null) {
-        events.remove(eventToRemove);
-        System.out.println("Event with ID " + eventId + " has been canceled.");
-    } else {
-        System.out.println("Event with ID " + eventId + " not found. No action taken.");
+    private static void cancelEventTicketPurchases(Scanner scanner, Customer customer, Event event, List<Event> events) {
+        // Retrieve the customer's purchase history
+        List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
+    
+        // Filter purchases related to the specified event
+        List<Map<String, Object>> eventPurchases = new ArrayList<>();
+        for (Map<String, Object> purchase : customerPurchases) {
+            Object purchaseEventNameObject = purchase.get("Event Name");
+    
+            // Check if the Event Name is not null and is of the correct type (String)
+            if (purchaseEventNameObject instanceof String) {
+                String purchaseEventName = (String) purchaseEventNameObject;
+    
+                if (event.getName().equalsIgnoreCase(purchaseEventName)) {
+                    eventPurchases.add(purchase);
+
+                    // Ticket Type
+                    int ticketType = (int) purchase.get("Ticket Type");
+
+                    // Number Of Tickets
+                    int numberOfTickets = (int) purchase.get("Number Of Tickets");
+
+                    // Event Name
+                    String eventName = (String) purchase.get("Event Name");
+                
+                    // Calculate the refund amount (excluding fees)
+                    double refundAmount = 0.0;
+                    Object totalPriceObject = purchase.get("Subtotal");
+                    if (totalPriceObject instanceof String) {
+                        String totalPriceStr = (String) totalPriceObject;
+                        refundAmount = Double.parseDouble(totalPriceStr.replace("$", ""));
+                    } else if (totalPriceObject instanceof Double) {
+                        refundAmount = (Double) totalPriceObject;
+                    }
+    
+                    // Update the customer's balance
+                    customer.setMoneyAvailable(customer.getMoneyAvailable() + refundAmount);
+                    Event evento = customerActions.findEventByName(events, eventName);
+            
+                    //Subtract money from event revenues
+                    customerActions.fixRevenues(customer, events, ticketType, numberOfTickets, evento);
+                }
+            }
+        }
+    
+        // Loop through event purchases and cancel each one
+        for (Map<String, Object> purchase : eventPurchases) {
+            String confirmationNumber = (String) purchase.get("Confirmation Number");
+    
+            // Check if the confirmationNumber is not null before canceling
+            if (confirmationNumber != null) {
+                InvoiceGenerator.cancelOrderAndUpdateInvoice(customer, confirmationNumber);
+            }
+        }
     }
-}
-
-
-
+    
 
 }

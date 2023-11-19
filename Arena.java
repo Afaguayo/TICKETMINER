@@ -2,7 +2,7 @@
  * Constructs an Arena object with the specified venue details.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 class Arena extends Venue {
 

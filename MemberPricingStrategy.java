@@ -3,7 +3,7 @@
  * Members receive a 10% discount on ticket prices.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class MemberPricingStrategy implements TicketPricingStrategy {
     private Customer customer;

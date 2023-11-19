@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
  * It provides methods to manage invoice information and display it on the console.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class Invoice {
 

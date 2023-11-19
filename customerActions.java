@@ -10,7 +10,7 @@ import java.util.Comparator;
 /**
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class customerActions {
 
@@ -108,10 +108,10 @@ public class customerActions {
                     break;
 
                 case 3:
-                cancelTicketPurchase(scanner, selectedCustomer);
+                cancelTicketPurchase(scanner, selectedCustomer, events);
                             break;
                 case 4: 
-                    System.out.println("\nExiting. Thank you!\n");
+                    System.out.println("\nExiting... Thank you! " + selectedCustomer.getFirstName());
                     customerMenuRunning = false;           
                     break;
                 default:
@@ -121,7 +121,7 @@ public class customerActions {
         }
     }
 
-    private static void cancelTicketPurchase(Scanner scanner, Customer customer) {
+    private static void cancelTicketPurchase(Scanner scanner, Customer customer, List<Event> events) {
         Boolean endCancelMenu = false;
         while (!endCancelMenu){
         
@@ -170,92 +170,104 @@ public class customerActions {
         // Retrieve the selected purchase details (adjusting for zero-based indexing)
         Map<String, Object> selectedPurchase = customerPurchases.get(cancelChoice - 1);
         String confirmationNumber = (String) selectedPurchase.get("Confirmation Number");
-    
-        // Calculate the refund amount (excluding fees)
-        double refundAmount = 0.0;
-        Object totalPriceObject = selectedPurchase.get("Subtotal");
-        if (totalPriceObject instanceof String) {
-            String totalPriceStr = (String) totalPriceObject;
-            refundAmount = Double.parseDouble(totalPriceStr.replace("$", ""));
-        } else if (totalPriceObject instanceof Double) {
-            refundAmount = (Double) totalPriceObject;
+
+
+        // Number Of Tickets
+        int numberOfTickets = (int) selectedPurchase.get("Number Of Tickets");
+
+        // Event Name
+        String eventName = (String) selectedPurchase.get("Event Name");
+
+        // Subtotal
+        double subtotal = 0.0;
+        Object subtotalObject = selectedPurchase.get("Subtotal");
+        if (subtotalObject instanceof String) {
+            String subtotalStr = (String) subtotalObject;
+            subtotal = Double.parseDouble(subtotalStr.replace("$", ""));
+        } else if (subtotalObject instanceof Double) {
+            subtotal = (Double) subtotalObject;
         }
+
+        // Ticket Type
+        int ticketType = (int) selectedPurchase.get("Ticket Type");
+
     
         // Update the customer's balance
-        customer.setMoneyAvailable(customer.getMoneyAvailable() + refundAmount);
+        customer.setMoneyAvailable(customer.getMoneyAvailable() + subtotal);
     
         // Remove the canceled purchase from the customer's purchase history
         //InvoiceGenerator.removePurchaseFromHistory(customer, confirmationNumber);
         // Additional line to cancel the order and update the invoice
         InvoiceGenerator.cancelOrderAndUpdateInvoice(customer, confirmationNumber);
+        Event event = findEventByName(events, eventName);
+
+        //Subtract money from event revenues
+        fixRevenues(customer, events, ticketType, numberOfTickets, event);
     
         System.out.println("Ticket purchase cancelled successfully.");
-    
-        
-    }
+        }
     } //  end of method
 
-    // private static void fixRevenues(Customer customer, List<Event> events, int ticketType, int amount, Event event){
-    //     double sub = 0.0;
-    //     double discounts = 0.0;
-    //     if (ticketType == 1) {
-    //         if (customer.getIsMember()) {
-    //             sub = event.getGeneralAdmissionPrice() * amount * 0.9; // Apply 10% discount for members
-    //             discounts = event.getGeneralAdmissionPrice() * amount * 0.1; // Calculate the discount
-    //         } else {
-    //             sub = event.getGeneralAdmissionPrice() * amount;
-    //         }
-    //         event.getVenue().decrementGeneralAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueGeneralAdm(sub);
-    //         event.getVenue().decrementGeneralAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueGeneralAdm(sub);
-    //         event.getVenue().decrementTotalRevenue(sub);
-    //         event.getVenue().decrementDiscounts(discounts);
-    //     }
-    //     if( ticketType == 2){
-    //                     if(customer.getIsMember()){
-    //             sub = (event.getBronzePrice() * 0.9) * amount;
-    //             discounts = (event.getBronzePrice() * 0.1);
-    //         }else{sub = (event.getBronzePrice()) * amount;}
-    //         event.getVenue().decrementBronzeAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueBronze(sub);
-    //         event.getVenue().decrementTotalRevenue(sub);
-    //         event.getVenue().decrementDiscounts(discounts);
-    //     }
-    //     if( ticketType == 3){
-    //                     if(customer.getIsMember()){
-    //             sub = (event.getSilverPrice() * 0.9) * amount;
-    //             discounts = (event.getSilverPrice() * 0.1);
-    //         }else{sub = (event.getSilverPrice()) * amount;}
-    //         event.getVenue().decrementSilverAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueSilver(sub);
-    //         event.getVenue().decrementTotalRevenue(sub);
-    //         event.getVenue().decrementDiscounts(discounts);
-    //     }
-    //     if( ticketType == 4){
-    //                     if(customer.getIsMember()){
-    //             sub = (event.getGoldPrice() * 0.9) * amount;
-    //             discounts = (event.getGoldPrice() * 0.1);
-    //         }else{sub = (event.getGoldPrice()) * amount;}
-    //         event.getVenue().decrementGoldAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueGold(sub);
-    //         event.getVenue().decrementTotalRevenue(sub);
-    //         event.getVenue().decrementDiscounts(discounts);
-    //     }
-    //     if( ticketType == 5){
-    //                     if(customer.getIsMember()){
-    //             sub = (event.getVipPrice() * 0.9) * amount;
-    //             discounts = (event.getVipPrice() * 0.1);
-    //         }else{sub = (event.getVipPrice()) * amount;}
-    //         event.getVenue().decrementVIPAdmSeatsSold(amount);
-    //         event.getVenue().decrementTotalRevenueVIP(sub);
-    //         event.getVenue().decrementTotalRevenue(sub);
-    //         event.getVenue().decrementDiscounts(discounts);
-    //     }
-    
-    // }
 
-    private static Event findEventByName(List<Event> events, String eventName) {
+    public static void fixRevenues(Customer customer, List<Event> events, int ticketType, int amount, Event event) {
+        double sub = 0.0;
+        double discounts = 0.0;
+    
+        if (ticketType == 1) {
+
+                sub = event.getGeneralAdmissionPrice() * amount;
+
+            event.getVenue().incrementGeneralAdmSeatsSold(-amount);
+            event.getVenue().decrementTotalRevenueGeneralAdm(-sub);
+
+        } else if (ticketType == 2) {
+            if (customer.getIsMember()) {
+                sub = event.getBronzePrice() * amount * 0.9;
+                discounts = event.getBronzePrice() * amount * 0.1;
+            } else {
+                sub = event.getBronzePrice() * amount;
+            }
+            event.getVenue().incrementBronzeSeatsSold(-amount);
+            event.getVenue().decrementTotalRevenueBronze(-sub);
+
+        } else if (ticketType == 3) {
+            if (customer.getIsMember()) {
+                sub = event.getSilverPrice() * amount * 0.9;
+                discounts = event.getSilverPrice() * amount * 0.1;
+            } else {
+                sub = event.getSilverPrice() * amount;
+            }
+            event.getVenue().incrementSilverSeatsSold(-amount);
+            event.getVenue().decrementTotalRevenueSilver(-sub);
+
+        } else if (ticketType == 4) {
+            if (customer.getIsMember()) {
+                sub = event.getGoldPrice() * amount * 0.9;
+                discounts = event.getGoldPrice() * amount * 0.1;
+            } else {
+                sub = event.getGoldPrice() * amount;
+            }
+            event.getVenue().incrementGoldSeatsSold(-amount);
+            event.getVenue().decrementTotalRevenueGold(-sub);
+
+        } else if (ticketType == 5) {
+            if (customer.getIsMember()) {
+                sub = event.getVipPrice() * amount * 0.9;
+                discounts = event.getVipPrice() * amount * 0.1;
+            } else {
+                sub = event.getVipPrice() * amount;
+            }
+            event.getVenue().incrementVIPSeatsSold(-amount);
+            event.getVenue().decrementTotalRevenueVIP(-sub);
+        }
+    
+        // Common updates for all ticket types
+        event.getVenue().decrementTotalRevenue(sub);
+        event.getVenue().decrementDiscounts(discounts);
+    }
+    
+
+    public static Event findEventByName(List<Event> events, String eventName) {
         for (Event event : events) {
             if (event.getName().equals(eventName)) {
                 return event;
@@ -337,6 +349,19 @@ public class customerActions {
                 double convenienceFee = 2.5;
                 double serviceFee = RegularPricingStrategy.getServiceFee(subtotal);
                 double charityFee = RegularPricingStrategy.getCharityFee(subtotal);
+
+                if (customer.getIsMember()) {
+                    System.out.println("------------------------------------------------------------------");
+                    System.out.println("You are a TicketMiner Member, you will get 10% off.");
+                    System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
+                    System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                    System.out.println();
+                } else {
+                    System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
+                    System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                    System.out.println();
+                }
+
     
                 if (total > customer.getMoneyAvailable()) {
                     System.out.println("\n*************************************");
@@ -388,7 +413,7 @@ public class customerActions {
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("no")) {
                 wantToPurchase = false;
-                System.out.println("\nExiting... Thank you! " + customer.getFirstName());
+                System.out.println("\n*-- Thank you for your purchase " + customer.getFirstName() + " --*");
     
                 InvoiceGenerator.generateInvoiceSummary(customer, allPurchases);
                 break;

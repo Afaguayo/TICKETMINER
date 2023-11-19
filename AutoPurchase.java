@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @param customers     A list of customers.
  * 
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 public class AutoPurchase {
 

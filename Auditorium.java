@@ -3,7 +3,7 @@
  * This is the Auditorium class and it extends Venue class
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 class Auditorium extends Venue {
 

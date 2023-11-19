@@ -3,7 +3,7 @@
  * It offers two methods for generating invoice summaries, one for standard invoices and another for automatic invoices.
  *
  * @author Angel, Caleb, Chris & Javier
- * @since November 5, 2023
+ * @since November 19, 2023
  */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -214,5 +214,29 @@ private static void cancelInvoiceFile(Customer customer, String confirmationNumb
             purchase.put("totalPrice", String.format("$%.2f", totalPriceWithFees));
         }
     }
+
+    public static void printPurchaseHistoryForCustomers(List<Customer> customers) {
+        System.out.println("Purchase History for Multiple Customers:");
+    
+        for (Customer customer : customers) {
+            String customerUserName = customer.getUserName();
+            List<Map<String, Object>> purchases = getCustomerPurchaseHistory(customer);
+    
+            System.out.println("Customer: " + customerUserName);
+            System.out.println("Purchase History:");
+    
+            for (Map<String, Object> purchase : purchases) {
+                System.out.println("  Purchase Details:");
+                for (Map.Entry<String, Object> detail : purchase.entrySet()) {
+                    System.out.println("    " + detail.getKey() + ": " + detail.getValue());
+                }
+                System.out.println();
+            }
+    
+            System.out.println("-------------------------");
+        }
+    }
+
+    
     
 }
