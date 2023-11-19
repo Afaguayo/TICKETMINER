@@ -78,214 +78,239 @@ public abstract class Venue {
     }
 
     /**
-     * @param venueName
-     * @return none
+     * Sets the name of the venue.
+     *
+     * @param venueName The name of the venue to be set.
      */
     public void setVenueName(String venueName) {
         this.venueName = venueName;
     }
 
     /**
-     * @param pctSeatsUnavailable
-     * @return none
+     * Sets the percentage of unavailable seats in the venue.
+     *
+     * @param pctSeatsUnavailable The percentage of unavailable seats to be set.
      */
     public void setPctSeatsUnavailable(int pctSeatsUnavailable) {
         this.pctSeatsUnavailable = pctSeatsUnavailable;
     }
 
     /**
-     * @param venueType
-     * @return none
+     * Sets the type of the venue.
+     *
+     * @param venueType The type of the venue to be set.
      */
     public void setVenueType(String venueType) {
         this.venueType = venueType;
     }
 
     /**
-     * @param capacity
-     * @return none
+     * Sets the capacity of the venue.
+     *
+     * @param capacity The capacity of the venue to be set.
      */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
     /**
-     * @param cost
-     * @return none
+     * Sets the cost of the venue.
+     *
+     * @param cost The cost of the venue to be set.
      */
     public void setCost(int cost) {
         this.cost = cost;
     }
 
     /**
-     * @param vipPct
-     * @return none
+     * Sets the percentage of VIP seats in the venue.
+     *
+     * @param vipPct The percentage of VIP seats to be set.
      */
     public void setVipPct(int vipPct) {
         this.vipPct = vipPct;
     }
 
     /**
-     * @param goldPct
-     * @return none
+     * Sets the percentage of Gold seats in the venue.
+     *
+     * @param goldPct The percentage of Gold seats to be set.
      */
     public void setGoldPct(int goldPct) {
         this.goldPct = goldPct;
     }
 
     /**
-     * @param silverPct
-     * @return none
+     * Sets the percentage of Silver seats in the venue.
+     *
+     * @param silverPct The percentage of Silver seats to be set.
      */
     public void setSilverPct(int silverPct) {
         this.silverPct = silverPct;
     }
 
     /**
-     * @param bronzePct
-     * @return none
+     * Sets the percentage of Bronze seats in the venue.
+     *
+     * @param bronzePct The percentage of Bronze seats to be set.
      */
     public void setBronzePct(int bronzePct) {
         this.bronzePct = bronzePct;
     }
 
     /**
-     * @param generalAdmissionPct
-     * @return none
+     * Sets the percentage of General Admission seats in the venue.
+     *
+     * @param generalAdmissionPct The percentage of General Admission seats to be set.
      */
     public void setGeneralAdmissionPct(int generalAdmissionPct) {
         this.generalAdmissionPct = generalAdmissionPct;
     }
 
     /**
-     * @param reservedExtraPct
-     * @return none
+     * Sets the percentage of reserved extra seats in the venue.
+     *
+     * @param reservedExtraPct The percentage of reserved extra seats to be set.
      */
     public void setReservedExtraPct(int reservedExtraPct) {
         this.reservedExtraPct = reservedExtraPct;
     }
 
     /**
-     * @param fireworksPlanned
-     * @return none
+     * Sets whether fireworks are planned for the venue.
+     *
+     * @param fireworksPlanned A boolean indicating whether fireworks are planned.
      */
     public void setFireworksPlanned(boolean fireworksPlanned) {
         this.fireworksPlanned = fireworksPlanned;
     }
 
     /**
-     * @param fireworksCost
-     * @return none
+     * Sets the cost of fireworks for the venue.
+     *
+     * @param fireworksCost The cost of fireworks for the venue to be set.
      */
     public void setFireworksCost(int fireworksCost) {
         this.fireworksCost = fireworksCost;
     }
 
-    // venue attributes getters
-
     /**
-     * @param none
-     * @return venueName
+     * Gets the name of the venue.
+     *
+     * @return The name of the venue.
      */
     public String getVenueName() {
         return venueName;
     }
 
     /**
-     * @param none
-     * @return pctSeatsUnavailable
+     * Gets the percentage of unavailable seats in the venue.
+     *
+     * @return The percentage of unavailable seats.
      */
     public int getPctSeatsUnavailable() {
         return pctSeatsUnavailable;
     }
 
     /**
-     * @param none
-     * @return venueType
+     * Gets the type of the venue.
+     *
+     * @return The type of the venue.
      */
     public String getVenueType() {
         return venueType;
     }
 
     /**
-     * @param none
-     * @return capacity
+     * Gets the capacity of the venue.
+     *
+     * @return The capacity of the venue.
      */
     public int getCapacity() {
         return capacity;
     }
 
     /**
-     * @param none
-     * @return cost
+     * Gets the cost of the venue.
+     *
+     * @return The cost of the venue.
      */
     public int getCost() {
         return cost;
     }
 
     /**
-     * @param none
-     * @return vipPct
+     * Gets the percentage of VIP seats in the venue.
+     *
+     * @return The percentage of VIP seats.
      */
     public double getVipPct() {
         return vipPct;
     }
 
     /**
-     * @param none
-     * @return goldPct
+     * Gets the percentage of Gold seats in the venue.
+     *
+     * @return The percentage of Gold seats.
      */
     public double getGoldPct() {
         return goldPct;
     }
 
     /**
-     * @param none
-     * @return silverPct
+     * Gets the percentage of Silver seats in the venue.
+     *
+     * @return The percentage of Silver seats.
      */
     public double getSilverPct() {
         return silverPct;
     }
 
     /**
-     * @param none
-     * @return bronzePct
+     * Gets the percentage of Bronze seats in the venue.
+     *
+     * @return The percentage of Bronze seats.
      */
     public double getBronzePct() {
         return bronzePct;
     }
 
     /**
-     * @param none
-     * @return generalAdmissionPct
+     * Gets the percentage of General Admission seats in the venue.
+     *
+     * @return The percentage of General Admission seats.
      */
     public double getGeneralAdmissionPct() {
         return generalAdmissionPct;
     }
 
     /**
-     * @param none
-     * @return reservedExtraPct
+     * Gets the percentage of reserved extra seats in the venue.
+     *
+     * @return The percentage of reserved extra seats.
      */
     public double getReservedExtraPct() {
         return reservedExtraPct;
     }
 
     /**
-     * @param none
-     * @return fireworksPlanned
+     * Checks whether fireworks are planned for the venue.
+     *
+     * @return A boolean indicating whether fireworks are planned.
      */
     public boolean isFireworksPlanned() {
         return fireworksPlanned;
     }
 
     /**
-     * @param none
-     * @return fireworksCost
+     * Gets the cost of fireworks for the venue.
+     *
+     * @return The cost of fireworks for the venue.
      */
     public int getFireworksCost() {
         return fireworksCost;
     }
+
 
     /**
      * @param price
