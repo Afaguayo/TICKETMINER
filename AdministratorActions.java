@@ -32,13 +32,19 @@ public class AdministratorActions {
     public static void createEvent(List<Event> events, Scanner keyboard) {
         // Find the largest event ID
         int largestEventID = findLargestEventID(events) + 1;
-
+    
         // Increment it to get the new event ID
         int newEventID = largestEventID++;
-
-        System.out.println("\nEnter the Event Name:");
+    
+        System.out.println("\nEnter the Event Name (type 0 to return):");
         keyboard.nextLine(); // Consume the newline character left in the buffer
         String eventName = keyboard.nextLine();
+    
+        if (eventName.equals("0")) {
+            System.out.println("Returning to main menu...");
+            ActionLogger.logInfo("Admin returned to admin menu"); // Log into text file
+            return; // Exit without creating an event
+        }    
 
         String eventType = "";
         System.out.println("\nSelect type of event: ");
@@ -424,15 +430,24 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
                 break;
 
             case "4":
-                System.out.println("Select an Event ID to cancel: ");
+                System.out.println("Select an Event ID to cancel (type 0 to return): ");
                 eventIDtoCancel = keyboard.nextInt();
-                Event event  = getEventById(events, eventIDtoCancel);
-                for(Customer customer: customers){
+                
+                // Check if user wants to return to main menu
+                if (eventIDtoCancel == 0) {
+                    System.out.println("Returning to main menu...");
+                    ActionLogger.logInfo("Admin returned to admin menu"); // Log into text file
+                    break;
+                }
+                
+                Event event = getEventById(events, eventIDtoCancel);
+                for (Customer customer : customers) {
                     cancelEventTicketPurchases(keyboard, customer, event, events);
                 }
                 cancelEvent(events, eventIDtoCancel, customers);
                 ActionLogger.logInfo("Admin canceled an event with ID: " + eventIDtoCancel); // Log into text file
                 break;
+            
                 
             case "5": // Option to create a new event
                 createEvent(events, keyboard);
