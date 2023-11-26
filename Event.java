@@ -450,7 +450,7 @@ public abstract class Event {
      */
     public void printInfo() {
         System.out.println("Event Information:");
-        System.out.println("=================");
+        System.out.println("\u001B[33m\n======================================\u001B[0m"); 
         System.out.printf("ID: %-22s   Type: %s\n", eventID, eventType);
         System.out.printf("Name: %-20s   Date: %s\n", name, date);
         System.out.printf("Time: %-20s   Venue: %s\n", time, venue.getVenueName());
@@ -475,15 +475,18 @@ public abstract class Event {
             return;
         }
         displayEventDetails();
-        System.out.println("\n*-*-*-* T_I_C_K_E_T_S *-*-*-*");
-        System.out.println("-----------------------------");
-        System.out.println("[1] General Admission: $" + this.generalAdmissionPrice);
-        System.out.println("[2] Bronze Admission: $" + this.bronzePrice);
-        System.out.println("[3] Silver Admission: $" + this.silverPrice);
-        System.out.println("[4] Gold price: $" + this.goldPrice);
-        System.out.println("[5] VIP price: $" + this.vipPrice);
-        System.out.println("=================================");
-        System.out.println("Your money available = $ " + Invoice.roundToTwoDecimals(customer.getMoneyAvailable()));
+        System.out.println("\u001B[33m╔════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m             \u001B[32mT I C K E T S              \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m╠════════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m1\u001B[0m] General Admission:  $ " + this.generalAdmissionPrice + "         \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m2\u001B[0m] Bronze Admission:   $ " + this.bronzePrice + "         \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m3\u001B[0m] Silver Admission:   $ " + this.silverPrice + "         \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m4\u001B[0m] Gold price:         $ " + this.goldPrice + "         \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m5\u001B[0m] VIP price:          $ " + this.vipPrice + "         \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m╚════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[32m║ Your money available = $ " +  Invoice.roundToTwoDecimals(customer.getMoneyAvailable()) + "       ║\u001B[0m");
+        System.out.println("\u001B[32m╚════════════════════════════════════════╝\u001B[0m");
+        
     }
 
     /**
@@ -493,13 +496,14 @@ public abstract class Event {
      * @return None
      */
     public void displayEventDetails() {
-        System.out.println("\n=================================");
-        System.out.println("Event ID: " + this.eventID);
-        System.out.println("Event Name: " + this.getName());
-        System.out.println("Event Type: " + this.getEventType());
-        System.out.println("Event Date: " + this.getDate());
-        System.out.println("Event Time: " + this.getTime());
-        System.out.println("Venue: " + this.venue.getVenueName());
+        System.out.println("\u001B[33m\n=================================\u001B[0m"); 
+        System.out.println("\u001B[34mEvent ID:\u001B[0m " + "\u001B[33m" + this.eventID + "\u001B[0m"); // Yellow color
+        System.out.println("\u001B[34mEvent Name:\u001B[0m " + "\u001B[33m" + this.getName() + "\u001B[0m"); // Yellow color
+        System.out.println("\u001B[34mEvent Type:\u001B[0m " + "\u001B[33m" + this.getEventType() + "\u001B[0m"); // Yellow color
+        System.out.println("\u001B[34mEvent Date:\u001B[0m " + "\u001B[33m" + this.getDate() + "\u001B[0m"); // Yellow color
+        System.out.println("\u001B[34mEvent Time:\u001B[0m " + "\u001B[33m" + this.getTime() + "\u001B[0m"); // Yellow color
+        System.out.println("\u001B[34mVenue:\u001B[0m " + "\u001B[33m" + this.venue.getVenueName() + "\u001B[0m"); // Yellow color
+        
     }
 
     

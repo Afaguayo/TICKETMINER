@@ -255,9 +255,10 @@ class Customer {
      */
     public static Customer validateCredentials(List<Customer> customerInfo, Scanner scanner) {
         while (true) {
-            System.out.print("\n---------------------------------");
-            System.out.println("\nWELCOME TO TICKETMINER EVENTS ");
-            System.out.println("=================================");
+            System.out.println("\u001B[38;5;208m\n┌─────────────────────────────────┐");
+            System.out.println("│      WELCOME TO TICKETMINER     │");
+            System.out.println("└─────────────────────────────────┘\u001B[0m");
+            
             
             // Validate first and last name
             // String inputFirstname;
@@ -283,20 +284,20 @@ class Customer {
             // }
             
             // Validate username and password
-            System.out.println("Enter username: ");
+            System.out.println("\u001B[36mPlease enter your username: \u001B[0m");
             String inputUsername = scanner.nextLine();
-            System.out.println("\nEnter password: ");
+            System.out.println("\n\u001B[36mPlease enter your password: \u001B[0m");
             String inputPassword = scanner.nextLine();
-    
+            
             for (Customer activeCustomer : customerInfo) {
                 if (activeCustomer.getUserName().equalsIgnoreCase(inputUsername) && activeCustomer.getPassword().equals(inputPassword)) {
-                    System.out.print("\n---------------------------------");
-                    System.out.println("\n      Welcome " + activeCustomer.getFirstName() + ' ' + activeCustomer.getLastName());
-                    System.out.print("=================================\n");
+                    System.out.println("\u001B[38;5;208m\n┌─────────────────────────────────┐");
+                    System.out.println("│       Welcome " + activeCustomer.getFirstName() + ' ' + activeCustomer.getLastName() + "      │");
+                    System.out.println("└─────────────────────────────────┘\u001B[0m");
                     return activeCustomer;
                 }
             }
-            System.out.println("Incorrect username or password. Please try again.");
+            System.out.println("\n\u001B[31mIncorrect username or password. Please try again.\u001B[0m");
         }
     }
 

@@ -167,33 +167,34 @@ public class Invoice {
      * Displays the invoice details on the console.
      */
     public void displayInvoice() {
-        System.out.println("\n**-*-*-*-*-*-*-*-*-*-*-*-*-**");
-        System.out.println("*-*-*-* I_N_V_O_I_C_E *-*-*-*\n");
-        System.out.println("Event: " + event.getName());
-        System.out.println("Time: " + event.getTime());
-        System.out.println("Event Date: " + event.getDate());
-        System.out.println("Event ID: " + event.getEventID());
-        System.out.println("Ticket Type: " + getTicketTypeName(ticketType));
-        System.out.println("Cost for each ticket" + ": $" + roundToTwoDecimals((totalPrice)/ticketQuantity));
-        System.out.println("Ticket Quantity: " + ticketQuantity);
-        // if(customer.getIsMember()){
-        //     System.out.println("You received 10% off discount");
-        // }
-        System.out.println("Subtotal: $" + roundToTwoDecimals(subtotal));
-        System.out.println("Tax 8.25%: $" + roundToTwoDecimals(taxes));
-        System.out.println("Convenience Fees: $" + roundToTwoDecimals(convenienceFee));
-        System.out.println("Service Fees: $" + roundToTwoDecimals(serviceFee));
-        System.out.println("Charity Fees: $" + Invoice.roundToTwoDecimals(charityFee));
-        System.out.println("---> Total Price: $" + roundToTwoDecimals(totalPrice) + " <---");
-        System.out.println("Confirmation Number: " + confirmationNumber);
+        System.out.println("\u001B[34m╔════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[34m║\u001B[0m             \u001B[32mI N V O I C E              \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╠════════════════════════════════════════╣\u001B[0m");
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mEvent:\u001B[0m             %-20s\u001B[34m║%n", event.getName());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mTime:\u001B[0m              %-20s\u001B[34m║%n", event.getTime());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mEvent Date:\u001B[0m        %-20s\u001B[34m║%n", event.getDate());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mEvent ID:\u001B[0m          %-20d\u001B[34m║%n", event.getEventID());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mTicket Type:\u001B[0m       %-20s\u001B[34m║%n", getTicketTypeName(ticketType));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mCost per ticket:\u001B[0m   $%-19.2f\u001B[34m║%n", roundToTwoDecimals((totalPrice) / ticketQuantity));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mTicket Quantity:\u001B[0m   %-20d\u001B[34m║%n", ticketQuantity);
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mSubtotal:\u001B[0m          $%-19.2f\u001B[34m║%n", roundToTwoDecimals(subtotal));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mTax 8.25%%:\u001B[0m         $%-19.2f\u001B[34m║%n", roundToTwoDecimals(taxes));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mConvenience Fees:\u001B[0m  $%-19.2f\u001B[34m║%n", roundToTwoDecimals(convenienceFee));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mService Fees:\u001B[0m      $%-19.2f\u001B[34m║%n", roundToTwoDecimals(serviceFee));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mCharity Fees:\u001B[0m      $%-19.2f\u001B[34m║%n", roundToTwoDecimals(charityFee));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[32mTotal Price:\u001B[0m       $%-19.2f\u001B[34m║%n", roundToTwoDecimals(totalPrice));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mConfirmation #:\u001B[0m    %-20s\u001B[34m║%n", confirmationNumber);
         double actualMoney = customer.getMoneyAvailable();
-        System.out.println("Member ID: " + customer.getCustomerID());
-        System.out.println("Client name: " + customer.getFirstName() + ' ' + customer.getLastName());
-        System.out.println("Balance before: $" + Invoice.roundToTwoDecimals(actualMoney));
-        System.out.println("Balance after purchase: $" + roundToTwoDecimals(updateCustomerMoney(totalPrice)));
-        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-        System.out.println("  Thank you for your purchase");
-        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mMember ID:\u001B[0m         %-20d\u001B[34m║%n", customer.getCustomerID());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mClient Name:\u001B[0m       %-20s\u001B[34m║%n", customer.getFirstName() + ' ' + customer.getLastName());
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mBalance Before:\u001B[0m    $%-19.2f\u001B[34m║%n", Invoice.roundToTwoDecimals(actualMoney));
+        System.out.printf("\u001B[34m║\u001B[0m \u001B[33mBalance After:\u001B[0m     $%-19.2f\u001B[34m║%n", roundToTwoDecimals(updateCustomerMoney(totalPrice)));
+        System.out.println("\u001B[34m╚════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[34m║        THANK YOU FOR YOUR PURCHASE     ║");
+        System.out.println("\u001B[34m╚════════════════════════════════════════╝\u001B[0m");
+        
+        
+
     }
 
     /**

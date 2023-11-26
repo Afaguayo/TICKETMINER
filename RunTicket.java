@@ -16,6 +16,7 @@ import java.util.Scanner;
  * Lab description - Utilize Object-Oriented programming design and principles to create a system.
  * 
  */
+
 public class RunTicket {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -28,15 +29,15 @@ public class RunTicket {
         List<Customer> customers = customerDataReader.customerDataStoring("CustomerListPA5.csv");
 
         AutoPurchase autoPurchase = new AutoPurchase(events, customers);
-        
+
         // Singleton instances of the CSV writers
         customerCSV csvCustomer = customerCSV.getInstance("UpdatedCustomerList.csv");
         eventCSV csvEvent = eventCSV.getInstance("UpdatedEventList.csv");
 
-        int userType = 0;
+        int userType;
         boolean terminateProgram = false;
-        int userChoice = 0;
-        boolean terminateAutoBuy = false; 
+        int userChoice;
+        boolean terminateAutoBuy;
 
         while (!terminateProgram) {
             System.out.println("-----------------------------------------------------------------");
@@ -49,26 +50,27 @@ public class RunTicket {
             System.out.println("-----------------------------------------------------------------");
             System.out.println("Are you an admin or Customer? (Select a choice): ");
             System.out.println("-----------------------------------------------------------------");
-            System.out.println("[1] Customer");
-            System.out.println("[2] Administrator");
-            System.out.println("[3] Autopurchase test");
-            System.out.println("[4] Exit");
+            System.out.println("[\u001B[36m1\u001B[0m] \u001B[36mCustomer\u001B[0m");  
+            System.out.println("[\u001B[33m2\u001B[0m] \u001B[33mAdministrator\u001B[0m");  
+            System.out.println("[\u001B[35m3\u001B[0m] \u001B[35mAutopurchase test\u001B[0m");  
+            System.out.println("[\u001B[31m4\u001B[0m] \u001B[31mExit\u001B[0m");  
             System.out.print("\nPlease enter an option: ");
 
             try {
                 userType = scanner.nextInt(); // User input
+                scanner.nextLine(); // Consume the newline character
             } catch (java.util.InputMismatchException e) {
                 scanner.nextLine(); // Clears bad input
+                userType = 0;
             }
 
             if (userType > 4 || userType < 1) {
-                System.out.println("Please enter a valid number choice");
+                System.out.println("\n\u001B[31mPlease enter a valid number choice\u001B[0m");
                 System.out.println();
             }
 
             switch (userType) {
                 case 1:
-                    scanner.nextLine();
                     // Log in customer, create a new customer object for use
                     Customer selectedCustomer = Customer.validateCredentials(customers, scanner);
                     customerActions.userCustomer(scanner, events, selectedCustomer);
@@ -79,26 +81,27 @@ public class RunTicket {
                     break;
 
                 case 3:
-
                     terminateAutoBuy = false;
 
                     while (!terminateAutoBuy) {
-                        System.out.println("Please select one of the following choices");
-                        System.out.println("[1] Auto purchase with 100 customers.");
-                        System.out.println("[2] Auto purchase with 1000 customers.");
-                        System.out.println("[3] Auto purchase with 100,000 customers.");
-                        System.out.println("[4] Auto purchase with 1,000,000 customers");
-                        System.out.println("[5] Exit menu");
-
+                        System.out.println("\n-----------------------------------------------------------------");
+                        System.out.println("\u001B[34m[1] Auto purchase with 100 customers.\u001B[0m");
+                        System.out.println("\u001B[34m[2] Auto purchase with 1000 customers.\u001B[0m");
+                        System.out.println("\u001B[34m[3] Auto purchase with 100,000 customers.\u001B[0m");
+                        System.out.println("\u001B[34m[4] Auto purchase with 1,000,000 customers\u001B[0m");
+                        System.out.println("[\u001B[31m5\u001B[0m] \u001B[31mExit\u001B[0m");  
+                        System.out.print("\nPlease select one of the following choices:  ");
                         try {
                             userChoice = scanner.nextInt(); // User input
+                            scanner.nextLine(); // Consume the newline character
                         } catch (java.util.InputMismatchException e) {
                             System.out.println();
                             scanner.nextLine(); // Clears bad input
+                            userChoice = 0;
                         }
 
                         if (userChoice > 5 || userChoice < 1) {
-                            System.out.println("Please enter a valid number choice");
+                            System.out.println("\n\u001B[31mPlease enter a valid number choice\u001B[0m");
                             System.out.println();
                         }
 
@@ -106,42 +109,48 @@ public class RunTicket {
                             case 1:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100.csv");
                                 terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....");
+                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 2:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1k.csv");
                                 terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....");
+                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 3:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100K.csv");
                                 terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....");
+                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 4:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1M.csv");
                                 terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....");
+                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 5:
                                 terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....");
+                                System.out.println("Exiting menu.....\n");
                                 break;
                         }
                     }
                     break;
 
                 case 4:
-                    System.out.println();
-                    System.out.println("---------------------------------");
-                    System.out.println("Thank you for using TICKETMINER");
-                    System.out.println("Have a wonderful day!");
-                    System.out.println("---------------------------------");
+                    System.out.println("\u001B[33mType 'Exit' to terminate the program, or any other key to return to the main menu:\u001B[0m");
+                    String exitInput = scanner.nextLine(); // Use nextLine() to read the whole line
+                    if (exitInput.equalsIgnoreCase("Exit")) {
+                        System.out.println("\n\u001B[38;5;208m---------------------------------\u001B[0m");
+                        System.out.println("\u001B[38;5;208mThank you for using TICKETMINER\u001B[0m");
+                        System.out.println("\u001B[38;5;208mHave a wonderful day!\u001B[0m");
+                        System.out.println("\u001B[38;5;208m---------------------------------\u001B[0m");
+                        
 
-                    csvCustomer.writeData(customers);
-                    csvEvent.writeData(events);
+                        csvCustomer.writeData(customers);
+                        csvEvent.writeData(events);
 
-                    terminateProgram = true;
+                        terminateProgram = true;
+                    } else {
+                        System.out.println("Returning to the main menu...");
+                    }
                     break;
             }
         }

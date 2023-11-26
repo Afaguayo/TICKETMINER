@@ -42,12 +42,16 @@ public class customerActions {
         Boolean customerMenuRunning = true;
 
         while (customerMenuRunning) {
-            System.out.println("\n_____M_A_I_N___M_E_N_U_____");
-            System.out.println("[1] Look events by type");
-            System.out.println("[2] Search with Event ID");
-            System.out.println("[3] Cancel Order");
-            System.out.println("[4] Exit");
+            System.out.println("\u001B[32m\n┌─────────────────────────────────┐");
+            System.out.println("│         M A I N   M E N U       │");
+            System.out.println("└─────────────────────────────────┘\u001B[0m");
+            System.out.println("[\u001B[36m1\u001B[0m] \u001B[36mLook events by type\u001B[0m");  
+            System.out.println("[\u001B[33m2\u001B[0m] \u001B[33mSearch with Event ID\u001B[0m");  
+            System.out.println("[\u001B[35m3\u001B[0m] \u001B[35mCancel Order\u001B[0m");  
+            System.out.println("[\u001B[31m4\u001B[0m] \u001B[31mExit\u001B[0m"); 
+            
             System.out.print("\nPlease enter an option: ");
+            
 
             try {
                 choice = scanner.nextInt();
@@ -60,10 +64,10 @@ public class customerActions {
                 case 1:
                     System.out.println("\n---------------------------------");
                     System.out.println("Enter an event type to see available events:");
-                    System.out.println("\n[1] Sport");
-                    System.out.println("[2] Concert");
-                    System.out.println("[3] Festival");
-                    System.out.println("[4] See all events");
+                    System.out.println("\n[\u001B[33m1\u001B[0m] \u001B[33mSport\u001B[0m");
+                    System.out.println("[\u001B[33m2\u001B[0m] \u001B[33mConcert\u001B[0m");
+                    System.out.println("[\u001B[33m3\u001B[0m] \u001B[33mFestival\u001B[0m");
+                    System.out.println("[\u001B[33m4\u001B[0m] \u001B[33mSee all events\u001B[0m");
                     System.out.print("\nPlease enter an option: ");
 
                     try {
@@ -92,7 +96,7 @@ public class customerActions {
                             buyTickets(scanner, events, selectedCustomer);
                             break;
                         default:
-                            System.out.println("Invalid option. Please try again.");
+                            System.out.println("\n\u001B[31mInvalid option. Please try again.\u001B[0m");
                             System.out.println("\n---------------------------------");
                             System.out.println("Enter an event type to see available events:");
                             System.out.println("\n[1] Sport");
@@ -119,7 +123,7 @@ public class customerActions {
                     customerMenuRunning = false;           
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("\u001B[31mInvalid option. Please try again.\u001B[0m");
                     break;
             }
         }
@@ -139,13 +143,16 @@ public class customerActions {
         Boolean endCancelMenu = false;
         while (!endCancelMenu){
         
-        System.out.println("\n----- CANCEL TICKET PURCHASE -----");
+            System.out.println("\u001B[34m\n┌─────────────────────────────────┐");
+            System.out.println("│     CANCEL TICKET PURCHASE      │");
+            System.out.println("└─────────────────────────────────┘\u001B[0m");
+            
         
         // Display the list of the customer's purchases
         List<Map<String, Object>> customerPurchases = InvoiceGenerator.getCustomerPurchaseHistory(customer);
     
         if (customerPurchases.isEmpty()) {
-            System.out.println("You have no ticket purchases to cancel.");
+            System.out.println("\u001B[33mYou have no ticket purchases to cancel.\u001B[0m");
             return;
         }
         
@@ -153,7 +160,7 @@ public class customerActions {
     
         int purchaseIndex = 1;
         for (Map<String, Object> purchase : customerPurchases) {
-            System.out.println("[" + purchaseIndex + "]");
+            System.out.println("\u001B[33m[" + purchaseIndex + "]\u001B[0m");
             System.out.println("Event: " + purchase.get("Event Name"));
             System.out.println("Date: " + purchase.get("Event Date"));
             System.out.println("Ticket Type: " + purchase.get("Ticket Type"));
@@ -165,8 +172,8 @@ public class customerActions {
             purchaseIndex++;
         }
     
-        System.out.println("--> Disclaimer: Fees will not be refunded <--");
-        System.out.print("Enter the number corresponding to the purchase you want to cancel (or 0 to go back): ");
+        System.out.println("\u001B[31m--> Disclaimer: Fees will not be refunded <--\u001B[0m");
+        System.out.print("\u001B[33mEnter the number corresponding to the purchase you want to cancel (or 0 to go back): \u001B[0m");
         int cancelChoice = scanner.nextInt();
         scanner.nextLine();  // Consume the newline character
         
@@ -177,7 +184,7 @@ public class customerActions {
         }
         
         if (cancelChoice < 0 || cancelChoice > customerPurchases.size()) {
-            System.out.println("Invalid selection. Please try again.");
+            System.out.println("\u001B[31mInvalid option. Please try again.\u001B[0m");
             // Use continue to go back to the start of the loop for a new selection
             continue;
         }
@@ -376,21 +383,23 @@ public class customerActions {
 
                 if (customer.getIsMember()) {
                     System.out.println("------------------------------------------------------------------");
-                    System.out.println("You are a TicketMiner Member, you will get 10% off.");
-                    System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
-                    System.out.println("--> Total would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                    System.out.println("\u001B[34mYou are a TicketMiner Member, you will get 10% off.\u001B[0m");
+                    System.out.println("\u001B[33mSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]\u001B[0m");
+                    System.out.println("\u001B[33m--> Total would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]\u001B[0m");
+                    
                     System.out.println();
                 } else {
-                    System.out.println("\nSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]");
-                    System.out.println("--> Total Price would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]");
+                    System.out.println("\u001B[33mSubtotal would be: $" + Invoice.roundToTwoDecimals(subtotal) + " [Fees included, Tax not included]\u001B[0m");
+                    System.out.println("\u001B[33m--> Total Price would be: $" + Invoice.roundToTwoDecimals(total) + " [Tax & Fees included]\u001B[0m");                    
                     System.out.println();
                 }
 
     
                 if (total > customer.getMoneyAvailable()) {
-                    System.out.println("\n*************************************");
-                    System.out.println("\n*** Insufficient Funds, try again ***");
-                    System.out.println("\n*************************************");
+                    System.out.println("\n\u001B[31m*************************************\u001B[0m");
+                    System.out.println("\n\u001B[31m*** Insufficient Funds, try again ***\u001B[0m");
+                    System.out.println("\n\u001B[31m*************************************\u001B[0m");
+                    
                     continue;
                 }
     
@@ -429,7 +438,7 @@ public class customerActions {
                 allPurchases.add(purchase); // Add the purchase to the list
     
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
+                System.out.println("\u001B[31mInvalid input. Please enter a valid number.\u001B[0m");
                 scanner.nextLine();
             }
     

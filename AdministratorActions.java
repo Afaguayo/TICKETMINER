@@ -389,16 +389,16 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
 
     while (!adminLogged) {
         System.out.println("\n---------------------------------");
-        System.out.println("[1] Inquire event by ID");
-        System.out.println("[2] Inquire event by name");
-        System.out.println("[3] Inquire all events");
-        System.out.println("[4] Cancel event");
-        System.out.println("[5] Create a new event"); // New option to create an event
-        System.out.println("[6] Compute/print the amount of money gained by The TicketMiner Company for an event");
-        System.out.println("[7] Compute/print the amount of money gained by The TicketMiner Company for all events");
-        System.out.println("[8] Create invoice for customer");
-        System.out.println("[9] Retrieve all customer purchases");
-        System.out.println("[10] Exit admin menu");
+        System.out.println("[\u001B[33m1\u001B[0m] \u001B[33mInquire event by ID\u001B[0m");
+        System.out.println("[\u001B[33m2\u001B[0m] \u001B[33mInquire event by name\u001B[0m");
+        System.out.println("[\u001B[33m3\u001B[0m] \u001B[33mInquire all events\u001B[0m");
+        System.out.println("[\u001B[33m4\u001B[0m] \u001B[33mCancel event\u001B[0m");
+        System.out.println("[\u001B[33m5\u001B[0m] \u001B[33mCreate a new event\u001B[0m"); 
+        System.out.println("[\u001B[33m6\u001B[0m] \u001B[33mCompute/print the amount of money gained by The TicketMiner Company for an event\u001B[0m");
+        System.out.println("[\u001B[33m7\u001B[0m] \u001B[33mCompute/print the amount of money gained by The TicketMiner Company for all events\u001B[0m");
+        System.out.println("[\u001B[33m8\u001B[0m] \u001B[33mCreate invoice for customer\u001B[0m");
+        System.out.println("[\u001B[33m9\u001B[0m] \u001B[33mRetrieve all customer purchases\u001B[0m");
+        System.out.println("[\u001B[33m10\u001B[0m] \u001B[33mExit admin menu\u001B[0m");
         System.out.println("\nPlease enter an option: ");
 
         adminChoice = keyboard.next();
