@@ -182,7 +182,7 @@ public class Invoice {
         System.out.printf("\u001B[34m║\u001B[0m \u001B[33mConvenience Fees:\u001B[0m  $%-19.2f\u001B[34m║%n", roundToTwoDecimals(convenienceFee));
         System.out.printf("\u001B[34m║\u001B[0m \u001B[33mService Fees:\u001B[0m      $%-19.2f\u001B[34m║%n", roundToTwoDecimals(serviceFee));
         System.out.printf("\u001B[34m║\u001B[0m \u001B[33mCharity Fees:\u001B[0m      $%-19.2f\u001B[34m║%n", roundToTwoDecimals(charityFee));
-        System.out.printf("\u001B[34m║\u001B[0m \u001B[32mTotal Price:\u001B[0m       $%-19.2f\u001B[34m║%n", roundToTwoDecimals(totalPrice));
+        System.out.printf("\u001B[34m║\u001B[32m Total Price:       $%-19.2f\u001B[0m\u001B[34m║%n", roundToTwoDecimals(totalPrice));
         System.out.printf("\u001B[34m║\u001B[0m \u001B[33mConfirmation #:\u001B[0m    %-20s\u001B[34m║%n", confirmationNumber);
         double actualMoney = customer.getMoneyAvailable();
         System.out.printf("\u001B[34m║\u001B[0m \u001B[33mMember ID:\u001B[0m         %-20d\u001B[34m║%n", customer.getCustomerID());
