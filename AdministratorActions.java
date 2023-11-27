@@ -32,6 +32,7 @@ public class AdministratorActions {
     public static void createEvent(List<Event> events, Scanner keyboard) {
         // Find the largest event ID
         int largestEventID = findLargestEventID(events) + 1;
+        int type = 0;
     
         // Increment it to get the new event ID
         int newEventID = largestEventID++;
@@ -51,7 +52,18 @@ public class AdministratorActions {
         System.out.println("[1] Sport");
         System.out.println("[2] Concert");
         System.out.println("[3] Festival");
-        int type = keyboard.nextInt();
+
+
+        
+        
+        try {
+            type = keyboard.nextInt(); // User input
+            keyboard.nextLine(); // Consume the newline character
+        } catch (java.util.InputMismatchException e) {
+            keyboard.nextLine(); // Clears bad input
+            type = 0;
+        }
+        
         switch (type) {
             case 1:
                 eventType = "Sport";
@@ -62,6 +74,20 @@ public class AdministratorActions {
             case 3:
                 eventType = "Festival";
                 break;
+            default:
+                
+                while(type < 1 || type > 3){
+                System.out.println("invalid input please enter a valid choice.");
+                        try {
+                        type = keyboard.nextInt(); // User input
+                        keyboard.nextLine(); // Consume the newline character
+                        } catch (java.util.InputMismatchException e) {
+                        keyboard.nextLine(); // Clears bad input
+                        type = 0;
+                        }
+                    }
+                break;
+
         }
 
         System.out.println("\nEnter the Event Date (MM/DD/YY, example 12/30/23 ):");
@@ -418,8 +444,15 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
 
             case "2":
                 System.out.println("Please enter the name of the event you'd like to see.");
-                keyboard.nextLine(); // Consume the newline character left in the buffer
-                adminNameChoice = keyboard.nextLine(); // User input
+ 
+                try {
+                    adminNameChoice = keyboard.next(); // User input
+                    keyboard.nextLine(); // Consume the newline character
+                } catch (java.util.InputMismatchException e) {
+                    keyboard.nextLine(); // Clears bad input
+                    adminNameChoice = "";
+                }
+
                 inquireByname(events, adminNameChoice);
                 ActionLogger.logInfo( "Admin inquired on event " + adminNameChoice); // Log into text file
                 break;
@@ -431,8 +464,16 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
 
             case "4":
                 System.out.println("Select an Event ID to cancel (type 0 to return): ");
-                eventIDtoCancel = keyboard.nextInt();
+
                 
+                try {
+                    eventIDtoCancel = keyboard.nextInt(); // User input
+                    keyboard.nextLine(); // Consume the newline character
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid ID in the database");
+                    keyboard.nextLine(); // Clears bad input
+                }
+
                 // Check if user wants to return to main menu
                 if (eventIDtoCancel == 0) {
                     System.out.println("Returning to main menu...");
