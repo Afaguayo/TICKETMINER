@@ -238,10 +238,6 @@ class Customer {
     public void addTicketPurchase(Map<String, Object> purchase){
         this.ticketPurchases.add(purchase);
     }
-
-    public void removeTicketPurchase(Map<String, Object> purchase){
-        this.ticketPurchases.remove(purchase);
-    }
     
 
     public List<Map<String, Object>> getTicketPurchases(){
@@ -296,7 +292,7 @@ class Customer {
             for (Customer activeCustomer : customerInfo) {
                 if (activeCustomer.getUserName().equalsIgnoreCase(inputUsername) && activeCustomer.getPassword().equals(inputPassword)) {
                     System.out.println("\u001B[38;5;208m\n┌─────────────────────────────────┐");
-                    System.out.println("│       Welcome " + activeCustomer.getFirstName() + ' ' + activeCustomer.getLastName() + "      │");
+                    System.out.println("       Welcome " + activeCustomer.getFirstName() + ' ' + activeCustomer.getLastName() + "      ");
                     System.out.println("└─────────────────────────────────┘\u001B[0m");
                     return activeCustomer;
                 }

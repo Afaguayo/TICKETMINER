@@ -475,17 +475,17 @@ public abstract class Event {
             return;
         }
         displayEventDetails();
-        System.out.println("\u001B[33m╔════════════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m             \u001B[32mT I C K E T S              \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m╠════════════════════════════════════════╣\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m1\u001B[0m] General Admission:  $ " + this.generalAdmissionPrice + "         \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m2\u001B[0m] Bronze Admission:   $ " + this.bronzePrice + "         \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m3\u001B[0m] Silver Admission:   $ " + this.silverPrice + "         \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m4\u001B[0m] Gold price:         $ " + this.goldPrice + "         \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m║\u001B[0m [\u001B[33m5\u001B[0m] VIP price:          $ " + this.vipPrice + "         \u001B[33m║\u001B[0m");
-        System.out.println("\u001B[33m╚════════════════════════════════════════╝\u001B[0m");
-        System.out.println("\u001B[32m║ Your money available = $ " +  Invoice.roundToTwoDecimals(customer.getMoneyAvailable()) + "       ║\u001B[0m");
-        System.out.println("\u001B[32m╚════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[33m╔═══════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[33m║\u001B[0m                \u001B[32mT I C K E T S              \u001B[33m║\u001B[0m");
+        System.out.println("\u001B[33m╠═══════════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[33m \u001B[0m [\u001B[33m1\u001B[0m] General Admission...$" + this.generalAdmissionPrice + "            \u001B[33m\u001B[0m");
+        System.out.println("\u001B[33m \u001B[0m [\u001B[33m2\u001B[0m] Bronze Admission....$" + this.bronzePrice + "            \u001B[33m\u001B[0m");
+        System.out.println("\u001B[33m \u001B[0m [\u001B[33m3\u001B[0m] Silver Admission....$" + this.silverPrice + "            \u001B[33m\u001B[0m");
+        System.out.println("\u001B[33m \u001B[0m [\u001B[33m4\u001B[0m] Gold price..........$" + this.goldPrice + "            \u001B[33m\u001B[0m");
+        System.out.println("\u001B[33m \u001B[0m [\u001B[33m5\u001B[0m] VIP price...........$" + this.vipPrice + "            \u001B[33m\u001B[0m");
+        System.out.println("\u001B[33m╚═══════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[32m  Your money available = $" +  Invoice.roundToTwoDecimals(customer.getMoneyAvailable()) + "          \u001B[0m");
+        System.out.println("\u001B[32m╚═══════════════════════════════════════════╝\u001B[0m");
         
     }
 

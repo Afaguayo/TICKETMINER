@@ -104,7 +104,7 @@ public class AdministratorActions {
         String amOrPm = keyboard.next();
 
         if (!isValidTime(eventTime, amOrPm)) {
-            System.out.println("Invalid time format. Event creation aborted.");
+            System.out.println("\u001B[31mInvalid time format. Event creation aborted.\u001B[0m");
             return; // Exit without creating an event
         } else {
             eventTime = eventTime + ' ' + amOrPm.toUpperCase();
@@ -119,11 +119,11 @@ public class AdministratorActions {
 
         String venueType = "";
         System.out.println("\nSelect Venue from the list:");
-        System.out.println("[1] Sun Bowl Stadium ");
-        System.out.println("[2] Don Haskins Center");
-        System.out.println("[3] Magoffin Auditorium");
-        System.out.println("[4] San Jacinto Plaza");
-        System.out.println("[5] Centennial Plaza");
+        System.out.println("[1] \u001B[33mSun Bowl Stadium\u001B[0m");
+        System.out.println("[2] \u001B[33mDon Haskins Center\u001B[0m");
+        System.out.println("[3] \u001B[33mMagoffin Auditorium\u001B[0m");
+        System.out.println("[4] \u001B[33mSan Jacinto Plaza\u001B[0m");
+        System.out.println("[5] \u001B[33mCentennial Plaza\u001B[0m");
         int venueChoice = keyboard.nextInt();
         String venueName = ""; // Initialize with an empty string
         switch (venueChoice) {
@@ -148,17 +148,17 @@ public class AdministratorActions {
                 venueType = "Open Air";
                 break;
             default:
-                System.out.println("Invalid venue choice. Event creation aborted.");
+                System.out.println("\u001B[31mInvalid venue choice. Event creation aborted.\u001B[0m");
                 return; // Exit without creating an event
         }
 
         // Compute the number of seats for each ticket level
         int venueCapacity = computeVenueCapacity(venueName); // Implement this method
 
-        System.out.println("Enter General Admission Price (max $4000):");
+        System.out.println("\nEnter General Admission Price (max $4000):");
         double generalAdmissionPrice = keyboard.nextDouble();
         if (generalAdmissionPrice > 4000) {
-            System.out.println("General Admission Price exceeds the maximum allowed. Event creation aborted.");
+            System.out.println("\u001B[31mGeneral Admission Price exceeds the maximum allowed. Event creation aborted.\u001B[0m");
             return; // Exit without creating an event
         }
 
@@ -531,7 +531,7 @@ public static void userAdmin(List<Event> events,List<Customer> customers, Scanne
                 break;
 
             default:
-                System.out.println("Invalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, 8, 9, or 10).");
+                System.out.println("\u001B[31mInvalid choice. Please select a valid option (1, 2, 3, 4, 5, 6, 7, 8, 9, or 10).\u001B[0m");
         }
     }
 }
@@ -556,7 +556,7 @@ public static void inquireId(List<Event> data, int eventId) {
     }
 
     if (!found) {
-        System.out.println("Invalid ID in the database");
+        System.out.println("\u001B[31mInvalid ID in the database\u001B[0m");
     }
 }
 
@@ -579,7 +579,7 @@ public static void inquireByname(List<Event> data, String eventName) {
     }
 
     if (!found) {
-        System.out.println("Invalid name in the database");
+        System.out.println("\u001B[31mInvalid name in the database\u001B[0m");
     }
 }
 
