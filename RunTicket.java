@@ -108,23 +108,15 @@ public class RunTicket {
                         switch (userChoice) {
                             case 1:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100.csv");
-                                terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 2:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1k.csv");
-                                terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 3:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase100K.csv");
-                                terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 4:
                                 autoPurchase.processAutoPurchase(events, customers, "AutoPurchase1M.csv");
-                                terminateAutoBuy = true;
-                                System.out.println("Exiting menu.....\n");
                                 break;
                             case 5:
                                 terminateAutoBuy = true;

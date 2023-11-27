@@ -205,7 +205,7 @@ public class Invoice {
      * @return The ticket type name corresponding to the given ticket type code. Returns "Unknown Ticket Type" for an
      *         unrecognized ticket type code.
      */
-    private String getTicketTypeName(int ticketType) {
+    public static String getTicketTypeName(int ticketType) {
         switch (ticketType) {
             case 1:
                 return "General Admission";

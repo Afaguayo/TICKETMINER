@@ -46,34 +46,44 @@ public class InvoiceGenerator {
         // Create a file name for the invoice summary
         String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            // Write the header of the invoice
-            writer.write("Electronic Invoice Summary");
-            writer.newLine();
-            writer.write("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
-            writer.newLine();
-            writer.newLine();
-
-            // Loop through the customer's ticket purchases
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Write the details of each purchase
             for (Map<String, Object> purchase : ticketPurchases) {
-                for (Map.Entry<String, Object> entry : purchase.entrySet()) {
-                    writer.write(entry.getKey() + ": " + entry.getValue());
-                    writer.newLine();
-                }
+                writer.write("Purchase Status: " + purchase.get("Purchase Status"));
+                writer.newLine();
+                writer.write("Event Type: " + purchase.get("Event Type"));
+                writer.newLine();
+                writer.write("Event Name: " + purchase.get("Event Name"));
+                writer.newLine();
+                writer.write("Event Date: " + purchase.get("Event Date"));
+                writer.newLine();
+                writer.write("Ticket Type: " + purchase.get("Ticket Type"));
+                writer.newLine();
+                writer.write("Number of Tickets: " + purchase.get("Number Of Tickets"));
+                writer.newLine();
+                writer.write("Total Price: " + purchase.get("Total Price")); // Update to include fees
+                writer.newLine();
+                writer.write("Confirmation Number: " + purchase.get("Confirmation Number"));
+                writer.newLine();
                 writer.newLine();
             }
 
             // Close the file
             writer.close();
 
-            // Check if the customer's purchase history already exists
             List<Map<String, Object>> existingHistory = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
 
-            // Append new purchases to existing history
-            existingHistory.addAll(ticketPurchases);
-
-            // Update the purchase history for the customer
+            for (Map<String, Object> newPurchase : ticketPurchases) {
+                boolean exists = existingHistory.stream()
+                        .anyMatch(purchase -> purchase.equals(newPurchase));
+            
+                if (!exists) {
+                    existingHistory.add(newPurchase);
+                }
+            }
+            
             purchaseHistory.put(customer.getUserName(), existingHistory);
+            
 
         } catch (IOException e) {
             System.out.println("An error occurred while generating the invoice summary.");
@@ -134,40 +144,60 @@ public class InvoiceGenerator {
      * @param confirmationNumber The confirmation number of the canceled order.
      */
     private static void cancelInvoiceFile(Customer customer, String confirmationNumber) {
-        String folderPath = "Invoices/";
-        String fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            StringBuilder content = new StringBuilder();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append(System.lineSeparator());
+        String[] folderPaths = {"Invoices/", "AutoInvoices/"};
+        String fileName = "";
+    
+        boolean invoiceFound = false;
+    
+        // Iterate through each folder path to check for the invoice file
+        for (String folderPath : folderPaths) {
+            fileName = folderPath + customer.getUserName() + "_InvoiceSummary.txt";
+            File file = new File(fileName);
+    
+            if (file.exists()) {
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(file));
+                    StringBuilder content = new StringBuilder();
+                    String line;
+    
+                    while ((line = reader.readLine()) != null) {
+                        content.append(line).append(System.lineSeparator());
+                    }
+    
+                    // Update the purchase status header to "PURCHASE CANCELLED"
+                    content.replace(0, content.indexOf(System.lineSeparator()), "Purchase status: PURCHASE CANCELLED");
+    
+                    // Identify the part of the content that corresponds to the canceled order
+                    String purchaseIdentifier = "Confirmation Number: " + confirmationNumber;
+                    int startIndex = content.indexOf(purchaseIdentifier);
+    
+                    if (startIndex != -1) {
+                        // Add a message indicating cancellation alongside the confirmation number
+                        String cancellationMessage = "Order Canceled for Confirmation Number: " + confirmationNumber;
+                        content.insert(startIndex + purchaseIdentifier.length(), " (" + cancellationMessage + ")");
+    
+                        // Write the updated content back to the file
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                        writer.write(content.toString());
+                        writer.close();
+    
+                        System.out.println("Invoice canceled after order cancellation.");
+                        invoiceFound = true;
+                    }
+                } catch (IOException e) {
+                    System.out.println("An error occurred while canceling the invoice.");
+                    e.printStackTrace();
+                }
             }
-
-            // Identify the part of the content that corresponds to the canceled order
-            String purchaseIdentifier = "Confirmation Number: " + confirmationNumber;
-            int startIndex = content.indexOf(purchaseIdentifier);
-
-            if (startIndex != -1) {
-                // Replace the purchase details with a message indicating cancellation
-                int endIndex = content.indexOf(System.lineSeparator(), startIndex);
-                content.replace(startIndex, endIndex, "Order Canceled");
-            }
-
-            // Write the updated content back to the file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(content.toString());
-            writer.close();
-
-            System.out.println("Invoice canceled after order cancellation.");
-
-        } catch (IOException e) {
-            System.out.println("An error occurred while canceling the invoice.");
-            e.printStackTrace();
+        }
+    
+        // If the invoice file was not found in any folder path
+        if (!invoiceFound) {
+            System.out.println("Invoice file not found for cancellation.");
         }
     }
+    
+    
 
     /**
      * Generates an automatic invoice summary for a customer and appends it to a file in the "AutoInvoices" folder.
@@ -191,21 +221,21 @@ public class InvoiceGenerator {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             // Write the details of each purchase
             for (Map<String, Object> purchase : ticketPurchases) {
-                writer.write("Purchase status: " + purchase.get("purchase status"));
+                writer.write("Purchase Status: " + purchase.get("Purchase Status"));
                 writer.newLine();
-                writer.write("Event Type: " + purchase.get("eventType"));
+                writer.write("Event Type: " + purchase.get("Event Type"));
                 writer.newLine();
-                writer.write("Event Name: " + purchase.get("eventName"));
+                writer.write("Event Name: " + purchase.get("Event Name"));
                 writer.newLine();
-                writer.write("Event Date: " + purchase.get("eventDate"));
+                writer.write("Event Date: " + purchase.get("Event Date"));
                 writer.newLine();
-                writer.write("Ticket Type: " + purchase.get("ticketType"));
+                writer.write("Ticket Type: " + purchase.get("Ticket Type"));
                 writer.newLine();
-                writer.write("Number of Tickets: " + purchase.get("numberOfTickets"));
+                writer.write("Number of Tickets: " + purchase.get("Number Of Tickets"));
                 writer.newLine();
-                writer.write("Total Price: " + purchase.get("totalPrice")); // Update to include fees
+                writer.write("Total Price: " + purchase.get("Total Price")); // Update to include fees
                 writer.newLine();
-                writer.write("Confirmation Number: " + purchase.get("confirmationNumber"));
+                writer.write("Confirmation Number: " + purchase.get("Confirmation Number"));
                 writer.newLine();
                 writer.newLine();
             }
@@ -215,6 +245,23 @@ public class InvoiceGenerator {
             //printServiceFees(writer, ticketPurchases);
 
             // Do not close the file to keep it open for appending
+
+            List<Map<String, Object>> existingHistory = purchaseHistory.getOrDefault(customer.getUserName(), new ArrayList<>());
+
+            for (Map<String, Object> newPurchase : ticketPurchases) {
+                boolean exists = existingHistory.stream()
+                        .anyMatch(purchase -> purchase.equals(newPurchase));
+            
+                if (!exists) {
+                    existingHistory.add(newPurchase);
+                }
+            }
+            
+            purchaseHistory.put(customer.getUserName(), existingHistory);
+            
+
+
+
         } catch (IOException e) {
             System.out.println("An error occurred while generating/updating the invoice summary.");
             e.printStackTrace();
@@ -229,20 +276,20 @@ public class InvoiceGenerator {
     public static void calculateServiceFees(List<Map<String, Object>> ticketPurchases) {
         // Loop through the ticket purchases and calculate service fees for each purchase
         for (Map<String, Object> purchase : ticketPurchases) {
-            Double totalPrice = (Double) purchase.get("totalPrice");
-
+            Double totalPrice = (Double) purchase.get("Total Price");
+    
             double convenienceFee = 2.50;
             double serviceFee = 0.005 * totalPrice;
             double charityFee = 0.0075 * totalPrice;
-
+    
             double totalServiceFees = convenienceFee + serviceFee + charityFee;
-            double totalPriceWithFees = totalPrice + totalServiceFees;
 
+    
             purchase.put("convenienceFee", String.format("$%.2f", convenienceFee));
             purchase.put("serviceFee", String.format("$%.2f", serviceFee));
             purchase.put("charityFee", String.format("$%.2f", charityFee));
             purchase.put("totalServiceFees", String.format("$%.2f", totalServiceFees));
-            purchase.put("totalPrice", String.format("$%.2f", totalPriceWithFees));
+            
         }
     }
 

@@ -636,6 +636,7 @@ public static void profitIdEvent(List<Event> data, int eventId) {
             for (Customer user : customers) {
                 if (username.equalsIgnoreCase(user.getUserName())) {
                     found = true;
+                    System.out.println(user.getTicketPurchases());
                     InvoiceGenerator.generateInvoiceSummary(user, user.getTicketPurchases());
                     break; // Exit the loop once a match is found
                 }

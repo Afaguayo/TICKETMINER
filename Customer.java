@@ -238,6 +238,10 @@ class Customer {
     public void addTicketPurchase(Map<String, Object> purchase){
         this.ticketPurchases.add(purchase);
     }
+
+    public void removeTicketPurchase(Map<String, Object> purchase){
+        this.ticketPurchases.remove(purchase);
+    }
     
 
     public List<Map<String, Object>> getTicketPurchases(){
